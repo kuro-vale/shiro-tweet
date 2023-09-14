@@ -28,7 +28,7 @@ function AppLayout() {
       >
 
       </Sider>
-      <Content className="ml-0__sm" style={{marginLeft: `${collapsed ? "15" : "30"}vw`}}>
+      <Content className="ml-0__sm" style={{marginLeft: `${collapsed ? "15" : "30"}vw`, minHeight: "100vh"}}>
         <Outlet/>
       </Content>
     </Layout>
