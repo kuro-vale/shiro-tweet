@@ -46,6 +46,45 @@ table {
     border-spacing: 0;
 }
 
+/* Fonts */
+@font-face {
+    font-family: TwitterChirp;
+    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff2) format('woff2');
+    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff) format('woff');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: TwitterChirp;
+    src: url(https://abs.twimg.com/fonts/v2/chirp-bold-web.woff2) format('woff2');
+    src: url(https://abs.twimg.com/fonts/v2/chirp-bold-web.woff) format('woff');
+    font-weight: 600;
+}
+
+/* Variables */
+:root {
+    --color-primary: rgb(29, 155, 240);
+    --color-secondary: rgb(113, 118, 123);
+}
+
+/* Custom colors */
+.color-primary {
+    color: var(--color-primary) !important;
+}
+
+.color-secondary {
+    color: var(--color-secondary) !important;
+}
+
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
+/* Custom classes */
+.w-100 {
+    width: 100%;
+}
+
 /* Hide shit for mobile */
 @media (max-width: 500px) {
     .sm-hidden {

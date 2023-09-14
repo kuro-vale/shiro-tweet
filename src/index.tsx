@@ -4,7 +4,7 @@ import AppLayout from "./AppLayout";
 import "./index.css";
 import {ConfigProvider, theme} from "antd";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Landing from "./pages/Landing";
+import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home";
 import NotFound from "./pages/404";
 
@@ -17,8 +17,8 @@ root.render(
       theme={{
         algorithm: theme.darkAlgorithm,
         token: {
-          colorPrimary: "rgb(29, 155, 240)",
-          fontSize: 15
+          fontSize: 15,
+          fontFamily: "TwitterChirp"
         }
       }}
     >

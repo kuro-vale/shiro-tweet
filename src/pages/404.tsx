@@ -6,10 +6,10 @@ const {Text} = Typography;
 function NotFound() {
   return (
     <Result
-      icon={<QuestionOutlined/>}
+      icon={<QuestionOutlined className="color-primary"/>}
       subTitle="Hmm... this page doesn’t exist. Try searching for something else."
       extra={
-        <Button type="primary" shape="round" size="large">
+        <Button shape="round" size="large" className="bg-primary">
           <Text strong>Search</Text>
         </Button>
       }
