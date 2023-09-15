@@ -31,8 +31,7 @@ function Landing() {
           Repo</Link>
         <Link className="color-secondary socials-link" href="https://x.com" target="_blank">
           Based on X</Link>
-        {/* TODO change href for .env api*/}
-        <Link className="color-secondary socials-link" href="" target="_blank">
+        <Link className="color-secondary socials-link" href={process.env.REACT_APP_API} target="_blank">
           API</Link>
         <Link className="color-secondary socials-link" href="https://github.com/kuro-vale" target="_blank">
           Github</Link>
