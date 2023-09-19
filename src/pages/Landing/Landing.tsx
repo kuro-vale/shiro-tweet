@@ -1,12 +1,18 @@
 import {Button, Divider, Layout, Typography} from "antd";
 import "./Landing.css";
+import {useState} from "react";
+import LoginModal from "../../components/LoginModal/LoginModal";
+import {AppleOutlined, GoogleOutlined} from "@ant-design/icons";
 
 const {Footer, Content} = Layout;
 const {Link, Text, Title} = Typography;
 
 function Landing() {
+  const [openLogin, setOpenLogin] = useState(false);
+
   return (
     <Layout style={{height: "100vh"}}>
+      <LoginModal open={openLogin} onClose={() => setOpenLogin(false)}/>
       <Content className="main">
         <div className="logo">
           <img src="/logo.svg" alt="logo"/>
@@ -14,14 +20,28 @@ function Landing() {
         <div className="content">
           <Title className="big-title verdana">Happening now</Title>
           <Title className="verdana" level={2}>Join today.</Title>
-          <Divider style={{width: "300px", minWidth: "0"}}/>
-          <Button shape="round" className="bg-primary register-button">
+          <Button shape="round" className="bg-white form-button cursor-block next"
+                  icon={<GoogleOutlined style={{color: "black"}}/>}>
+            <Text strong style={{color: "rgb(60, 64, 67)"}}>
+              Sign up with Google
+            </Text>
+          </Button>
+          <Button
+            shape="round"
+            className="bg-white form-button cursor-block next m-0"
+            icon={<AppleOutlined style={{color: "black"}}/>}
+          >
+            <Text strong style={{color: "black"}}>
+              Sign up with Apple
+            </Text>
+          </Button>
+          <Divider className="divider"/>
+          <Button shape="round" className="bg-primary form-button m-0">
             <Text strong>Create account</Text>
           </Button>
           <Text className="color-secondary small-text">By signing up, you agree to the Cookie Use.</Text>
-          <Divider style={{borderColor: "black"}}/>
-          <Title level={5}>Already have an account?</Title>
-          <Button shape="round" className="login-button">
+          <Title level={5} style={{marginTop: 60}}>Already have an account?</Title>
+          <Button shape="round" className="login-button form-button" onClick={() => setOpenLogin(true)}>
             <Text strong className="color-primary">Sign in</Text>
           </Button>
         </div>

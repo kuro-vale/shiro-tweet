@@ -80,6 +80,24 @@ table {
     background-color: var(--color-primary) !important;
 }
 
+.bg-white {
+    background-color: white;
+}
+
+.divider {
+    border-color: rgb(51,54,57);
+    width: 300px;
+    min-width: 0;
+}
+
+.cursor-block {
+    cursor: not-allowed;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
 /* Custom classes */
 .w-100 {
     width: 100%;
