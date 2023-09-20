@@ -97,11 +97,16 @@
 }
 
 @media (max-width: 600px) {
+    .login-form__last {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 500px) {
     .form-input__last {
         width: 300px;
     }
-
-    .login-form__last {
-        margin-left: 0;
+    .last-button {
+        width: 300px;
     }
 }
