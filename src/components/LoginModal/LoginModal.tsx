@@ -1,9 +1,10 @@
 import {Button, Divider, Form, Input, Modal, Typography} from "antd";
 import "./LoginModal.css";
 import React, {useState} from "react";
-import {AppleOutlined, GoogleOutlined} from "@ant-design/icons";
 import {useAuth} from "../../hooks";
 import {LoginModalProps, UserRequest} from "../../types";
+import GoogleIcon from "../icons/GoogleIcon";
+import AppleIcon from "../icons/AppleIcon";
 
 const {Title, Text, Link} = Typography;
 
@@ -54,14 +55,12 @@ function LoginModal(props: LoginModalProps) {
         <Title level={2} style={{marginTop: 10}}>{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
         {!lastStep &&
             <>
-                <Button shape="round" className="bg-white form-button cursor-block next"
-                        icon={<GoogleOutlined style={{color: "black"}}/>}>
+                <Button shape="round" className="bg-white form-button cursor-block next" icon={<GoogleIcon/>}>
                     <Text strong style={{color: "rgb(60, 64, 67)"}}>
                         Sign in with Google
                     </Text>
                 </Button>
-                <Button shape="round" className="bg-white form-button cursor-block next"
-                        icon={<AppleOutlined style={{color: "black"}}/>}>
+                <Button shape="round" className="bg-white form-button cursor-block next" icon={<AppleIcon/>}>
                     <Text strong style={{color: "black"}}>
                         Sign in with Apple
                     </Text>

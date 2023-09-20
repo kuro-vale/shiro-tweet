@@ -2,8 +2,9 @@ import {Button, Divider, Layout, Typography} from "antd";
 import "./Landing.css";
 import {useState} from "react";
 import LoginModal from "../../components/LoginModal/LoginModal";
-import {AppleOutlined, GoogleOutlined} from "@ant-design/icons";
 import {useSearchParams} from "react-router-dom";
+import AppleIcon from "../../components/icons/AppleIcon";
+import GoogleIcon from "../../components/icons/GoogleIcon";
 
 const {Footer, Content} = Layout;
 const {Link, Text, Title} = Typography;
@@ -22,16 +23,14 @@ function Landing() {
         <div className="content">
           <Title className="big-title verdana">Happening now</Title>
           <Title className="verdana" level={2}>Join today.</Title>
-          <Button shape="round" className="bg-white form-button cursor-block next"
-                  icon={<GoogleOutlined style={{color: "black"}}/>}>
+          <Button shape="round" className="bg-white form-button cursor-block next" icon={<GoogleIcon/>}>
             <Text strong style={{color: "rgb(60, 64, 67)"}}>
               Sign up with Google
             </Text>
           </Button>
           <Button
             shape="round"
-            className="bg-white form-button cursor-block next m-0"
-            icon={<AppleOutlined style={{color: "black"}}/>}
+            className="bg-white form-button cursor-block next m-0" icon={<AppleIcon/>}
           >
             <Text strong style={{color: "black"}}>
               Sign up with Apple
