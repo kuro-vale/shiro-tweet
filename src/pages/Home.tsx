@@ -1,6 +1,13 @@
+import {Button} from "antd";
+import {useAuth} from "../hooks";
+
 function Home() {
+  const {onLogout} = useAuth();
+
   return (
-    <h1>Home</h1>
+    <Button onClick={onLogout}>
+      Logout
+    </Button>
   );
 }
 

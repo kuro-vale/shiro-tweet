@@ -3,12 +3,14 @@ import "./Landing.css";
 import {useState} from "react";
 import LoginModal from "../../components/LoginModal/LoginModal";
 import {AppleOutlined, GoogleOutlined} from "@ant-design/icons";
+import {useSearchParams} from "react-router-dom";
 
 const {Footer, Content} = Layout;
 const {Link, Text, Title} = Typography;
 
 function Landing() {
-  const [openLogin, setOpenLogin] = useState(false);
+  const [search] = useSearchParams();
+  const [openLogin, setOpenLogin] = useState(!!search.get("login"));
 
   return (
     <Layout style={{height: "100vh"}}>
@@ -39,7 +41,7 @@ function Landing() {
           <Button shape="round" className="bg-primary form-button m-0">
             <Text strong>Create account</Text>
           </Button>
-          <Text className="color-secondary small-text">By signing up, you agree to the Cookie Use.</Text>
+          <Text className="color-secondary small-text">By signing up, you agree to be beautiful.</Text>
           <Title level={5} style={{marginTop: 60}}>Already have an account?</Title>
           <Button shape="round" className="login-button form-button" onClick={() => setOpenLogin(true)}>
             <Text strong className="color-primary">Sign in</Text>

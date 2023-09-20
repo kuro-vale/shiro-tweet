@@ -2,20 +2,15 @@ import {Button, Divider, Form, Input, Modal, Typography} from "antd";
 import "./LoginModal.css";
 import React, {useState} from "react";
 import {AppleOutlined, GoogleOutlined} from "@ant-design/icons";
-import {UserRequest} from "../../contexts/UserContext";
-import LoginHook from "../../hooks/LoginHook";
+import {useAuth} from "../../hooks";
+import {LoginModalProps, UserRequest} from "../../types";
 
 const {Title, Text, Link} = Typography;
-
-type LoginModalProps = {
-  open: boolean,
-  onClose: Function
-}
 
 function LoginModal(props: LoginModalProps) {
   const [form] = Form.useForm<UserRequest>();
   const [lastStep, setLastStep] = useState(false);
-  const {handleLogin} = LoginHook();
+  const {onLogin} = useAuth();
   const onNext = async () => {
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
@@ -31,7 +26,7 @@ function LoginModal(props: LoginModalProps) {
   const onFinish = async () => {
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
-      handleLogin(form.getFieldsValue());
+      onLogin(form.getFieldsValue());
     }
   };
 
@@ -62,13 +57,13 @@ function LoginModal(props: LoginModalProps) {
                 <Button shape="round" className="bg-white form-button cursor-block next"
                         icon={<GoogleOutlined style={{color: "black"}}/>}>
                     <Text strong style={{color: "rgb(60, 64, 67)"}}>
-                        Sign up with Google
+                        Sign in with Google
                     </Text>
                 </Button>
                 <Button shape="round" className="bg-white form-button cursor-block next"
                         icon={<AppleOutlined style={{color: "black"}}/>}>
                     <Text strong style={{color: "black"}}>
-                        Sign up with Apple
+                        Sign in with Apple
                     </Text>
                 </Button>
                 <Divider plain className="divider"/>
