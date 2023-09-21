@@ -8,5 +8,8 @@ export const AuthContext = createContext<AuthContextProps>({
   },
   onLogout: () => {
     throw new Error("Not implemented");
-  }
+  },
+  onRegister: () => {
+    throw new Error("Not Implemented");
+  },
 });

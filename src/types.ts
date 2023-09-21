@@ -12,10 +12,11 @@ export type AuthProviderProps = {
 export type AuthContextProps = {
   user: boolean,
   onLogin: (request: UserRequest) => void,
-  onLogout: () => void
+  onLogout: () => void,
+  onRegister: (request: UserRequest) => void,
 }
 
 export type LoginModalProps = {
   open: boolean,
-  onClose: Function
+  onClose: () => void,
 }

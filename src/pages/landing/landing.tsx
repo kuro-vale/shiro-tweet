@@ -1,10 +1,11 @@
 import {Button, Divider, Layout, Typography} from "antd";
 import "./landing.css";
 import {useState} from "react";
-import LoginModal from "../../components/login-modal/login-modal";
+import LoginModal from "../../components/auth-modals/login-modal";
 import {useSearchParams} from "react-router-dom";
 import AppleIcon from "../../components/icons/apple-icon";
 import GoogleIcon from "../../components/icons/google-icon";
+import RegisterModal from "../../components/auth-modals/register-modal";
 
 const {Footer, Content} = Layout;
 const {Link, Text, Title} = Typography;
@@ -12,10 +13,12 @@ const {Link, Text, Title} = Typography;
 function Landing() {
   const [search] = useSearchParams();
   const [openLogin, setOpenLogin] = useState(!!search.get("login"));
+  const [openRegister, setOpenRegister] = useState(!!search.get("register"));
 
   return (
     <Layout style={{height: "100vh"}}>
       <LoginModal open={openLogin} onClose={() => setOpenLogin(false)}/>
+      <RegisterModal open={openRegister} onClose={() => setOpenRegister(false)}/>
       <Content className="main">
         <div className="logo">
           <img src="/logo.svg" alt="logo"/>
@@ -37,7 +40,7 @@ function Landing() {
             </Text>
           </Button>
           <Divider className="divider"/>
-          <Button shape="round" className="bg-primary form-button m-0">
+          <Button shape="round" className="bg-primary form-button m-0" onClick={() => setOpenRegister(true)}>
             <Text strong>Create account</Text>
           </Button>
           <Text className="color-secondary small-text">By signing up, you agree to be beautiful.</Text>

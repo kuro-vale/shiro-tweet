@@ -1,5 +1,5 @@
 import {Button, Divider, Form, Input, Modal, Typography} from "antd";
-import "./login-modal.css";
+import "./auth-modal.css";
 import React, {useState} from "react";
 import {useAuth} from "../../hooks";
 import {LoginModalProps, UserRequest} from "../../types";
@@ -79,7 +79,7 @@ function LoginModal(props: LoginModalProps) {
             disabled={lastStep}
             placeholder="Username"
             className={lastStep ? "form-input__last" : "form-input"}
-            onKeyDown={(e) => e.key === "Enter" ? onNext() : null}
+            onKeyDown={e => e.key === "Enter" && onNext()}
           />
         </Form.Item>
         {lastStep ?
@@ -92,7 +92,7 @@ function LoginModal(props: LoginModalProps) {
                 placeholder="Password"
                 className="form-input__last"
                 autoFocus
-                onKeyDown={(e) => e.key === "Enter" ? onFinish() : null}
+                onKeyDown={e => e.key === "Enter" && onFinish()}
               />
             </Form.Item>
             <Button shape="round" className="bg-white last-button next" onClick={onFinish}>
@@ -100,7 +100,7 @@ function LoginModal(props: LoginModalProps) {
             </Button>
           </> :
           <>
-            <Button shape="round" className="form-button next bg-white" onClick={() => onNext()}>
+            <Button shape="round" className="form-button next bg-white" onClick={onNext}>
               <Text strong style={{color: "black"}}>Next</Text>
             </Button>
             <Button shape="round" className="form-button login-button cursor-block">
@@ -108,10 +108,9 @@ function LoginModal(props: LoginModalProps) {
             </Button>
           </>
         }
-        {/* TODO */}
         <Text className="color-secondary register-hook" style={lastStep ? {margin: 0} : undefined}>
           Don't have an account?&nbsp;
-          <Link className="color-primary">Sign up</Link></Text>
+          <Link href="/?register=true" className="color-primary">Sign up</Link></Text>
       </Form>
     </Modal>
   );

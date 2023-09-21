@@ -21,10 +21,18 @@ const AuthProvider = (props: AuthProviderProps) => {
     navigate("/");
   };
 
+  const handleRegister = (request: UserRequest) => {
+    console.log(request);
+    localStorage.setItem("user", "true");
+    setUser(true);
+    navigate("/home", {replace: false});
+  };
+
   const value: AuthContextProps = {
     user,
     onLogin: handleLogin,
     onLogout: handleLogout,
+    onRegister: handleRegister,
   };
 
   if (!user && location.pathname !== "/") {
