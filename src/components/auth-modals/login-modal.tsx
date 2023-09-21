@@ -27,6 +27,7 @@ function LoginModal(props: LoginModalProps) {
   const onFinish = async () => {
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
+      props.onClose();
       onLogin(form.getFieldsValue());
     }
   };

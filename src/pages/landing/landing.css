@@ -94,3 +94,7 @@ h1.big-title {
 a.socials-link:hover {
     text-decoration: underline;
 }
+
+a.socials-link:focus {
+    text-decoration: underline;
+}
