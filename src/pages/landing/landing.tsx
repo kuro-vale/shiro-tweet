@@ -1,10 +1,10 @@
 import {Button, Divider, Layout, Typography} from "antd";
-import "./Landing.css";
+import "./landing.css";
 import {useState} from "react";
-import LoginModal from "../../components/LoginModal/LoginModal";
+import LoginModal from "../../components/login-modal/login-modal";
 import {useSearchParams} from "react-router-dom";
-import AppleIcon from "../../components/icons/AppleIcon";
-import GoogleIcon from "../../components/icons/GoogleIcon";
+import AppleIcon from "../../components/icons/apple-icon";
+import GoogleIcon from "../../components/icons/google-icon";
 
 const {Footer, Content} = Layout;
 const {Link, Text, Title} = Typography;

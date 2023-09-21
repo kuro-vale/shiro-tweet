@@ -1,10 +1,10 @@
 import {Button, Divider, Form, Input, Modal, Typography} from "antd";
-import "./LoginModal.css";
+import "./login-modal.css";
 import React, {useState} from "react";
 import {useAuth} from "../../hooks";
 import {LoginModalProps, UserRequest} from "../../types";
-import GoogleIcon from "../icons/GoogleIcon";
-import AppleIcon from "../icons/AppleIcon";
+import GoogleIcon from "../icons/google-icon";
+import AppleIcon from "../icons/apple-icon";
 
 const {Title, Text, Link} = Typography;
 
@@ -108,6 +108,7 @@ function LoginModal(props: LoginModalProps) {
             </Button>
           </>
         }
+        {/* TODO */}
         <Text className="color-secondary register-hook" style={lastStep ? {margin: 0} : undefined}>
           Don't have an account?&nbsp;
           <Link className="color-primary">Sign up</Link></Text>

@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./components/app-layout";
 import "./index.css";
 import {ConfigProvider, theme} from "antd";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Landing from "./pages/Landing/Landing";
-import Home from "./pages/Home";
+import Landing from "./pages/landing/landing";
+import Home from "./pages/home";
 import NotFound from "./pages/404";
-import AuthProvider from "./components/AuthProvider";
+import AuthProvider from "./components/auth-provider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
