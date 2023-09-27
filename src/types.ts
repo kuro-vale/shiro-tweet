@@ -25,3 +25,15 @@ export type User = {
   id: number,
   sub: string,
 }
+
+export type AuthData = {
+  Auth: {
+    login: AuthPayload,
+    register: AuthPayload,
+  },
+}
+
+export type AuthPayload = {
+  token: string,
+  user: User | null,
+}

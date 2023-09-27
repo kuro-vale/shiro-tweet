@@ -1,28 +1,38 @@
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts";
-import {AuthContextProps, AuthProviderProps, User, UserRequest} from "../types";
+import {AuthContextProps, AuthData, AuthProviderProps, User, UserRequest} from "../types";
 import {useState} from "react";
-import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../const";
+import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
+import {useMutation} from "@apollo/client";
+import {LOGIN_MUTATION} from "../graphql/mutations";
 
 const AuthProvider = (props: AuthProviderProps) => {
-  const token = localStorage.getItem(TOKEN_KEY);
+  const localToken = localStorage.getItem(TOKEN_KEY);
   let decoded: User | null = null;
-  if (token) {
+  if (localToken) {
     try {
-      decoded = jwtDecode(token);
+      decoded = jwtDecode(localToken);
     } catch (e) {
       localStorage.clear();
     }
   }
 
   const [user, setUser] = useState<User | null>(decoded);
+  const [mutateLogin] = useMutation<AuthData>(LOGIN_MUTATION);
   const navigate = useNavigate();
   const location = useLocation();
+
   const handleLogin = async (request: UserRequest) => {
-    localStorage.setItem(TOKEN_KEY, "token");
-    setUser(jwtDecode("token"));
-    navigate(location.state?.path || HOME_ROUTE);
+    try {
+      let {data} = await mutateLogin({variables: {username: request.Username, password: request.Password}});
+      const token = data!.Auth.login.token;
+      localStorage.setItem(TOKEN_KEY, token);
+      setUser(jwtDecode(token));
+      navigate(location.state?.path || HOME_ROUTE);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleLogout = async () => {

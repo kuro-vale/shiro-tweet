@@ -5,7 +5,7 @@ import {useAuth} from "../../hooks";
 import {LoginModalProps, UserRequest} from "../../types";
 import GoogleIcon from "../icons/google-icon";
 import AppleIcon from "../icons/apple-icon";
-import {REGISTER_ROUTE} from "../../const";
+import {REGISTER_ROUTE} from "../../constants";
 
 const {Title, Text, Link} = Typography;
 
@@ -31,6 +31,7 @@ function LoginModal(props: LoginModalProps) {
     if (valid) {
       setLoading(true);
       await onLogin(form.getFieldsValue());
+      setLoading(false);
     }
   };
 
