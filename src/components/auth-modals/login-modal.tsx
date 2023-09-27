@@ -2,7 +2,7 @@ import {Button, Divider, Form, Input, Modal, Spin, Typography} from "antd";
 import "./auth-modal.css";
 import React, {useState} from "react";
 import {useAuth} from "../../hooks";
-import {LoginModalProps, UserRequest} from "../../types";
+import {AuthRequest, LoginModalProps} from "../../types";
 import GoogleIcon from "../icons/google-icon";
 import AppleIcon from "../icons/apple-icon";
 import {REGISTER_ROUTE} from "../../constants";
@@ -10,7 +10,7 @@ import {REGISTER_ROUTE} from "../../constants";
 const {Title, Text, Link} = Typography;
 
 function LoginModal(props: LoginModalProps) {
-  const [form] = Form.useForm<UserRequest>();
+  const [form] = Form.useForm<AuthRequest>();
   const [lastStep, setLastStep] = useState(false);
   const {onLogin} = useAuth();
   const [loading, setLoading] = useState(false);
@@ -77,8 +77,8 @@ function LoginModal(props: LoginModalProps) {
                   <Divider plain className="divider"/>
               </>
           }
-          <Form.Item<UserRequest>
-            name="Username"
+          <Form.Item<AuthRequest>
+            name="username"
             rules={[
               {required: true, message: "Please enter your username"},
               {pattern: /^(?!.*\.\.)(?!.*\.$)\w[\w.-]+$/, message: "Enter a valid username"}
@@ -93,9 +93,12 @@ function LoginModal(props: LoginModalProps) {
           </Form.Item>
           {lastStep ?
             <>
-              <Form.Item<UserRequest>
-                name="Password"
-                rules={[{required: true, message: "Please enter your password"}, {min: 5}]}
+              <Form.Item<AuthRequest>
+                name="password"
+                rules={[
+                  {required: true, message: "Please enter your password"},
+                  {min: 5, message: "Password must be at least 5 characters"}
+                ]}
               >
                 <Input.Password
                   placeholder="Password"

@@ -1,6 +1,6 @@
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts";
-import {AuthContextProps, AuthData, AuthProviderProps, User, UserRequest} from "../types";
+import {AuthContextProps, AuthData, AuthProviderProps, AuthRequest, User} from "../types";
 import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
@@ -23,9 +23,9 @@ const AuthProvider = (props: AuthProviderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogin = async (request: UserRequest) => {
+  const handleLogin = async (request: AuthRequest) => {
     try {
-      let {data} = await mutateLogin({variables: {username: request.Username, password: request.Password}});
+      let {data} = await mutateLogin({variables: request});
       const token = data!.Auth.login.token;
       localStorage.setItem(TOKEN_KEY, token);
       setUser(jwtDecode(token));
@@ -41,7 +41,7 @@ const AuthProvider = (props: AuthProviderProps) => {
     navigate(LANDING_ROUTE);
   };
 
-  const handleRegister = async (request: UserRequest) => {
+  const handleRegister = async (request: AuthRequest) => {
     localStorage.setItem("user", "true");
     // setUser(true);
     navigate(HOME_ROUTE);

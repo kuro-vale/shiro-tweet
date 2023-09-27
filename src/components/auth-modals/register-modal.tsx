@@ -1,4 +1,4 @@
-import {LoginModalProps, UserRequest} from "../../types";
+import {AuthRequest, LoginModalProps} from "../../types";
 import {Button, Form, Input, Modal, Typography} from "antd";
 import "./auth-modal.css";
 import {useAuth} from "../../hooks";
@@ -6,7 +6,7 @@ import {useAuth} from "../../hooks";
 const {Title, Text} = Typography;
 
 function RegisterModal(props: LoginModalProps) {
-  const [form] = Form.useForm<UserRequest>();
+  const [form] = Form.useForm<AuthRequest>();
   const {onRegister} = useAuth();
 
   const onClose = () => {
@@ -40,8 +40,8 @@ function RegisterModal(props: LoginModalProps) {
         className="login-form__last"
       >
         <Title level={2} style={{marginTop: 50}}>Create your account</Title>
-        <Form.Item<UserRequest>
-          name="Username"
+        <Form.Item<AuthRequest>
+          name="username"
           rules={[
             {required: true, message: "Please enter your username"},
             {pattern: /^(?!.*\.\.)(?!.*\.$)\w[\w.-]+$/, message: "Enter a valid username"}
@@ -54,9 +54,12 @@ function RegisterModal(props: LoginModalProps) {
             autoFocus
           />
         </Form.Item>
-        <Form.Item<UserRequest>
-          name="Password"
-          rules={[{required: true, message: "Please enter your password"}, {min: 5}]}
+        <Form.Item<AuthRequest>
+          name="password"
+          rules={[
+            {required: true, message: "Please enter your password"},
+            {min: 5, message: "Password must be at least 5 characters"}
+          ]}
         >
           <Input.Password
             placeholder="Password"

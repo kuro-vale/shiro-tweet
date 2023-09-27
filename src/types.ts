@@ -1,8 +1,8 @@
 import {ReactNode} from "react";
 
-export type UserRequest = {
-  Username: string,
-  Password: string
+export type AuthRequest = {
+  username: string,
+  password: string
 }
 
 export type AuthProviderProps = {
@@ -11,9 +11,9 @@ export type AuthProviderProps = {
 
 export type AuthContextProps = {
   user: User | null,
-  onLogin: (request: UserRequest) => Promise<void>,
+  onLogin: (request: AuthRequest) => Promise<void>,
   onLogout: () => Promise<void>,
-  onRegister: (request: UserRequest) => Promise<void>,
+  onRegister: (request: AuthRequest) => Promise<void>,
 }
 
 export type LoginModalProps = {
