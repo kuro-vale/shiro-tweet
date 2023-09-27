@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import AppLayout from "./components/app-layout";
 import "./index.css";
-import {ConfigProvider, theme} from "antd";
+import {ConfigProvider, Spin, theme} from "antd";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Landing from "./pages/landing/landing";
 import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
+import {LoadingOutlined} from "@ant-design/icons";
+
+Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

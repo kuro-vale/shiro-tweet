@@ -1,4 +1,4 @@
-import {Button, Divider, Form, Input, Modal, Typography} from "antd";
+import {Button, Divider, Form, Input, Modal, Spin, Typography} from "antd";
 import "./auth-modal.css";
 import React, {useState} from "react";
 import {useAuth} from "../../hooks";
@@ -12,6 +12,7 @@ function LoginModal(props: LoginModalProps) {
   const [form] = Form.useForm<UserRequest>();
   const [lastStep, setLastStep] = useState(false);
   const {onLogin} = useAuth();
+  const [loading, setLoading] = useState(false);
   const onNext = async () => {
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
@@ -27,8 +28,8 @@ function LoginModal(props: LoginModalProps) {
   const onFinish = async () => {
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
-      props.onClose();
-      onLogin(form.getFieldsValue());
+      setLoading(true);
+      await onLogin(form.getFieldsValue());
     }
   };
 
@@ -47,72 +48,78 @@ function LoginModal(props: LoginModalProps) {
       maskClosable={false}
       maskStyle={{backgroundColor: "rgba(91, 112, 131, 0.4)"}}
       footer={null}
+      closable={!loading}
     >
-      <Form
-        form={form}
-        name="login"
-        className={lastStep ? "login-form__last" : "login-form"}
+      <Spin
+        wrapperClassName="bg-black"
+        spinning={loading}
       >
-        <Title level={2} style={{marginTop: 10}}>{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
-        {!lastStep &&
-            <>
-                <Button shape="round" className="bg-white form-button cursor-block next" icon={<GoogleIcon/>}>
-                    <Text strong style={{color: "rgb(60, 64, 67)"}}>
-                        Sign in with Google
-                    </Text>
-                </Button>
-                <Button shape="round" className="bg-white form-button cursor-block next" icon={<AppleIcon/>}>
-                    <Text strong style={{color: "black"}}>
-                        Sign in with Apple
-                    </Text>
-                </Button>
-                <Divider plain className="divider"/>
-            </>
-        }
-        <Form.Item<UserRequest>
-          name="Username"
-          rules={[
-            {required: true, message: "Please enter your username"},
-            {pattern: /^(?!.*\.\.)(?!.*\.$)\w[\w.-]+$/, message: "Enter a valid username"}
-          ]}
+        <Form
+          form={form}
+          name="login"
+          className={lastStep ? "login-form__last" : "login-form"}
         >
-          <Input
-            disabled={lastStep}
-            placeholder="Username"
-            className={lastStep ? "form-input__last" : "form-input"}
-            onKeyDown={e => e.key === "Enter" && onNext()}
-          />
-        </Form.Item>
-        {lastStep ?
-          <>
-            <Form.Item<UserRequest>
-              name="Password"
-              rules={[{required: true, message: "Please enter your password"}, {min: 5}]}
-            >
-              <Input.Password
-                placeholder="Password"
-                className="form-input__last"
-                autoFocus
-                onKeyDown={e => e.key === "Enter" && onFinish()}
-              />
-            </Form.Item>
-            <Button shape="round" className="bg-white last-button next" onClick={onFinish}>
-              <Text strong style={{color: "black", fontSize: "17px"}}>Log in</Text>
-            </Button>
-          </> :
-          <>
-            <Button shape="round" className="form-button next bg-white" onClick={onNext}>
-              <Text strong style={{color: "black"}}>Next</Text>
-            </Button>
-            <Button shape="round" className="form-button login-button cursor-block">
-              <Text strong style={{color: "white"}}>Forgot password?</Text>
-            </Button>
-          </>
-        }
-        <Text className="color-secondary register-hook" style={lastStep ? {margin: 0} : undefined}>
-          Don't have an account?&nbsp;
-          <Link href="/?register=true" className="color-primary">Sign up</Link></Text>
-      </Form>
+          <Title level={2} style={{marginTop: 10}}>{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
+          {!lastStep &&
+              <>
+                  <Button shape="round" className="bg-white form-button cursor-block next" icon={<GoogleIcon/>}>
+                      <Text strong style={{color: "rgb(60, 64, 67)"}}>
+                          Sign in with Google
+                      </Text>
+                  </Button>
+                  <Button shape="round" className="bg-white form-button cursor-block next" icon={<AppleIcon/>}>
+                      <Text strong style={{color: "black"}}>
+                          Sign in with Apple
+                      </Text>
+                  </Button>
+                  <Divider plain className="divider"/>
+              </>
+          }
+          <Form.Item<UserRequest>
+            name="Username"
+            rules={[
+              {required: true, message: "Please enter your username"},
+              {pattern: /^(?!.*\.\.)(?!.*\.$)\w[\w.-]+$/, message: "Enter a valid username"}
+            ]}
+          >
+            <Input
+              disabled={lastStep}
+              placeholder="Username"
+              className={lastStep ? "form-input__last" : "form-input"}
+              onKeyDown={e => e.key === "Enter" && onNext()}
+            />
+          </Form.Item>
+          {lastStep ?
+            <>
+              <Form.Item<UserRequest>
+                name="Password"
+                rules={[{required: true, message: "Please enter your password"}, {min: 5}]}
+              >
+                <Input.Password
+                  placeholder="Password"
+                  className="form-input__last"
+                  autoFocus
+                  onKeyDown={e => e.key === "Enter" && onFinish()}
+                />
+              </Form.Item>
+              <Button shape="round" className="bg-white last-button next" onClick={onFinish}>
+                <Text strong style={{color: "black", fontSize: "17px"}}>Log in</Text>
+              </Button>
+            </> :
+            <>
+              <Button shape="round" className="form-button next bg-white" onClick={onNext}>
+                <Text strong style={{color: "black"}}>Next</Text>
+              </Button>
+              <Button shape="round" className="form-button login-button cursor-block">
+                <Text strong style={{color: "white"}}>Forgot password?</Text>
+              </Button>
+            </>
+          }
+          <Text className="color-secondary register-hook" style={lastStep ? {margin: 0} : undefined}>
+            Don't have an account?&nbsp;
+            <Link href="/?register=true" className="color-primary">Sign up</Link></Text>
+        </Form>
+      </Spin>
     </Modal>
   );
 }

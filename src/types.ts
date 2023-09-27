@@ -11,9 +11,9 @@ export type AuthProviderProps = {
 
 export type AuthContextProps = {
   user: boolean,
-  onLogin: (request: UserRequest) => void,
-  onLogout: () => void,
-  onRegister: (request: UserRequest) => void,
+  onLogin: (request: UserRequest) => Promise<void>,
+  onLogout: () => Promise<void>,
+  onRegister: (request: UserRequest) => Promise<void>,
 }
 
 export type LoginModalProps = {
