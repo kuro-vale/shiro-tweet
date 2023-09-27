@@ -9,13 +9,20 @@ import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
-import {HOME_ROUTE, LANDING_ROUTE} from "./const";
+import {HOME_ROUTE, LANDING_ROUTE} from "./constants";
+import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
+
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_API,
+  cache: new InMemoryCache()
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <ConfigProvider
@@ -28,17 +35,19 @@ root.render(
       }}
     >
       <BrowserRouter>
-        <AuthProvider>
-          <Routes>
+        <ApolloProvider client={client}>
+          <AuthProvider>
+            <Routes>
 
-            <Route path={LANDING_ROUTE} element={<Landing/>}/>
-            <Route element={<AppLayout/>}>
-              <Route path={HOME_ROUTE} element={<Home/>}/>
-              <Route path="*" element={<NotFound/>}/>
-            </Route>
+              <Route path={LANDING_ROUTE} element={<Landing/>}/>
+              <Route element={<AppLayout/>}>
+                <Route path={HOME_ROUTE} element={<Home/>}/>
+                <Route path="*" element={<NotFound/>}/>
+              </Route>
 
-          </Routes>
-        </AuthProvider>
+            </Routes>
+          </AuthProvider>
+        </ApolloProvider>
       </BrowserRouter>
     </ConfigProvider>
   </React.StrictMode>
