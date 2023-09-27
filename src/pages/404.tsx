@@ -10,6 +10,7 @@ function NotFound() {
       subTitle="Hmm... this page doesn’t exist. Try searching for something else."
       extra={
         <Button shape="round" size="large" className="bg-primary">
+          {/*TODO*/}
           <Text strong>Search</Text>
         </Button>
       }

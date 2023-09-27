@@ -18,7 +18,7 @@ function RegisterModal(props: LoginModalProps) {
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
       props.onClose();
-      onRegister(form.getFieldsValue());
+      await onRegister(form.getFieldsValue());
     }
   };
 

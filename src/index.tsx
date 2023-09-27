@@ -9,6 +9,7 @@ import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
+import {HOME_ROUTE, LANDING_ROUTE} from "./const";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -30,9 +31,9 @@ root.render(
         <AuthProvider>
           <Routes>
 
-            <Route path="/" element={<Landing/>}/>
-            <Route path="/" element={<AppLayout/>}>
-              <Route path="home" element={<Home/>}/>
+            <Route path={LANDING_ROUTE} element={<Landing/>}/>
+            <Route element={<AppLayout/>}>
+              <Route path={HOME_ROUTE} element={<Home/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Route>
 

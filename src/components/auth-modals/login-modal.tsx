@@ -5,6 +5,7 @@ import {useAuth} from "../../hooks";
 import {LoginModalProps, UserRequest} from "../../types";
 import GoogleIcon from "../icons/google-icon";
 import AppleIcon from "../icons/apple-icon";
+import {REGISTER_ROUTE} from "../../const";
 
 const {Title, Text, Link} = Typography;
 
@@ -117,7 +118,7 @@ function LoginModal(props: LoginModalProps) {
           }
           <Text className="color-secondary register-hook" style={lastStep ? {margin: 0} : undefined}>
             Don't have an account?&nbsp;
-            <Link href="/?register=true" className="color-primary">Sign up</Link></Text>
+            <Link href={REGISTER_ROUTE} className="color-primary">Sign up</Link></Text>
         </Form>
       </Spin>
     </Modal>

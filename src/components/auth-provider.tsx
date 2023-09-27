@@ -1,36 +1,40 @@
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts";
-import {AuthContextProps, AuthProviderProps, UserRequest} from "../types";
+import {AuthContextProps, AuthProviderProps, User, UserRequest} from "../types";
 import {useState} from "react";
+import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../const";
+import jwtDecode from "jwt-decode";
 
 const AuthProvider = (props: AuthProviderProps) => {
-  const [user, setUser] = useState(!!localStorage.getItem("user"));
+  const token = localStorage.getItem(TOKEN_KEY);
+  let decoded: User | null = null;
+  if (token) {
+    try {
+      decoded = jwtDecode(token);
+    } catch (e) {
+      localStorage.clear();
+    }
+  }
+
+  const [user, setUser] = useState<User | null>(decoded);
   const navigate = useNavigate();
   const location = useLocation();
-
   const handleLogin = async (request: UserRequest) => {
-    // Simulate loading
-    setTimeout(() => {
-      localStorage.setItem("user", "true");
-      setUser(true);
-      navigate(location.state?.path || "/home");
-    }, 5000);
+    localStorage.setItem(TOKEN_KEY, "token");
+    setUser(jwtDecode("token"));
+    navigate(location.state?.path || HOME_ROUTE);
   };
 
   const handleLogout = async () => {
-    localStorage.removeItem("user");
-    setUser(false);
-    navigate("/");
+    localStorage.removeItem(TOKEN_KEY);
+    setUser(null);
+    navigate(LANDING_ROUTE);
   };
 
   const handleRegister = async (request: UserRequest) => {
-    // Simulate loading
-    setTimeout(() => {
-      localStorage.setItem("user", "true");
-      setUser(true);
-      navigate("/home");
-    }, 5000);
-
+    localStorage.setItem("user", "true");
+    // setUser(true);
+    navigate(HOME_ROUTE);
   };
 
   const value: AuthContextProps = {
@@ -40,13 +44,13 @@ const AuthProvider = (props: AuthProviderProps) => {
     onRegister: handleRegister,
   };
 
-  if (!user && location.pathname !== "/") {
+  if (!user && location.pathname !== LANDING_ROUTE) {
     return (
-      <Navigate to="/?login=true" replace state={{path: location.pathname}}/>
+      <Navigate to={LOGIN_ROUTE} replace state={{path: location.pathname}}/>
     );
-  } else if (user && location.pathname === "/") {
+  } else if (user && location.pathname === LANDING_ROUTE) {
     return (
-      <Navigate to="/home" replace/>
+      <Navigate to={HOME_ROUTE} replace/>
     );
   }
 

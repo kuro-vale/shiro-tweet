@@ -2,7 +2,7 @@ import {AuthContextProps} from "./types";
 import {createContext} from "react";
 
 export const AuthContext = createContext<AuthContextProps>({
-  user: !!localStorage.getItem("user"),
+  user: null,
   onLogin: () => {
     throw new Error("Not implemented");
   },

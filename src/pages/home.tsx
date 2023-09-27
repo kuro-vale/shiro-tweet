@@ -2,11 +2,11 @@ import {Button} from "antd";
 import {useAuth} from "../hooks";
 
 function Home() {
-  const {onLogout} = useAuth();
+  const {onLogout, user} = useAuth();
 
   return (
     <Button onClick={onLogout}>
-      Logout
+      Logout {user?.sub} {user?.id}
     </Button>
   );
 }
