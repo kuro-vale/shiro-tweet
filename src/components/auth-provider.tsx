@@ -5,7 +5,7 @@ import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
 import {useMutation} from "@apollo/client";
-import {LOGIN_MUTATION} from "../graphql/mutations";
+import {LOGIN_MUTATION, REGISTER_MUTATION} from "../graphql/mutations";
 
 const AuthProvider = (props: AuthProviderProps) => {
   const localToken = localStorage.getItem(TOKEN_KEY);
@@ -20,12 +20,13 @@ const AuthProvider = (props: AuthProviderProps) => {
 
   const [user, setUser] = useState<User | null>(decoded);
   const [mutateLogin] = useMutation<AuthData>(LOGIN_MUTATION);
+  const [mutateRegister] = useMutation<AuthData>(REGISTER_MUTATION);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogin = async (request: AuthRequest) => {
     try {
-      let {data} = await mutateLogin({variables: request});
+      const {data} = await mutateLogin({variables: request});
       const token = data!.Auth.login.token;
       localStorage.setItem(TOKEN_KEY, token);
       setUser(jwtDecode(token));
@@ -42,9 +43,16 @@ const AuthProvider = (props: AuthProviderProps) => {
   };
 
   const handleRegister = async (request: AuthRequest) => {
-    localStorage.setItem("user", "true");
-    // setUser(true);
-    navigate(HOME_ROUTE);
+    try {
+      const {data} = await mutateRegister({variables: request});
+      const r = data!.Auth.register.token;
+      localStorage.setItem(TOKEN_KEY, r);
+      setUser(jwtDecode(r));
+      // TODO navigate to profile
+      navigate(HOME_ROUTE);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const value: AuthContextProps = {
