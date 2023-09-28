@@ -4,8 +4,18 @@ import {AuthContextProps, AuthData, AuthProviderProps, AuthRequest, User} from "
 import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
-import {useMutation} from "@apollo/client";
+import {ApolloError, useMutation} from "@apollo/client";
 import {LOGIN_MUTATION, REGISTER_MUTATION} from "../graphql/mutations";
+import {message} from "antd";
+import {MessageInstance} from "antd/lib/message/interface";
+
+async function handleError(messageApi: MessageInstance, e: any) {
+  if (e instanceof ApolloError) {
+    messageApi.error(e.message);
+  } else {
+    console.error(e);
+  }
+}
 
 const AuthProvider = (props: AuthProviderProps) => {
   const localToken = localStorage.getItem(TOKEN_KEY);
@@ -21,6 +31,7 @@ const AuthProvider = (props: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(decoded);
   const [mutateLogin] = useMutation<AuthData>(LOGIN_MUTATION);
   const [mutateRegister] = useMutation<AuthData>(REGISTER_MUTATION);
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,7 +43,7 @@ const AuthProvider = (props: AuthProviderProps) => {
       setUser(jwtDecode(token));
       navigate(location.state?.path || HOME_ROUTE);
     } catch (e) {
-      console.log(e);
+      await handleError(messageApi, e);
     }
   };
 
@@ -40,18 +51,19 @@ const AuthProvider = (props: AuthProviderProps) => {
     localStorage.removeItem(TOKEN_KEY);
     setUser(null);
     navigate(LANDING_ROUTE);
+    messageApi.success("Successful logout");
   };
 
   const handleRegister = async (request: AuthRequest) => {
     try {
       const {data} = await mutateRegister({variables: request});
-      const r = data!.Auth.register.token;
-      localStorage.setItem(TOKEN_KEY, r);
-      setUser(jwtDecode(r));
+      const token = data!.Auth.register.token;
+      localStorage.setItem(TOKEN_KEY, token);
+      setUser(jwtDecode(token));
       // TODO navigate to profile
       navigate(HOME_ROUTE);
     } catch (e) {
-      console.log(e);
+      await handleError(messageApi, e);
     }
   };
 
@@ -74,6 +86,7 @@ const AuthProvider = (props: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={value}>
+      {contextHolder}
       {props.children}
     </AuthContext.Provider>
   );
