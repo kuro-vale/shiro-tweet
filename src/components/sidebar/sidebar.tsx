@@ -65,7 +65,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
-      {/*TODO*/}
+      {/*TODO responsive/trigger modal*/}
       <Button shape="round" className="bg-primary tweet-button">
         <Text strong style={{fontSize: 17}}>Tweet</Text>
       </Button>
