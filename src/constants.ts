@@ -3,3 +3,5 @@ export const LOGIN_ROUTE = "/?login=true";
 export const REGISTER_ROUTE = "/?register=true";
 export const HOME_ROUTE = "/home";
 export const LANDING_ROUTE = "/";
+export const EXPLORE_ROUTE = "/explore";
+export const PROFILE_ROUTE = "/profile";

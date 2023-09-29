@@ -1,5 +1,6 @@
 import {Button, Result, Typography} from "antd";
 import {QuestionOutlined} from "@ant-design/icons";
+import {EXPLORE_ROUTE} from "../constants";
 
 const {Text} = Typography;
 
@@ -9,8 +10,7 @@ function NotFound() {
       icon={<QuestionOutlined className="color-primary"/>}
       subTitle="Hmm... this page doesn’t exist. Try searching for something else."
       extra={
-        <Button shape="round" size="large" className="bg-primary">
-          {/*TODO*/}
+        <Button shape="round" size="large" className="bg-primary" href={EXPLORE_ROUTE}>
           <Text strong>Search</Text>
         </Button>
       }

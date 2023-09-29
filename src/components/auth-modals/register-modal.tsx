@@ -36,6 +36,7 @@ function RegisterModal(props: LoginModalProps) {
       maskStyle={{backgroundColor: "rgba(91, 112, 131, 0.4)"}}
       footer={null}
       afterOpenChange={() => form.resetFields()}
+      closable={!loading}
     >
       <Spin
         wrapperClassName="bg-black"

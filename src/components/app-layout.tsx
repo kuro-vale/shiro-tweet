@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Layout} from "antd";
 import {Outlet} from "react-router-dom";
+import Sidebar from "./sidebar/sidebar";
 
 const {Content, Sider} = Layout;
 
@@ -26,7 +27,7 @@ function AppLayout() {
         collapsedWidth="15vw"
         onCollapse={(broken) => setCollapse(broken)}
       >
-
+        <Sidebar/>
       </Sider>
       <Content className="ml-0__sm" style={{marginLeft: `${collapsed ? "15" : "30"}vw`, minHeight: "100vh"}}>
         <Outlet/>

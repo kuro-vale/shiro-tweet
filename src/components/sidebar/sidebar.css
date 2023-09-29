@@ -1,0 +1,63 @@
+.ant-menu {
+    background-color: black !important;
+    border: 0 !important;
+}
+
+.ant-menu-item {
+    height: 50px !important;
+    padding-left: 12px !important;
+    background-color: black !important;
+    border-radius: 999px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.ant-menu-item-active {
+    background-color: rgb(231, 233, 234, 0.1) !important;
+}
+
+.ant-menu-item-selected {
+    font-weight: 700;
+}
+
+.ant-menu-title-content {
+    font-size: 20px;
+    color: rgb(231, 233, 234);
+}
+
+.sidebar img {
+    width: 50px;
+    height: 40px;
+    position: absolute;
+    left: 12px;
+}
+
+.sidebar svg {
+    width: 26px;
+    height: 26px;
+    color: rgb(231, 233, 234);
+    margin-right: 15px;
+}
+
+.sidebar {
+    position: absolute;
+    width: 300px;
+    right: 8px;
+}
+
+.stroked svg {
+    stroke-width: 3;
+}
+
+.tweet-button {
+    width: 233px;
+    height: 50px;
+    transition: none;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 80px;
+    }
+}

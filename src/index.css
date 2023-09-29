@@ -84,10 +84,6 @@ table {
     background-color: white;
 }
 
-.bg-black {
-    background-color: black;
-}
-
 .divider {
     border-color: rgb(51, 54, 57);
     width: 300px;
@@ -100,11 +96,6 @@ table {
 
 .m-0 {
     margin: 0 !important;
-}
-
-/* Custom classes */
-.w-100 {
-    width: 100%;
 }
 
 /* Hide shit for mobile */
