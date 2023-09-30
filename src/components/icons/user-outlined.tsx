@@ -10,7 +10,7 @@ const UserOutlinedSvg = () => (
 );
 
 const UserOutlined = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={UserOutlinedSvg} {...props}/>
+  <Icon component={UserOutlinedSvg} {...props} title="user"/>
 );
 
 export default UserOutlined;

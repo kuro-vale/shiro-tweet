@@ -9,7 +9,7 @@ const UserSolidSvg = () => (
 );
 
 const UserSolid = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={UserSolidSvg} {...props}/>
+  <Icon component={UserSolidSvg} {...props} title="user"/>
 );
 
 export default UserSolid;

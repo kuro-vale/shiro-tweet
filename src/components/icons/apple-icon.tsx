@@ -21,7 +21,7 @@ const AppleSvg = () => (
 );
 
 const AppleIcon = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={AppleSvg} {...props} />
+  <Icon component={AppleSvg} {...props} title="apple"/>
 );
 
 export default AppleIcon;

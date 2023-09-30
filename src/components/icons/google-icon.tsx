@@ -32,7 +32,7 @@ const GoogleSvg = () => (
 );
 
 const GoogleIcon = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={GoogleSvg} {...props} />
+  <Icon component={GoogleSvg} {...props} title="google"/>
 );
 
 export default GoogleIcon;

@@ -1,4 +1,4 @@
-import {Button, Menu, MenuProps, Typography} from "antd";
+import {Avatar, Button, Menu, MenuProps, Typography} from "antd";
 import {Key, MouseEventHandler, ReactNode} from "react";
 import {
   BellOutlined,
@@ -17,6 +17,8 @@ import {useLocation, useNavigate} from "react-router-dom";
 import SearchOutlined from "../icons/search-outlined";
 import UserSolid from "../icons/user-solid";
 import UserOutlined from "../icons/user-outlined";
+import {useAuth} from "../../hooks";
+import PencilOutlined from "../icons/pencil-outlined";
 
 type MenuItem = Required<MenuProps>["items"][number];
 const {Text} = Typography;
@@ -40,6 +42,7 @@ function getItem(
 }
 
 function Sidebar() {
+  const {user} = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const items: MenuItem[] = [
@@ -55,20 +58,30 @@ function Sidebar() {
     getItem("Lists", "3", <UnorderedListOutlined/>, true),
     getItem("Bookmarks", "4", <BookOutlined/>, true),
     getItem("Communities", "5", <UsergroupAddOutlined/>, true),
-    getItem("Premium", "6", <TwitterOutlined/>, true),
+    getItem("Freemium", "6", <TwitterOutlined/>, true),
     getItem("Profile", PROFILE_ROUTE,
       location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
       false, () => navigate(PROFILE_ROUTE)),
     getItem("More", "7", <EllipsisOutlined/>, true),
   ];
 
+  const avatarItem: MenuItem = {
+    key: "8",
+    className: "avatar-item",
+    icon: <Avatar src={`https://picsum.photos/seed/${user?.sub}/400/`} size="large" alt={user?.id + " photo"}/>,
+    label: user?.sub
+  };
+
   return (
     <div className="sidebar">
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
-      {/*TODO responsive/trigger modal*/}
+      {/*TODO trigger modal*/}
       <Button shape="round" className="bg-primary tweet-button">
         <Text strong style={{fontSize: 17}}>Tweet</Text>
       </Button>
+      <Button shape="round" className="bg-primary tweet-button-small" icon={<PencilOutlined/>} title="Tweet"/>
+      {/*TODO incomplete*/}
+      <Menu mode="inline" items={[avatarItem]} selectable={false} className="avatar-menu"/>
     </div>
   );
 }

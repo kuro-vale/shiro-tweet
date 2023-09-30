@@ -10,7 +10,7 @@ const SearchStrokeSVG = () => (
 );
 
 const SearchOutlined = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={SearchStrokeSVG} {...props}/>
+  <Icon component={SearchStrokeSVG} {...props} title="search"/>
 );
 
 export default SearchOutlined;

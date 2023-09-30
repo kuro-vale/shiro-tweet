@@ -41,8 +41,9 @@
 
 .sidebar {
     position: absolute;
-    width: 300px;
+    width: 260px;
     right: 8px;
+    height: 100vh;
 }
 
 .stroked svg {
@@ -54,10 +55,52 @@
     height: 50px;
     transition: none;
     margin-top: 14px;
+    margin-left: 4px;
+}
+
+.tweet-button-small {
+    display: none;
+}
+
+.avatar-menu {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 8px;
+}
+
+.avatar-item {
+    height: 65px !important;
 }
 
 @media (max-width: 1200px) {
     .sidebar {
         width: 80px;
+    }
+
+    .tweet-button {
+        display: none;
+    }
+
+    .tweet-button-small {
+        display: initial;
+        width: 50px !important;
+        height: 50px;
+        transition: none;
+        margin-top: 14px;
+        margin-left: 4px;
+    }
+
+    .tweet-button-small svg {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+    }
+
+    .avatar-item {
+        height: 40px !important;
+    }
+
+    .ant-menu-item {
+        width: 50px !important;
     }
 }
