@@ -108,3 +108,13 @@ table {
         margin-left: 0 !important;
     }
 }
+
+@media (max-height: 800px) {
+    .sm-hidden {
+        display: none !important;
+    }
+
+    .ml-0__sm {
+        margin-left: 0 !important;
+    }
+}

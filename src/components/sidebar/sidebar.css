@@ -74,6 +74,7 @@
 
 @media (max-width: 1200px) {
     .sidebar {
+        padding-top: 8px;
         width: 80px;
     }
 
@@ -94,6 +95,10 @@
         position: absolute;
         top: 10px;
         left: 12px;
+    }
+
+    .avatar-menu {
+        bottom: 12px;
     }
 
     .avatar-item {
