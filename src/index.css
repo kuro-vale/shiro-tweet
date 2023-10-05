@@ -98,6 +98,25 @@ table {
     margin: 0 !important;
 }
 
+.btn-white-hover:hover {
+    background-color: rgb(215, 219, 220);
+    border-color: rgb(83, 100, 113) !important;
+}
+
+.btn-primary-hover:hover {
+    background-color: rgb(26, 140, 216) !important;
+    border-color: #424242 !important;
+}
+
+.btn-black {
+    background-color: black;
+    border: 1px solid rgb(83, 100, 113) !important;
+}
+
+.btn-black:hover {
+    background-color: rgba(239, 243, 244, 0.1);
+}
+
 /* Hide shit for mobile */
 @media (max-width: 500px) {
     .sm-hidden {

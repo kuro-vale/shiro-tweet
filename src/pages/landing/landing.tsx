@@ -26,26 +26,27 @@ function Landing() {
         <div className="content">
           <Title className="big-title verdana">Happening now</Title>
           <Title className="verdana" level={2}>Join today.</Title>
-          <Button shape="round" className="bg-white form-button cursor-block next" icon={<GoogleIcon/>}>
+          <Button shape="round" className="bg-white form-button cursor-block btn-white-hover" icon={<GoogleIcon/>}>
             <Text strong style={{color: "rgb(60, 64, 67)"}}>
               Sign up with Google
             </Text>
           </Button>
           <Button
             shape="round"
-            className="bg-white form-button cursor-block next m-0" icon={<AppleIcon/>}
+            className="bg-white form-button cursor-block btn-white-hover m-0" icon={<AppleIcon/>}
           >
             <Text strong style={{color: "black"}}>
               Sign up with Apple
             </Text>
           </Button>
           <Divider className="divider"/>
-          <Button shape="round" className="bg-primary form-button m-0" onClick={() => setOpenRegister(true)}>
+          <Button shape="round" className="bg-primary form-button m-0 btn-primary-hover"
+                  onClick={() => setOpenRegister(true)}>
             <Text strong>Create account</Text>
           </Button>
           <Text className="color-secondary small-text">By signing up, you agree to be beautiful.</Text>
           <Title level={5} style={{marginTop: 60}}>Already have an account?</Title>
-          <Button shape="round" className="login-button form-button" onClick={() => setOpenLogin(true)}>
+          <Button shape="round" className="login-button btn-black form-button" onClick={() => setOpenLogin(true)}>
             <Text strong className="color-primary">Sign in</Text>
           </Button>
         </div>

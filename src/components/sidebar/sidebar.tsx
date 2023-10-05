@@ -91,11 +91,12 @@ function Sidebar() {
       <LogoutModal open={openLogout} onClose={() => setOpenLogout(false)}/>
       <div className="sidebar">
         <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
-        <Button shape="round" className="bg-primary tweet-button">
+        <Button shape="round" className="bg-primary tweet-button btn-primary-hover">
           <Text strong style={{fontSize: 17}}>Tweet</Text>
         </Button>
         {/* Mobile button */}
-        <Button shape="round" className="bg-primary tweet-button-small" icon={<PencilOutlined/>} title="Tweet"/>
+        <Button shape="round" className="bg-primary tweet-button-small btn-primary-hover" icon={<PencilOutlined/>}
+                title="Tweet"/>
 
         <Popover
           content={

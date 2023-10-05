@@ -64,12 +64,14 @@ function LoginModal(props: ModalProps) {
           <Title level={2} style={{marginTop: 10}}>{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
           {!lastStep &&
               <>
-                  <Button shape="round" className="bg-white form-button cursor-block next" icon={<GoogleIcon/>}>
+                  <Button shape="round" className="bg-white form-button cursor-block btn-white-hover"
+                          icon={<GoogleIcon/>}>
                       <Text strong style={{color: "rgb(60, 64, 67)"}}>
                           Sign in with Google
                       </Text>
                   </Button>
-                  <Button shape="round" className="bg-white form-button cursor-block next" icon={<AppleIcon/>}>
+                  <Button shape="round" className="bg-white form-button cursor-block btn-white-hover"
+                          icon={<AppleIcon/>}>
                       <Text strong style={{color: "black"}}>
                           Sign in with Apple
                       </Text>
@@ -107,16 +109,16 @@ function LoginModal(props: ModalProps) {
                   onKeyDown={e => e.key === "Enter" && onFinish()}
                 />
               </Form.Item>
-              <Button shape="round" className="bg-white last-button next" onClick={onFinish}>
+              <Button shape="round" className="bg-white last-button btn-white-hover" onClick={onFinish}>
                 <Text strong style={{color: "black", fontSize: "17px"}}>Log in</Text>
               </Button>
             </> :
             <>
-              <Button shape="round" className="form-button next bg-white" onClick={onNext}>
+              <Button shape="round" className="form-button btn-white-hover bg-white" onClick={onNext}>
                 <Text strong style={{color: "black"}}>Next</Text>
               </Button>
-              <Button shape="round" className="form-button login-button cursor-block">
-                <Text strong style={{color: "white"}}>Forgot password?</Text>
+              <Button shape="round" className="form-button btn-black cursor-block">
+                <Text strong>Forgot password?</Text>
               </Button>
             </>
           }

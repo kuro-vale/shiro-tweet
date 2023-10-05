@@ -1,10 +1,11 @@
-import {Modal, Typography} from "antd";
+import {Button, Modal, Typography} from "antd";
 import {ModalProps} from "../../types";
+import {useAuth} from "../../hooks";
 
-const {Title} = Typography;
+const {Title, Text} = Typography;
 
 function LogoutModal(props: ModalProps) {
-  // const {onLogout} = useAuth();
+  const {onLogout} = useAuth();
 
   return (
     <Modal
@@ -22,6 +23,13 @@ function LogoutModal(props: ModalProps) {
       closeIcon={null}
     >
       <Title level={4} style={{marginTop: 10}}>Log out of Kuro-Tweet?</Title>
+      <Text>You can always log back in at any time.</Text>
+      <Button shape="round" className="logout-button btn-white-hover bg-white" onClick={onLogout}>
+        <Text strong style={{color: "black"}}>Log out</Text>
+      </Button>
+      <Button shape="round" className="logout-button btn-black" onClick={props.onClose}>
+        <Text strong>Cancel</Text>
+      </Button>
     </Modal>
   );
 }

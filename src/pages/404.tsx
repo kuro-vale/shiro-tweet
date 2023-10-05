@@ -10,7 +10,7 @@ function NotFound() {
       icon={<QuestionOutlined className="color-primary"/>}
       subTitle="Hmm... this page doesn’t exist. Try searching for something else."
       extra={
-        <Button shape="round" size="large" className="bg-primary" href={EXPLORE_ROUTE}>
+        <Button shape="round" size="large" className="bg-primary btn-primary-hover" href={EXPLORE_ROUTE}>
           <Text strong>Search</Text>
         </Button>
       }

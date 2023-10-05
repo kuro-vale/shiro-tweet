@@ -112,6 +112,13 @@
     margin-bottom: 20px;
 }
 
+.logout-button {
+    width: 244px;
+    height: 45px;
+    margin: 6px 0;
+    transition: none;
+}
+
 @media (max-width: 600px) {
     .login-form__last {
         margin-left: 0;

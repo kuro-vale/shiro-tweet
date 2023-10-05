@@ -75,7 +75,7 @@ function RegisterModal(props: ModalProps) {
               onKeyDown={e => e.key === "Enter" && onFinish()}
             />
           </Form.Item>
-          <Button shape="round" className="bg-primary last-button next" onClick={onFinish}>
+          <Button shape="round" className="bg-primary last-button btn-primary-hover" onClick={onFinish}>
             <Text strong style={{color: "white", fontSize: "17px"}}>Sign up</Text>
           </Button>
         </Form>
