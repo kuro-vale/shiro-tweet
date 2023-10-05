@@ -30,7 +30,8 @@ root.render(
         algorithm: theme.darkAlgorithm,
         token: {
           fontSize: 15,
-          fontFamily: "TwitterChirp"
+          fontFamily: "TwitterChirp",
+          colorText: "rgb(231, 233, 234)"
         }
       }}
     >

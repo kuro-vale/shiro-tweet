@@ -16,7 +16,7 @@ export type AuthContextProps = {
   onRegister: (request: AuthRequest) => Promise<void>,
 }
 
-export type LoginModalProps = {
+export type ModalProps = {
   open: boolean,
   onClose: () => void,
 }

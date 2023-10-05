@@ -1,5 +1,5 @@
-import {Avatar, Button, Menu, MenuProps, Typography} from "antd";
-import {Key, MouseEventHandler, ReactNode} from "react";
+import {Avatar, Button, Menu, MenuProps, Popover, Typography} from "antd";
+import {Key, MouseEventHandler, ReactNode, useState} from "react";
 import {
   BellOutlined,
   BookOutlined,
@@ -19,6 +19,7 @@ import UserSolid from "../icons/user-solid";
 import UserOutlined from "../icons/user-outlined";
 import {useAuth} from "../../hooks";
 import PencilOutlined from "../icons/pencil-outlined";
+import LogoutModal from "../auth-modals/logout-modal";
 
 type MenuItem = Required<MenuProps>["items"][number];
 const {Text} = Typography;
@@ -45,6 +46,13 @@ function Sidebar() {
   const {user} = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const [openPopover, setOpenPopover] = useState(false);
+  const [openLogout, setOpenLogout] = useState(false);
+  const onOpenLogout = () => {
+    setOpenPopover(false);
+    setOpenLogout(true);
+  };
+
   const items: MenuItem[] = [
     getItem("", "0", <img src="/logo.svg" alt="logo"/>, false, () => navigate(HOME_ROUTE)),
     getItem("Home", HOME_ROUTE,
@@ -69,20 +77,44 @@ function Sidebar() {
     key: "8",
     className: "avatar-item",
     icon: <Avatar src={`https://picsum.photos/seed/${user?.sub}/400/`} size="large" alt={user?.id + " photo"}/>,
-    label: user?.sub
+    label: <div className="avatar-menu--item">
+      <div className="avatar-menu--username">
+        <Text strong>{user?.sub}</Text>
+        <Text className="color-secondary">@{user?.sub}</Text>
+      </div>
+      <EllipsisOutlined/>
+    </div>,
   };
 
   return (
-    <div className="sidebar">
-      <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
-      {/*TODO trigger modal*/}
-      <Button shape="round" className="bg-primary tweet-button">
-        <Text strong style={{fontSize: 17}}>Tweet</Text>
-      </Button>
-      <Button shape="round" className="bg-primary tweet-button-small" icon={<PencilOutlined/>} title="Tweet"/>
-      {/*TODO incomplete*/}
-      <Menu mode="inline" items={[avatarItem]} selectable={false} className="avatar-menu"/>
-    </div>
+    <>
+      <LogoutModal open={openLogout} onClose={() => setOpenLogout(false)}/>
+      <div className="sidebar">
+        <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
+        <Button shape="round" className="bg-primary tweet-button">
+          <Text strong style={{fontSize: 17}}>Tweet</Text>
+        </Button>
+        {/* Mobile button */}
+        <Button shape="round" className="bg-primary tweet-button-small" icon={<PencilOutlined/>} title="Tweet"/>
+
+        <Popover
+          content={
+            <div className="avatar-popover">
+              <Text strong className="avatar-popover--item cursor-block">Add an existing account</Text>
+              <Text strong className="avatar-popover--item" onClick={onOpenLogout}>Log out
+                @{user?.sub}</Text>
+            </div>
+          }
+          open={openPopover}
+          trigger="click"
+          onOpenChange={setOpenPopover}
+        >
+          <div className="avatar-menu">
+            <Menu mode="inline" items={[avatarItem]} selectable={false}/>
+          </div>
+        </Popover>
+      </div>
+    </>
   );
 }
 

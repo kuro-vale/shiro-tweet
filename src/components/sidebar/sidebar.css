@@ -25,6 +25,21 @@
     color: rgb(231, 233, 234);
 }
 
+.ant-popover-arrow::after {
+    background-color: black !important;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 0 15px, rgba(255, 255, 255, 0.15) 0 0 3px 1px !important;
+}
+
+.ant-popover-content {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 0 15px, rgba(255, 255, 255, 0.15) 0 0 3px 1px;
+}
+
+.ant-popover-inner {
+    background-color: black !important;
+}
+
 .sidebar img {
     width: 50px;
     height: 40px;
@@ -65,11 +80,38 @@
 .avatar-menu {
     position: absolute;
     bottom: 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.avatar-menu--item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 2px;
+}
+
+.avatar-menu--username {
+    display: flex;
+    flex-direction: column;
 }
 
 .avatar-item {
     height: 65px !important;
+}
+
+.avatar-popover {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-popover--item {
+    padding: 12px 4px;
+}
+
+.avatar-popover--item:hover {
+    background-color: rgb(22, 24, 28);
+    cursor: pointer;
 }
 
 @media (max-width: 1200px) {

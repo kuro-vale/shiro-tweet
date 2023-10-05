@@ -2,14 +2,14 @@ import {Button, Divider, Form, Input, Modal, Spin, Typography} from "antd";
 import "./auth-modal.css";
 import React, {useState} from "react";
 import {useAuth} from "../../hooks";
-import {AuthRequest, LoginModalProps} from "../../types";
+import {AuthRequest, ModalProps} from "../../types";
 import GoogleIcon from "../icons/google-icon";
 import AppleIcon from "../icons/apple-icon";
 import {REGISTER_ROUTE} from "../../constants";
 
 const {Title, Text, Link} = Typography;
 
-function LoginModal(props: LoginModalProps) {
+function LoginModal(props: ModalProps) {
   const [form] = Form.useForm<AuthRequest>();
   const [lastStep, setLastStep] = useState(false);
   const {onLogin} = useAuth();

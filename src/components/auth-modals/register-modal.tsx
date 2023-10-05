@@ -1,4 +1,4 @@
-import {AuthRequest, LoginModalProps} from "../../types";
+import {AuthRequest, ModalProps} from "../../types";
 import {Button, Form, Input, Modal, Spin, Typography} from "antd";
 import "./auth-modal.css";
 import {useAuth} from "../../hooks";
@@ -6,7 +6,7 @@ import {useState} from "react";
 
 const {Title, Text} = Typography;
 
-function RegisterModal(props: LoginModalProps) {
+function RegisterModal(props: ModalProps) {
   const [form] = Form.useForm<AuthRequest>();
   const {onRegister} = useAuth();
   const [loading, setLoading] = useState(false);

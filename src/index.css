@@ -91,7 +91,7 @@ table {
 }
 
 .cursor-block {
-    cursor: not-allowed;
+    cursor: not-allowed !important;
 }
 
 .m-0 {
