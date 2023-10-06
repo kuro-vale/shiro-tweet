@@ -1,4 +1,4 @@
-import {Menu} from "antd";
+import {Button, Menu} from "antd";
 import {MenuItem} from "../../types";
 import {getItem} from "../../utils";
 import {EXPLORE_ROUTE, HOME_ROUTE, PROFILE_ROUTE} from "../../constants";
@@ -8,6 +8,7 @@ import SearchOutlined from "../icons/search-outlined";
 import UserSolid from "../icons/user-solid";
 import UserOutlined from "../icons/user-outlined";
 import LogoutPopover from "./logout-popover";
+import PencilOutlined from "../icons/pencil-outlined";
 
 function MobileNavbar() {
   const location = useLocation();
@@ -30,8 +31,18 @@ function MobileNavbar() {
       true),
   ];
 
+  // TODO transparency on scroll
   return (
     <div className="sm-show mobile-navbar">
+      <div className="mobile-tweet">
+        {/*TODO show create tweet modal*/}
+        <Button
+          shape="round"
+          className="bg-primary mobile-tweet-button btn-primary-hover"
+          icon={<PencilOutlined/>}
+          title="Tweet"
+        />
+      </div>
       <Menu
         mode="horizontal"
         items={items}

@@ -144,4 +144,8 @@ table {
     .ml-0__sm {
         margin-left: 0 !important;
     }
+
+    .sm-show {
+        display: block;
+    }
 }
