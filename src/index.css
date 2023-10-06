@@ -117,6 +117,10 @@ table {
     background-color: rgba(239, 243, 244, 0.1);
 }
 
+.sm-show {
+    display: none;
+}
+
 /* Hide shit for mobile */
 @media (max-width: 500px) {
     .sm-hidden {
@@ -125,6 +129,10 @@ table {
 
     .ml-0__sm {
         margin-left: 0 !important;
+    }
+
+    .sm-show {
+        display: block;
     }
 }
 

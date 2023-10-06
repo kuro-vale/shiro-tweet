@@ -114,6 +114,26 @@
     cursor: pointer;
 }
 
+.mobile-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 52px;
+}
+
+.mobile-navbar svg {
+    width: 26px;
+    height: 26px;
+    color: rgb(231, 233, 234);
+    margin-right: 15px;
+}
+
+.mobile-navbar li {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+
 @media (max-width: 1200px) {
     .sidebar {
         padding-top: 8px;

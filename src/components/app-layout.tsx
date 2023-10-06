@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Layout} from "antd";
 import {Outlet} from "react-router-dom";
-import Sidebar from "./sidebar/sidebar";
+import Sidebar from "./menus/sidebar";
+import MobileNavbar from "./menus/mobile-navbar";
 
 const {Content, Sider} = Layout;
 
@@ -31,6 +32,7 @@ function AppLayout() {
       </Sider>
       <Content className="ml-0__sm" style={{marginLeft: `${collapsed ? "15" : "30"}vw`, minHeight: "100vh"}}>
         <Outlet/>
+        <MobileNavbar/>
       </Content>
     </Layout>
   );

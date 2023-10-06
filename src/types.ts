@@ -1,4 +1,5 @@
 import {ReactNode} from "react";
+import {MenuProps} from "antd";
 
 export type AuthRequest = {
   username: string,
@@ -6,6 +7,10 @@ export type AuthRequest = {
 }
 
 export type AuthProviderProps = {
+  children: ReactNode
+}
+
+export type LogoutPopoverProps = {
   children: ReactNode
 }
 
@@ -37,3 +42,5 @@ export type AuthPayload = {
   token: string,
   user: User | null,
 }
+
+export type MenuItem = Required<MenuProps>["items"][number];
