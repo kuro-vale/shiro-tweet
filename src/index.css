@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Reset css */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -61,10 +65,24 @@ table {
     font-weight: 600;
 }
 
+.verdana {
+    font-family: Verdana, sans-serif;
+}
+
 /* Variables */
 :root {
     --color-primary: rgb(29, 155, 240);
     --color-secondary: rgb(113, 118, 123);
+}
+
+/* Classes */
+
+.w-300px {
+    width: 300px;
+}
+
+.cursor-block {
+    cursor: not-allowed !important;
 }
 
 /* Custom colors */
@@ -80,23 +98,15 @@ table {
     background-color: var(--color-primary) !important;
 }
 
-.bg-white {
-    background-color: white;
-}
-
-.divider {
+.divider-color {
     border-color: rgb(51, 54, 57);
-    width: 300px;
-    min-width: 0;
 }
 
-.cursor-block {
-    cursor: not-allowed !important;
+.google-color {
+    color: rgb(60, 64, 67);
 }
 
-.m-0 {
-    margin: 0 !important;
-}
+/* Buttons Hovers */
 
 .btn-white-hover:hover {
     background-color: rgb(215, 219, 220);
@@ -117,11 +127,15 @@ table {
     background-color: rgba(239, 243, 244, 0.1);
 }
 
+.btn-login:hover {
+    background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* Mobile */
 .sm-show {
     display: none;
 }
 
-/* Hide shit for mobile */
 @media (max-width: 500px) {
     .sm-hidden {
         display: none !important;
