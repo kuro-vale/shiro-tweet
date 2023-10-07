@@ -1,6 +1,7 @@
 a.ant-typography:hover {
     text-decoration: underline;
 }
+
 a.ant-typography:focus {
     text-decoration: underline;
 }

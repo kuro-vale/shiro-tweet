@@ -15,11 +15,11 @@ function Landing() {
   const [openRegister, setOpenRegister] = useState(!!search.get("register"));
 
   return (
-    <Layout className="h-screen">
+    <Layout className="h-screen lht:min-h-screen lht:h-full">
       <LoginModal open={openLogin} onClose={() => setOpenLogin(false)}/>
       <RegisterModal open={openRegister} onClose={() => setOpenRegister(false)}/>
       <Content className="flex md:flex-col">
-        <div className="w-3/5 h-full flex items-center md:w-2/5 md:h-1/6 md:mb-5">
+        <div className="w-3/5 h-full flex items-center md:w-2/5 md:h-1/6 md:mb-5 lht:w-1/2">
           <img className="w-full h-3/5" src="/logo.svg" alt="logo"/>
         </div>
         <div className="h-full flex justify-center items-start flex-col md:items-center md:self-center md:h-5/6">
@@ -27,7 +27,7 @@ function Landing() {
           <Title className="verdana" level={2}>Join today.</Title>
           <Button
             shape="round"
-            className="w-300px h-11 my-3 transition-none cursor-not-allowed bg-white btn-white-hover"
+            className="w-[300px] h-11 my-3 transition-none cursor-not-allowed bg-white btn-white-hover"
             icon={<GoogleIcon/>}
           >
             <Text strong className="google-color">
@@ -36,16 +36,17 @@ function Landing() {
           </Button>
           <Button
             shape="round"
-            className="w-300px h-11 m-0 transition-none cursor-not-allowed bg-white btn-white-hover" icon={<AppleIcon/>}
+            className="w-[300px] h-11 m-0 transition-none cursor-not-allowed bg-white btn-white-hover"
+            icon={<AppleIcon/>}
           >
             <Text strong className="text-black">
               Sign up with Apple
             </Text>
           </Button>
-          <Divider className="w-300px min-w-0 divider-color"/>
+          <Divider className="w-[300px] min-w-0 divider-color"/>
           <Button
             shape="round"
-            className="w-300px h-11 m-0 transition-none bg-primary btn-primary-hover"
+            className="w-[300px] h-11 m-0 transition-none bg-primary btn-primary-hover"
             onClick={() => setOpenRegister(true)}
           >
             <Text strong>Create account</Text>
@@ -54,7 +55,7 @@ function Landing() {
           <Title level={5} style={{marginTop: 60}}>Already have an account?</Title>
           <Button
             shape="round"
-            className="btn-login btn-black w-300px h-11 my-3 transition-none"
+            className="btn-login btn-black w-[300px] h-11 my-3 transition-none"
             onClick={() => setOpenLogin(true)}
           >
             <Text strong className="color-primary">Sign in</Text>

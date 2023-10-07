@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import AppLayout from "./components/app-layout";
 import "./index.css";
-import "./override.css"
+import "./override.css";
 import {ConfigProvider, Spin, theme} from "antd";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Landing from "./pages/landing";

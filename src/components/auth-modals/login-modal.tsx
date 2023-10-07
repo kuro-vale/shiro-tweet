@@ -65,20 +65,20 @@ function LoginModal(props: ModalProps) {
           {!lastStep &&
               <>
                   <Button shape="round"
-                          className="bg-white w-300px h-11 my-3 transition-none cursor-block btn-white-hover"
+                          className="bg-white w-[300px] h-11 my-3 transition-none cursor-block btn-white-hover"
                           icon={<GoogleIcon/>}>
                       <Text strong style={{color: "rgb(60, 64, 67)"}}>
                           Sign in with Google
                       </Text>
                   </Button>
                   <Button shape="round"
-                          className="bg-white w-300px h-11 my-3 transition-none cursor-block btn-white-hover"
+                          className="bg-white w-[300px] h-11 my-3 transition-none cursor-block btn-white-hover"
                           icon={<AppleIcon/>}>
                       <Text strong style={{color: "black"}}>
                           Sign in with Apple
                       </Text>
                   </Button>
-                  <Divider plain className="w-300px min-w-0 divider-color"/>
+                  <Divider plain className="w-[300px] min-w-0 divider-color"/>
               </>
           }
           <Form.Item<AuthRequest>
@@ -116,11 +116,11 @@ function LoginModal(props: ModalProps) {
               </Button>
             </> :
             <>
-              <Button shape="round" className="w-300px h-11 my-3 transition-none btn-white-hover bg-white"
+              <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-white-hover bg-white"
                       onClick={onNext}>
                 <Text strong style={{color: "black"}}>Next</Text>
               </Button>
-              <Button shape="round" className="w-300px h-11 my-3 transition-none btn-black cursor-block">
+              <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-black cursor-block">
                 <Text strong>Forgot password?</Text>
               </Button>
             </>

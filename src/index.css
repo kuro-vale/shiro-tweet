@@ -77,10 +77,6 @@ table {
 
 /* Classes */
 
-.w-300px {
-    width: 300px;
-}
-
 .cursor-block {
     cursor: not-allowed !important;
 }

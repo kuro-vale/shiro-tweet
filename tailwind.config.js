@@ -8,6 +8,7 @@ module.exports = {
         screens: {
             'md': {'max': '1000px'},
             'sm': {'max': '600px'},
+            'lht': {'raw': '(max-height: 600px)'}
         }
     },
     plugins: [],
