@@ -7,7 +7,7 @@ import GoogleIcon from "../components/icons/google-icon";
 import RegisterModal from "../components/auth-modals/register-modal";
 
 const {Footer, Content} = Layout;
-const {Link, Text, Title} = Typography;
+const {Link, Text} = Typography;
 
 function Landing() {
   const [search] = useSearchParams();
@@ -15,16 +15,16 @@ function Landing() {
   const [openRegister, setOpenRegister] = useState(!!search.get("register"));
 
   return (
-    <Layout className="h-screen lht:min-h-screen lht:h-full">
+    <Layout className="h-screen ht:min-h-screen ht:h-full">
       <LoginModal open={openLogin} onClose={() => setOpenLogin(false)}/>
       <RegisterModal open={openRegister} onClose={() => setOpenRegister(false)}/>
       <Content className="flex md:flex-col">
-        <div className="w-3/5 h-full flex items-center md:w-2/5 md:h-1/6 md:mb-5 lht:w-1/2">
+        <div className="w-3/5 h-full flex items-center md:w-2/5 md:h-1/6 md:mb-5 ht:w-1/2">
           <img className="w-full h-3/5" src="/logo.svg" alt="logo"/>
         </div>
         <div className="h-full flex justify-center items-start flex-col md:items-center md:self-center md:h-5/6">
-          <Text strong className="text-6xl verdana sm:text-4xl">Happening now</Text>
-          <Title className="verdana" level={2}>Join today.</Title>
+          <Text strong className="text-6xl verdana sm:text-4xl my-12">Happening now</Text>
+          <Text strong className="verdana text-3xl mb-8">Join today.</Text>
           <Button
             shape="round"
             className="w-[300px] h-11 my-3 transition-none cursor-not-allowed bg-white btn-white-hover"
@@ -52,10 +52,10 @@ function Landing() {
             <Text strong>Create account</Text>
           </Button>
           <Text className="color-secondary text-xs mt-1">By signing up, you agree to be beautiful.</Text>
-          <Title level={5} style={{marginTop: 60}}>Already have an account?</Title>
+          <Text strong className="mt-[60px] text-lg">Already have an account?</Text>
           <Button
             shape="round"
-            className="btn-login btn-black w-[300px] h-11 my-3 transition-none"
+            className="btn-login btn-black w-[300px] h-11 mt-[20px] transition-none"
             onClick={() => setOpenLogin(true)}
           >
             <Text strong className="color-primary">Sign in</Text>
