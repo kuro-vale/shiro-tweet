@@ -20,10 +20,11 @@ function LogoutPopover(props: LogoutPopoverProps) {
       <LogoutModal open={openLogout} onClose={() => setOpenLogout(false)}/>
       <Popover
         content={
-          <div className="avatar-popover">
-            <Text strong className="avatar-popover--item cursor-block">Add an existing account</Text>
-            <Text strong className="avatar-popover--item" onClick={onOpenLogout}>Log out
-              @{user?.sub}</Text>
+          <div className="flex flex-col">
+            <Text strong className="py-3 px1 hover:bg-hover-pop cursor-not-allowed">Add an existing account</Text>
+            <Text strong className="py-3 px1 hover:bg-hover-pop hover:cursor-pointer" onClick={onOpenLogout}>
+              Log out @{user?.sub}
+            </Text>
           </div>
         }
         open={openPopover}

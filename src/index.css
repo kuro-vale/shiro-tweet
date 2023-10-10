@@ -97,6 +97,59 @@ table {
     top: 0;
 }
 
+.sidebar {
+    position: absolute;
+    width: 260px;
+    right: 8px;
+    height: 100vh;
+}
+
+.sidebar img {
+    width: 50px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+}
+
+.sidebar svg {
+    width: 26px;
+    height: 26px;
+    color: rgb(231, 233, 234);
+    margin-right: 15px;
+}
+
+.mobile-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 132px;
+}
+
+.mobile-navbar svg {
+    width: 26px;
+    height: 26px;
+    color: rgb(231, 233, 234);
+    margin-right: 15px;
+}
+
+.mobile-navbar li {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+
+.stroked svg {
+    stroke-width: 3;
+}
+
+.w50 {
+    width: 50px !important;
+}
+
+.w56 {
+    width: 56px !important;
+}
+
 /* Custom colors */
 .color-primary {
     color: var(--color-primary) !important;
@@ -139,19 +192,9 @@ table {
     background-color: rgba(29, 155, 240, 0.1);
 }
 
-/* Mobile */
-.sm-show {
-    display: none;
-}
-
-@media (max-width: 500px) {
-    .sm-show {
-        display: block;
-    }
-}
-
-@media (max-height: 800px) {
-    .sm-show {
-        display: block;
+@media (max-width: 1200px) {
+    .sidebar {
+        padding-top: 8px;
+        width: 80px;
     }
 }

@@ -33,12 +33,12 @@ function MobileNavbar() {
 
   // TODO transparency on scroll
   return (
-    <div className="sm-show mobile-navbar">
-      <div className="mobile-tweet">
+    <div className="hidden xs:block ht:block mobile-navbar">
+      <div className="h-14 mb-5 flex justify-end mr-5">
         {/*TODO show create tweet modal*/}
         <Button
           shape="round"
-          className="bg-primary mobile-tweet-button btn-primary-hover"
+          className="bg-primary btn-primary-hover w56 h-14 transition-none"
           icon={<PencilOutlined/>}
           title="Tweet"
         />
@@ -46,7 +46,7 @@ function MobileNavbar() {
       <Menu
         mode="horizontal"
         items={items}
-        style={{display: "flex", justifyContent: "center"}}
+        className="flex justify-center"
       />
     </div>
   );

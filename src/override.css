@@ -34,3 +34,51 @@ a.ant-typography:focus {
     border-color: var(--color-primary) !important;
     box-shadow: var(--color-primary) 0 0 0 1px;
 }
+
+.ant-menu {
+    background-color: black !important;
+    border: 0 !important;
+}
+
+.ant-menu-item {
+    height: 50px !important;
+    padding-left: 12px !important;
+    background-color: black !important;
+    border-radius: 999px !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+.ant-menu-item-active {
+    background-color: rgb(231, 233, 234, 0.1) !important;
+}
+
+.ant-menu-item-selected {
+    font-weight: 700;
+}
+
+.ant-menu-title-content {
+    font-size: 20px;
+    color: rgb(231, 233, 234);
+}
+
+.ant-popover-arrow::after {
+    background-color: black !important;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 0 15px, rgba(255, 255, 255, 0.15) 0 0 3px 1px !important;
+}
+
+.ant-popover-content {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 0 15px, rgba(255, 255, 255, 0.15) 0 0 3px 1px;
+}
+
+.ant-popover-inner {
+    background-color: black !important;
+}
+
+@media (max-width: 1200px) {
+    .ant-menu-item {
+        width: 50px !important;
+    }
+}

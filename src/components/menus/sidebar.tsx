@@ -10,7 +10,6 @@ import {
   UnorderedListOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
-import "./sidebar.css";
 import {EXPLORE_ROUTE, HOME_ROUTE, PROFILE_ROUTE} from "../../constants";
 import {useLocation, useNavigate} from "react-router-dom";
 import SearchOutlined from "../icons/search-outlined";
@@ -51,11 +50,10 @@ function Sidebar() {
 
   const avatarItem: MenuItem = {
     key: "8",
-    className: "avatar-item",
     icon: <Avatar src={`https://picsum.photos/seed/${user?.sub}/400/`} size="large" alt={user?.id + " photo"}/>,
     label:
-      <div className="avatar-menu--item">
-        <div className="avatar-menu--username">
+      <div className="flex flex-row justify-between ml-1">
+        <div className="flex flex-col">
           <Text strong>{user?.sub}</Text>
           <Text className="color-secondary">@{user?.sub}</Text>
         </div>
@@ -66,20 +64,23 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
-      <Button shape="round" className="bg-primary tweet-button btn-primary-hover">
+      <Button
+        shape="round"
+        className="bg-primary btn-primary-hover w-[233px] h-[50px] transition-none mt-3 ml-1 lg:hidden"
+      >
         <Text strong className="text-[17px]">Tweet</Text>
       </Button>
       {/* Small button */}
       {/*TODO show create tweet modal*/}
       <Button
         shape="round"
-        className="bg-primary tweet-button-small btn-primary-hover"
-        icon={<PencilOutlined/>}
+        className="bg-primary btn-primary-hover hidden lg:block w50 h-[50px] mt-3 ml-1 transition-none"
+        icon={<PencilOutlined className="absolute top-[10px] left-3"/>}
         title="Tweet"
       />
 
       <LogoutPopover>
-        <div className="avatar-menu">
+        <div className="absolute bottom-0 mb-1 w-full lg:bottom-2">
           <Menu mode="inline" items={[avatarItem]} selectable={false}/>
         </div>
       </LogoutPopover>

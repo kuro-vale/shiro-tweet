@@ -58,23 +58,23 @@ function LoginModal(props: ModalProps) {
         >
           <Title level={2} className="mt-3">{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
           {!lastStep &&
-              <>
-                  <Button shape="round"
-                          className="bg-white w-[300px] h-11 my-3 transition-none cursor-block btn-white-hover"
-                          icon={<GoogleIcon/>}>
-                      <Text strong className="text-google">
-                          Sign in with Google
-                      </Text>
-                  </Button>
-                  <Button shape="round"
-                          className="bg-white w-[300px] h-11 my-3 transition-none cursor-block btn-white-hover"
-                          icon={<AppleIcon/>}>
-                      <Text strong className="text-black">
-                          Sign in with Apple
-                      </Text>
-                  </Button>
-                  <Divider plain className="w-[300px] min-w-0 divider-color"/>
-              </>
+            <>
+              <Button shape="round"
+                      className="bg-white w-[300px] h-11 my-3 transition-none cursor-not-allowed btn-white-hover"
+                      icon={<GoogleIcon/>}>
+                <Text strong className="text-google">
+                  Sign in with Google
+                </Text>
+              </Button>
+              <Button shape="round"
+                      className="bg-white w-[300px] h-11 my-3 transition-none cursor-not-allowed btn-white-hover"
+                      icon={<AppleIcon/>}>
+                <Text strong className="text-black">
+                  Sign in with Apple
+                </Text>
+              </Button>
+              <Divider plain className="w-[300px] min-w-0 divider-color"/>
+            </>
           }
           <Form.Item<AuthRequest>
             name="username"
@@ -119,7 +119,7 @@ function LoginModal(props: ModalProps) {
                       onClick={onNext}>
                 <Text strong className="text-black">Next</Text>
               </Button>
-              <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-black cursor-block">
+              <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-black cursor-not-allowed">
                 <Text strong>Forgot password?</Text>
               </Button>
             </>
