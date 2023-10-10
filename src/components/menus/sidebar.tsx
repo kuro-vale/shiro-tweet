@@ -55,7 +55,7 @@ function Sidebar() {
       <div className="flex flex-row justify-between ml-1">
         <div className="flex flex-col">
           <Text strong>{user?.sub}</Text>
-          <Text className="color-secondary">@{user?.sub}</Text>
+          <Text className="text-secondary">@{user?.sub}</Text>
         </div>
         <EllipsisOutlined/>
       </div>,
@@ -66,7 +66,7 @@ function Sidebar() {
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
       <Button
         shape="round"
-        className="bg-primary btn-primary-hover w-[233px] h-[50px] transition-none mt-3 ml-1 lg:hidden"
+        className="bg-primary hover:bg-hover-primary w-[233px] h-[50px] transition-none mt-3 ml-1 lg:hidden"
       >
         <Text strong className="text-[17px]">Tweet</Text>
       </Button>
@@ -74,8 +74,9 @@ function Sidebar() {
       {/*TODO show create tweet modal*/}
       <Button
         shape="round"
-        className="bg-primary btn-primary-hover hidden lg:block w50 h-[50px] mt-3 ml-1 transition-none"
+        className="bg-primary hover:bg-hover-primary hidden lg:block h-[50px] mt-3 ml-1 transition-none"
         icon={<PencilOutlined className="absolute top-[10px] left-3"/>}
+        style={{width: 50}}
         title="Tweet"
       />
 

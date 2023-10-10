@@ -38,8 +38,9 @@ function MobileNavbar() {
         {/*TODO show create tweet modal*/}
         <Button
           shape="round"
-          className="bg-primary btn-primary-hover w56 h-14 transition-none"
+          className="bg-primary hover:bg-hover-primary w56 h-14 transition-none"
           icon={<PencilOutlined/>}
+          style={{width: 56}}
           title="Tweet"
         />
       </div>

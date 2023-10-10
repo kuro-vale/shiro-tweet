@@ -60,20 +60,20 @@ function LoginModal(props: ModalProps) {
           {!lastStep &&
             <>
               <Button shape="round"
-                      className="bg-white w-[300px] h-11 my-3 transition-none cursor-not-allowed btn-white-hover"
+                      className="bg-white w-[300px] h-11 my-3 transition-none cursor-not-allowed hover:bg-hover-white"
                       icon={<GoogleIcon/>}>
                 <Text strong className="text-google">
                   Sign in with Google
                 </Text>
               </Button>
               <Button shape="round"
-                      className="bg-white w-[300px] h-11 my-3 transition-none cursor-not-allowed btn-white-hover"
+                      className="bg-white w-[300px] h-11 my-3 transition-none cursor-not-allowed hover:bg-hover-white"
                       icon={<AppleIcon/>}>
                 <Text strong className="text-black">
                   Sign in with Apple
                 </Text>
               </Button>
-              <Divider plain className="w-[300px] min-w-0 divider-color"/>
+              <Divider plain className="w-[300px] min-w-0"/>
             </>
           }
           <Form.Item<AuthRequest>
@@ -108,25 +108,27 @@ function LoginModal(props: ModalProps) {
               </Form.Item>
               <Button
                 shape="round"
-                className="bg-white btn-white-hover w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
+                className="bg-white hover:bg-hover-white w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
                 onClick={onFinish}
               >
                 <Text strong className="text-black text-[17px]">Log in</Text>
               </Button>
             </> :
             <>
-              <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-white-hover bg-white"
+              <Button shape="round" className="w-[300px] h-11 my-3 transition-none hover:bg-hover-white bg-white"
                       onClick={onNext}>
                 <Text strong className="text-black">Next</Text>
               </Button>
-              <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-black cursor-not-allowed">
+              <Button shape="round"
+                      className="w-[300px] h-11 my-3 transition-none bg-black hover:bg-hover-black cursor-not-allowed">
                 <Text strong>Forgot password?</Text>
               </Button>
             </>
           }
-          <Text className={`color-secondary w-[300px] ${lastStep ? "m-0" : "mt-10 mb-20"}`}>
+          <Text className={`text-secondary w-[300px] ${lastStep ? "m-0" : "mt-10 mb-20"}`}>
             Don't have an account?&nbsp;
-            <Link href={REGISTER_ROUTE} className="color-primary">Sign up</Link></Text>
+            <Link href={REGISTER_ROUTE} style={{color: "rgb(29, 155, 240)"}}>Sign up</Link>
+          </Text>
         </Form>
       </Spin>
     </Modal>

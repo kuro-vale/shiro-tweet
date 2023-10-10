@@ -2,54 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset css */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-blockquote, q {
-    quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 /* Fonts */
 @font-face {
     font-family: TwitterChirp;
@@ -72,14 +24,9 @@ table {
 /* Variables */
 :root {
     --color-primary: rgb(29, 155, 240);
-    --color-secondary: rgb(113, 118, 123);
 }
 
 /* Classes */
-
-.cursor-block {
-    cursor: not-allowed !important;
-}
 
 .placeholder-focus:focus::placeholder {
     color: var(--color-primary);
@@ -142,54 +89,16 @@ table {
     stroke-width: 3;
 }
 
-.w50 {
-    width: 50px !important;
-}
-
-.w56 {
-    width: 56px !important;
-}
-
-/* Custom colors */
-.color-primary {
-    color: var(--color-primary) !important;
-}
-
-.color-secondary {
-    color: var(--color-secondary) !important;
-}
-
-.bg-primary {
-    background-color: var(--color-primary) !important;
-}
-
-.divider-color {
-    border-color: rgb(51, 54, 57);
-}
-
-/* Buttons Hovers */
-
-.btn-white-hover:hover {
-    background-color: rgb(215, 219, 220);
+button.bg-white {
     border-color: rgb(83, 100, 113) !important;
 }
 
-.btn-primary-hover:hover {
-    background-color: rgb(26, 140, 216) !important;
+button.bg-primary {
     border-color: #424242 !important;
 }
 
-.btn-black {
-    background-color: black;
+button.bg-black {
     border: 1px solid rgb(83, 100, 113) !important;
-}
-
-.btn-black:hover {
-    background-color: rgba(239, 243, 244, 0.1);
-}
-
-.btn-login:hover {
-    background-color: rgba(29, 155, 240, 0.1);
 }
 
 @media (max-width: 1200px) {

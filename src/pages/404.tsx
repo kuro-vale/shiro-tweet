@@ -7,10 +7,10 @@ const {Text} = Typography;
 function NotFound() {
   return (
     <Result
-      icon={<QuestionOutlined className="color-primary"/>}
+      icon={<QuestionOutlined/>}
       subTitle="Hmm... this page doesn’t exist. Try searching for something else."
       extra={
-        <Button shape="round" size="large" className="bg-primary btn-primary-hover" href={EXPLORE_ROUTE}>
+        <Button shape="round" size="large" className="bg-primary hover:bg-hover-primary" href={EXPLORE_ROUTE}>
           <Text strong>Search</Text>
         </Button>
       }

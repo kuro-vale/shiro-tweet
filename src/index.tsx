@@ -35,7 +35,12 @@ root.render(
           colorText: "rgb(231, 233, 234)",
           colorBgMask: "rgba(91, 112, 131, 0.4)",
           colorBgContainer: "black",
-          colorTextPlaceholder: "rgb(113, 118, 123)"
+          colorTextPlaceholder: "rgb(113, 118, 123)",
+          colorSplit: "rgb(51, 54, 57)",
+          colorInfo: "rgb(29, 155, 240)",
+          colorLink: "rgb(113, 118, 123)",
+          colorLinkHover: "rgb(113, 118, 123)",
+          colorLinkActive: "rgb(113, 118, 123)",
         }
       }}
     >

@@ -1,3 +1,5 @@
+/* Override ant design styles */
+
 a.ant-typography:hover {
     text-decoration: underline;
 }

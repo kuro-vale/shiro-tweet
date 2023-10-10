@@ -27,7 +27,7 @@ function Landing() {
           <Text strong className="verdana text-3xl mb-8">Join today.</Text>
           <Button
             shape="round"
-            className="w-[300px] h-11 my-3 transition-none cursor-not-allowed bg-white btn-white-hover"
+            className="w-[300px] h-11 my-3 transition-none cursor-not-allowed bg-white hover:bg-hover-white"
             icon={<GoogleIcon/>}
           >
             <Text strong className="text-google">
@@ -36,50 +36,50 @@ function Landing() {
           </Button>
           <Button
             shape="round"
-            className="w-[300px] h-11 m-0 transition-none cursor-not-allowed bg-white btn-white-hover"
+            className="w-[300px] h-11 m-0 transition-none cursor-not-allowed bg-white hover:bg-hover-white"
             icon={<AppleIcon/>}
           >
             <Text strong className="text-black">
               Sign up with Apple
             </Text>
           </Button>
-          <Divider className="w-[300px] min-w-0 divider-color"/>
+          <Divider className="w-[300px] min-w-0"/>
           <Button
             shape="round"
-            className="w-[300px] h-11 m-0 transition-none bg-primary btn-primary-hover"
+            className="w-[300px] h-11 m-0 transition-none bg-primary hover:bg-hover-primary"
             onClick={() => setOpenRegister(true)}
           >
             <Text strong>Create account</Text>
           </Button>
-          <Text className="color-secondary text-xs mt-1">By signing up, you agree to be beautiful.</Text>
+          <Text className="text-secondary text-xs mt-1">By signing up, you agree to be beautiful.</Text>
           <Text strong className="mt-[60px] text-lg">Already have an account?</Text>
           <Button
             shape="round"
-            className="btn-login btn-black w-[300px] h-11 mt-[20px] transition-none"
+            className="bg-black hover:bg-hover-login w-[300px] h-11 mt-[20px] transition-none"
             onClick={() => setOpenLogin(true)}
           >
-            <Text strong className="color-primary">Sign in</Text>
+            <Text strong className="text-primary">Sign in</Text>
           </Button>
         </div>
       </Content>
       <Footer className="flex flex-wrap justify-center px-4">
-        <Link className="color-secondary pr-4" href="https://github.com/kuro-vale/shiro-tweet" target="_blank">
+        <Link className="pr-4" href="https://github.com/kuro-vale/shiro-tweet" target="_blank">
           Repo</Link>
-        <Link className="color-secondary pr-4" href="https://x.com" target="_blank">
+        <Link className="pr-4" href="https://x.com" target="_blank">
           Based on X</Link>
-        <Link className="color-secondary pr-4" href={process.env.REACT_APP_API} target="_blank">
+        <Link className="pr-4" href={process.env.REACT_APP_API} target="_blank">
           API</Link>
-        <Link className="color-secondary pr-4" href="https://github.com/kuro-vale" target="_blank">
+        <Link className="pr-4" href="https://github.com/kuro-vale" target="_blank">
           Github</Link>
-        <Link className="color-secondary pr-4" href="https://twitter.com/kuro_vale" target="_blank">
+        <Link className="pr-4" href="https://twitter.com/kuro_vale" target="_blank">
           Twitter</Link>
-        <Link className="color-secondary pr-4" href="https://twitter.com/_Silvervale_" target="_blank">
+        <Link className="pr-4" href="https://twitter.com/_Silvervale_" target="_blank">
           Best girl</Link>
-        <Link className="color-secondary pr-4" href="https://www.linkedin.com/in/kurovale/" target="_blank">
+        <Link className="pr-4" href="https://www.linkedin.com/in/kurovale/" target="_blank">
           LinkedIn</Link>
-        <Link className="color-secondary pr-4" href="mailto:jsalcedo218@gmail.com" target="_blank">
+        <Link className="pr-4" href="mailto:jsalcedo218@gmail.com" target="_blank">
           Gmail</Link>
-        <Text className="color-secondary">
+        <Text className="text-secondary">
           @2023 kurovale</Text>
       </Footer>
     </Layout>

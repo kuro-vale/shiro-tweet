@@ -71,10 +71,10 @@ function RegisterModal(props: ModalProps) {
           </Form.Item>
           <Button
             shape="round"
-            className="bg-primary btn-primary-hover w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
+            className="bg-primary hover:bg-hover-primary w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
             onClick={onFinish}
           >
-            <Text strong className="text-black text-[17px]">Sign up</Text>
+            <Text strong className="text-white text-[17px]">Sign up</Text>
           </Button>
         </Form>
       </Spin>
