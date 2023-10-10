@@ -62,14 +62,14 @@ function LoginModal(props: ModalProps) {
                   <Button shape="round"
                           className="bg-white w-[300px] h-11 my-3 transition-none cursor-block btn-white-hover"
                           icon={<GoogleIcon/>}>
-                      <Text strong style={{color: "rgb(60, 64, 67)"}}>
+                      <Text strong className="text-google">
                           Sign in with Google
                       </Text>
                   </Button>
                   <Button shape="round"
                           className="bg-white w-[300px] h-11 my-3 transition-none cursor-block btn-white-hover"
                           icon={<AppleIcon/>}>
-                      <Text strong style={{color: "black"}}>
+                      <Text strong className="text-black">
                           Sign in with Apple
                       </Text>
                   </Button>
@@ -111,13 +111,13 @@ function LoginModal(props: ModalProps) {
                 className="bg-white btn-white-hover w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
                 onClick={onFinish}
               >
-                <Text strong style={{color: "black", fontSize: "17px"}}>Log in</Text>
+                <Text strong className="text-black text-[17px]">Log in</Text>
               </Button>
             </> :
             <>
               <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-white-hover bg-white"
                       onClick={onNext}>
-                <Text strong style={{color: "black"}}>Next</Text>
+                <Text strong className="text-black">Next</Text>
               </Button>
               <Button shape="round" className="w-[300px] h-11 my-3 transition-none btn-black cursor-block">
                 <Text strong>Forgot password?</Text>

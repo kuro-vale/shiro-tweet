@@ -15,7 +15,8 @@ module.exports = {
             "primary": "rgb(29, 155, 240)",
             "secondary": "rgb(113, 118, 123)",
             "white": "white",
-            "black": "black"
+            "black": "black",
+            "google": "rgb(60, 64, 67)"
         }
     },
     plugins: [],

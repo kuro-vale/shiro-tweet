@@ -30,7 +30,7 @@ function Landing() {
             className="w-[300px] h-11 my-3 transition-none cursor-not-allowed bg-white btn-white-hover"
             icon={<GoogleIcon/>}
           >
-            <Text strong className="google-color">
+            <Text strong className="text-google">
               Sign up with Google
             </Text>
           </Button>

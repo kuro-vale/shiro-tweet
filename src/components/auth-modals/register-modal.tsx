@@ -42,7 +42,7 @@ function RegisterModal(props: ModalProps) {
           name="register"
           className="flex flex-col items-start ml-[60px] sm:ml-0"
         >
-          <Title level={2} style={{marginTop: 50}}>Create your account</Title>
+          <Title level={2} className="mt-[50px]">Create your account</Title>
           <Form.Item<AuthRequest>
             name="username"
             rules={[
@@ -52,8 +52,7 @@ function RegisterModal(props: ModalProps) {
           >
             <Input
               placeholder="Username"
-              className="w-[410px] xs:w-[300px] h-[60px] bg-black placeholder-focus"
-              style={{marginTop: 16}}
+              className="w-[410px] xs:w-[300px] h-[60px] bg-black placeholder-focus mt-4"
               autoFocus
             />
           </Form.Item>
@@ -75,7 +74,7 @@ function RegisterModal(props: ModalProps) {
             className="bg-primary btn-primary-hover w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
             onClick={onFinish}
           >
-            <Text strong style={{color: "white", fontSize: "17px"}}>Sign up</Text>
+            <Text strong className="text-black text-[17px]">Sign up</Text>
           </Button>
         </Form>
       </Spin>

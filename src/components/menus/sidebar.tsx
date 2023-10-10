@@ -67,7 +67,7 @@ function Sidebar() {
     <div className="sidebar">
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
       <Button shape="round" className="bg-primary tweet-button btn-primary-hover">
-        <Text strong style={{fontSize: 17}}>Tweet</Text>
+        <Text strong className="text-[17px]">Tweet</Text>
       </Button>
       {/* Small button */}
       {/*TODO show create tweet modal*/}
