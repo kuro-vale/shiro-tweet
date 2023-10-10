@@ -5,3 +5,9 @@ a.ant-typography:hover {
 a.ant-typography:focus {
     text-decoration: underline;
 }
+
+.ant-layout-sider {
+    background: black !important;
+    transition: none !important;
+    position: fixed !important;
+}

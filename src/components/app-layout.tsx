@@ -12,17 +12,7 @@ function AppLayout() {
   return (
     <Layout hasSider>
       <Sider
-        className="sm-hidden"
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          bottom: 0,
-          backgroundColor: "black",
-          transition: "none"
-        }}
+        className="xs:hidden ht:hidden top-0 bottom-0 left-0 overflow-auto h-screen"
         width="30vw"
         breakpoint="xl"
         collapsedWidth="15vw"
@@ -30,7 +20,7 @@ function AppLayout() {
       >
         <Sidebar/>
       </Sider>
-      <Content className="ml-0__sm" style={{marginLeft: `${collapsed ? "15" : "30"}vw`, minHeight: "100vh"}}>
+      <Content className={`xs:ml-0 ht:ml-0 min-h-screen ${collapsed ? "ml-[15vw]" : "ml-[30vw]"}`}>
         <Outlet/>
         <MobileNavbar/>
       </Content>

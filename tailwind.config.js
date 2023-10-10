@@ -8,6 +8,7 @@ module.exports = {
         screens: {
             'md': {'max': '1000px'},
             'sm': {'max': '600px'},
+            'xs': {'max': '500px'},
             'ht': {'raw': '(max-height: 800px)'}
         }
     },
