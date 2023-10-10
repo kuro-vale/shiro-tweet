@@ -11,3 +11,26 @@ a.ant-typography:focus {
     transition: none !important;
     position: fixed !important;
 }
+
+.ant-modal-content {
+    background-color: black !important;
+    padding-top: 10px !important;
+}
+
+.ant-modal-header {
+    background-color: black !important;
+}
+
+.ant-modal-close {
+    inset-inline-start: 16px !important;
+    color: white !important;
+}
+
+.ant-input {
+    border-color: rgb(51, 54, 57) !important;
+}
+
+.ant-input:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: var(--color-primary) 0 0 0 1px;
+}

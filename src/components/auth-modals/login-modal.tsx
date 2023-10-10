@@ -1,5 +1,4 @@
 import {Button, Divider, Form, Input, Modal, Spin, Typography} from "antd";
-import "./auth-modal.css";
 import React, {useState} from "react";
 import {useAuth} from "../../hooks";
 import {AuthRequest, ModalProps} from "../../types";
@@ -41,27 +40,23 @@ function LoginModal(props: ModalProps) {
       open={props.open}
       width={600}
       title={
-        <div className="header-logo">
-          <img src="/logo.svg" alt="logo"/>
+        <div className="w-full h-10">
+          <img className="w-full h-full" src="/logo.svg" alt="logo"/>
         </div>
       }
       onCancel={onClose}
       keyboard={false}
       maskClosable={false}
-      maskStyle={{backgroundColor: "rgba(91, 112, 131, 0.4)"}}
       footer={null}
       closable={!loading}
     >
-      <Spin
-        wrapperClassName="bg-black"
-        spinning={loading}
-      >
+      <Spin spinning={loading}>
         <Form
           form={form}
           name="login"
-          className={lastStep ? "login-form__last" : "login-form"}
+          className={`flex flex-col ${lastStep ? "items-start ml-[60px] sm:ml-0" : "items-center"}`}
         >
-          <Title level={2} style={{marginTop: 10}}>{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
+          <Title level={2} className="mt-3">{lastStep ? "Enter your password" : "Sign in to Kuro-Tweet"}</Title>
           {!lastStep &&
               <>
                   <Button shape="round"
@@ -91,7 +86,7 @@ function LoginModal(props: ModalProps) {
             <Input
               disabled={lastStep}
               placeholder="Username"
-              className={lastStep ? "form-input__last" : "form-input"}
+              className={`h-[60px] bg-black placeholder-focus ${lastStep ? "w-[410px] xs:w-[300px]" : "w-[300px]"}`}
               onKeyDown={e => e.key === "Enter" && onNext()}
             />
           </Form.Item>
@@ -106,12 +101,16 @@ function LoginModal(props: ModalProps) {
               >
                 <Input.Password
                   placeholder="Password"
-                  className="form-input__last"
+                  className="w-[410px] xs:w-[300px] h-[60px] bg-black placeholder-focus"
                   autoFocus
                   onKeyDown={e => e.key === "Enter" && onFinish()}
                 />
               </Form.Item>
-              <Button shape="round" className="bg-white last-button btn-white-hover" onClick={onFinish}>
+              <Button
+                shape="round"
+                className="bg-white btn-white-hover w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
+                onClick={onFinish}
+              >
                 <Text strong style={{color: "black", fontSize: "17px"}}>Log in</Text>
               </Button>
             </> :
@@ -125,7 +124,7 @@ function LoginModal(props: ModalProps) {
               </Button>
             </>
           }
-          <Text className="color-secondary register-hook" style={lastStep ? {margin: 0} : undefined}>
+          <Text className={`color-secondary w-[300px] ${lastStep ? "m-0" : "mt-10 mb-20"}`}>
             Don't have an account?&nbsp;
             <Link href={REGISTER_ROUTE} className="color-primary">Sign up</Link></Text>
         </Form>

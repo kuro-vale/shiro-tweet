@@ -13,21 +13,27 @@ function LogoutModal(props: ModalProps) {
       open={props.open}
       width={300}
       title={
-        <div className="header-logo">
-          <img src="/logo.svg" alt="logo"/>
+        <div className="w-full h-10">
+          <img className="w-full h-full" src="/logo.svg" alt="logo"/>
         </div>
       }
       onCancel={props.onClose}
-      maskStyle={{backgroundColor: "rgba(91, 112, 131, 0.4)"}}
       footer={null}
       closeIcon={null}
     >
-      <Title level={4} style={{marginTop: 10}}>Log out of Kuro-Tweet?</Title>
+      <Title level={4} className="mt-[10px]">Log out of Kuro-Tweet?</Title>
       <Text>You can always log back in at any time.</Text>
-      <Button shape="round" className="logout-button btn-white-hover bg-white" onClick={onLogout}>
-        <Text strong style={{color: "black"}}>Log out</Text>
+      <Button
+        shape="round"
+        className="w-[244px] h-[45px] my-[6px] mx-0 btn-white-hover bg-white"
+        onClick={onLogout}
+      >
+        <Text strong className="text-black">Log out</Text>
       </Button>
-      <Button shape="round" className="logout-button btn-black" onClick={props.onClose}>
+      <Button
+        shape="round"
+        className="w-[244px] h-[45px] my-[6px] mx-0 btn-black"
+        onClick={props.onClose}>
         <Text strong>Cancel</Text>
       </Button>
     </Modal>

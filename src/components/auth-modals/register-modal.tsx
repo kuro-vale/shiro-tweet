@@ -1,6 +1,5 @@
 import {AuthRequest, ModalProps} from "../../types";
 import {Button, Form, Input, Modal, Spin, Typography} from "antd";
-import "./auth-modal.css";
 import {useAuth} from "../../hooks";
 import {useState} from "react";
 
@@ -33,19 +32,15 @@ function RegisterModal(props: ModalProps) {
       onCancel={onClose}
       keyboard={false}
       maskClosable={false}
-      maskStyle={{backgroundColor: "rgba(91, 112, 131, 0.4)"}}
       footer={null}
       afterOpenChange={() => form.resetFields()}
       closable={!loading}
     >
-      <Spin
-        wrapperClassName="bg-black"
-        spinning={loading}
-      >
+      <Spin spinning={loading}>
         <Form
           form={form}
           name="register"
-          className="login-form__last"
+          className="flex flex-col items-start ml-[60px] sm:ml-0"
         >
           <Title level={2} style={{marginTop: 50}}>Create your account</Title>
           <Form.Item<AuthRequest>
@@ -57,7 +52,7 @@ function RegisterModal(props: ModalProps) {
           >
             <Input
               placeholder="Username"
-              className="form-input__last"
+              className="w-[410px] xs:w-[300px] h-[60px] bg-black placeholder-focus"
               style={{marginTop: 16}}
               autoFocus
             />
@@ -71,11 +66,15 @@ function RegisterModal(props: ModalProps) {
           >
             <Input.Password
               placeholder="Password"
-              className="form-input__last"
+              className="w-[410px] xs:w-[300px] h-[60px] bg-black placeholder-focus"
               onKeyDown={e => e.key === "Enter" && onFinish()}
             />
           </Form.Item>
-          <Button shape="round" className="bg-primary last-button btn-primary-hover" onClick={onFinish}>
+          <Button
+            shape="round"
+            className="bg-primary btn-primary-hover w-[440px] h-[58px] transition-none mt-[215px] mb-5 xs:w-[300px]"
+            onClick={onFinish}
+          >
             <Text strong style={{color: "white", fontSize: "17px"}}>Sign up</Text>
           </Button>
         </Form>

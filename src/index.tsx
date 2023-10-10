@@ -32,7 +32,10 @@ root.render(
         token: {
           fontSize: 15,
           fontFamily: "TwitterChirp",
-          colorText: "rgb(231, 233, 234)"
+          colorText: "rgb(231, 233, 234)",
+          colorBgMask: "rgba(91, 112, 131, 0.4)",
+          colorBgContainer: "black",
+          colorTextPlaceholder: "rgb(113, 118, 123)"
         }
       }}
     >

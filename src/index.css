@@ -81,6 +81,22 @@ table {
     cursor: not-allowed !important;
 }
 
+.placeholder-focus:focus::placeholder {
+    color: var(--color-primary);
+    transition: font-size 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+}
+
+.placeholder-focus input:focus::placeholder {
+    color: var(--color-primary);
+    transition: font-size 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+}
+
 /* Custom colors */
 .color-primary {
     color: var(--color-primary) !important;
