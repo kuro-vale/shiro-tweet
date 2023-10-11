@@ -17,7 +17,6 @@ import UserSolid from "../icons/user-solid";
 import UserOutlined from "../icons/user-outlined";
 import {useAuth} from "../../hooks";
 import PencilOutlined from "../icons/pencil-outlined";
-import {getItem} from "../../utils";
 import {MenuItem} from "../../types";
 import LogoutPopover from "./logout-popover";
 
@@ -29,23 +28,43 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const items: MenuItem[] = [
-    getItem("", "0", <img src="/logo.svg" alt="logo"/>, false, () => navigate(HOME_ROUTE)),
-    getItem("Home", HOME_ROUTE,
-      location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
-      false, () => navigate(HOME_ROUTE)),
-    getItem("Explore", EXPLORE_ROUTE,
-      <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "stroked" : ""}/>,
-      false, () => navigate(EXPLORE_ROUTE)),
-    getItem("Notifications", "1", <BellOutlined/>, true),
-    getItem("Messages", "2", <MailOutlined/>, true),
-    getItem("Lists", "3", <UnorderedListOutlined/>, true),
-    getItem("Bookmarks", "4", <BookOutlined/>, true),
-    getItem("Communities", "5", <UsergroupAddOutlined/>, true),
-    getItem("Freemium", "6", <TwitterOutlined/>, true),
-    getItem("Profile", PROFILE_ROUTE,
-      location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
-      false, () => navigate(PROFILE_ROUTE)),
-    getItem("More", "7", <EllipsisOutlined/>, true),
+    {
+      label: "", key: "0", onClick: () => navigate(HOME_ROUTE),
+      icon: <img className="w-12 h-10 left-0 absolute" src="/logo.svg" alt="logo"/>,
+    },
+    {
+      label: "Home", key: HOME_ROUTE, onClick: () => navigate(HOME_ROUTE),
+      icon: location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
+    },
+    {
+      label: "Explore", key: EXPLORE_ROUTE, onClick: () => navigate(EXPLORE_ROUTE),
+      icon: <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "broad" : ""}/>,
+    },
+    {
+      label: "Notifications", key: "1", icon: <BellOutlined/>, disabled: true
+    },
+    {
+      label: "Messages", key: "2", icon: <MailOutlined/>, disabled: true
+    },
+    {
+      label: "Lists", key: "3", icon: <UnorderedListOutlined/>, disabled: true
+    },
+    {
+      label: "Bookmarks", key: "4", icon: <BookOutlined/>, disabled: true
+    },
+    {
+      label: "Communities", key: "5", icon: <UsergroupAddOutlined/>, disabled: true
+    },
+    {
+      label: "Freemium", key: "6", icon: <TwitterOutlined/>, disabled: true
+    },
+    {
+      label: "Profile", key: PROFILE_ROUTE, onClick: () => navigate(PROFILE_ROUTE),
+      icon: location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
+    },
+    {
+      label: "More", key: "7", icon: <EllipsisOutlined/>, disabled: true
+    },
   ];
 
   const avatarItem: MenuItem = {
@@ -62,7 +81,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-20">
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
       <Button
         shape="round"
@@ -75,7 +94,7 @@ function Sidebar() {
       <Button
         shape="round"
         className="bg-primary hover:bg-hover-primary hidden lg:block h-[50px] mt-3 ml-1 transition-none"
-        icon={<PencilOutlined className="absolute top-[10px] left-3"/>}
+        icon={<PencilOutlined className="absolute top-[10px] left-3 w-[26px]"/>}
         style={{width: 50}}
         title="Tweet"
       />

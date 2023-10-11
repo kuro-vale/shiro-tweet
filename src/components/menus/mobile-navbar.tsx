@@ -1,6 +1,5 @@
 import {Button, Menu} from "antd";
 import {MenuItem} from "../../types";
-import {getItem} from "../../utils";
 import {EXPLORE_ROUTE, HOME_ROUTE, PROFILE_ROUTE} from "../../constants";
 import {useLocation, useNavigate} from "react-router-dom";
 import {EllipsisOutlined, HomeFilled, HomeOutlined} from "@ant-design/icons";
@@ -15,31 +14,34 @@ function MobileNavbar() {
   const navigate = useNavigate();
 
   const items: MenuItem[] = [
-    getItem("", HOME_ROUTE,
-      location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
-      false, () => navigate(HOME_ROUTE)),
-    getItem("", EXPLORE_ROUTE,
-      <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "stroked" : ""}/>,
-      false, () => navigate(EXPLORE_ROUTE)),
-    getItem("", PROFILE_ROUTE,
-      location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
-      false, () => navigate(PROFILE_ROUTE)),
-    getItem("", "logout",
-      <LogoutPopover>
-        <EllipsisOutlined/>
-      </LogoutPopover>,
-      true),
+    {
+      label: "", key: HOME_ROUTE, icon: location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
+      onClick: () => navigate(HOME_ROUTE), style: {marginLeft: "20px", marginRight: "20px"}
+    },
+    {
+      label: "", key: EXPLORE_ROUTE,
+      icon: <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "broad" : ""}/>,
+      onClick: () => navigate(EXPLORE_ROUTE), style: {marginLeft: "20px", marginRight: "20px"}
+    },
+    {
+      label: "", key: PROFILE_ROUTE, icon: location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
+      onClick: () => navigate(PROFILE_ROUTE), style: {marginLeft: "20px", marginRight: "20px"}
+    },
+    {
+      label: "", key: "logout", style: {marginLeft: "20px", marginRight: "20px"},
+      icon: <LogoutPopover><EllipsisOutlined/></LogoutPopover>, disabled: true,
+    },
   ];
 
   // TODO transparency on scroll
   return (
-    <div className="hidden xs:block ht:block mobile-navbar">
+    <div className="hidden xs:block ht:block fixed bottom-0 left-0 w-full h-[132px]">
       <div className="h-14 mb-5 flex justify-end mr-5">
         {/*TODO show create tweet modal*/}
         <Button
           shape="round"
-          className="bg-primary hover:bg-hover-primary w56 h-14 transition-none"
-          icon={<PencilOutlined/>}
+          className="bg-primary hover:bg-hover-primary h-14 transition-none"
+          icon={<PencilOutlined className="w-[26px] h-[26px]"/>}
           style={{width: 56}}
           title="Tweet"
         />

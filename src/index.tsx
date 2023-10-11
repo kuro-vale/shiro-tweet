@@ -38,9 +38,21 @@ root.render(
           colorTextPlaceholder: "rgb(113, 118, 123)",
           colorSplit: "rgb(51, 54, 57)",
           colorInfo: "rgb(29, 155, 240)",
-          colorLink: "rgb(113, 118, 123)",
-          colorLinkHover: "rgb(113, 118, 123)",
-          colorLinkActive: "rgb(113, 118, 123)",
+        },
+        components: {
+          Menu: {
+            itemSelectedColor: "rgb(231, 233, 234)",
+            itemDisabledColor: "rgb(231, 233, 234)",
+            horizontalItemSelectedColor: "rgb(231, 233, 234)",
+            iconSize: 26,
+            iconMarginInlineEnd: 15,
+            collapsedIconSize: 26,
+          },
+          Typography: {
+            colorLink: "rgb(113, 118, 123)",
+            colorLinkHover: "rgb(113, 118, 123)",
+            colorLinkActive: "rgb(113, 118, 123)",
+          },
         }
       }}
     >

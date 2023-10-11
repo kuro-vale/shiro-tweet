@@ -26,8 +26,7 @@
     --color-primary: rgb(29, 155, 240);
 }
 
-/* Classes */
-
+/* Input placeholder focus */
 .placeholder-focus:focus::placeholder {
     color: var(--color-primary);
     transition: font-size 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,50 +43,13 @@
     top: 0;
 }
 
-.sidebar {
-    position: absolute;
-    width: 260px;
-    right: 8px;
-    height: 100vh;
-}
+/* Other classes */
 
-.sidebar img {
-    width: 50px;
-    height: 40px;
-    position: absolute;
-    left: 0;
-}
-
-.sidebar svg {
-    width: 26px;
-    height: 26px;
-    color: rgb(231, 233, 234);
-    margin-right: 15px;
-}
-
-.mobile-navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 132px;
-}
-
-.mobile-navbar svg {
-    width: 26px;
-    height: 26px;
-    color: rgb(231, 233, 234);
-    margin-right: 15px;
-}
-
-.mobile-navbar li {
-    margin-left: 20px !important;
-    margin-right: 20px !important;
-}
-
-.stroked svg {
+.broad svg {
     stroke-width: 3;
 }
+
+/* Buttons borders */
 
 button.bg-white {
     border-color: rgb(83, 100, 113) !important;
@@ -99,11 +61,4 @@ button.bg-primary {
 
 button.bg-black {
     border: 1px solid rgb(83, 100, 113) !important;
-}
-
-@media (max-width: 1200px) {
-    .sidebar {
-        padding-top: 8px;
-        width: 80px;
-    }
 }

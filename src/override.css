@@ -55,10 +55,6 @@ a.ant-typography:focus {
     background-color: rgb(231, 233, 234, 0.1) !important;
 }
 
-.ant-menu-item-selected {
-    font-weight: 700;
-}
-
 .ant-menu-title-content {
     font-size: 20px;
     color: rgb(231, 233, 234);
