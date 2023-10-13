@@ -32,27 +32,40 @@ root.render(
         token: {
           fontSize: 15,
           fontFamily: "TwitterChirp",
-          colorText: "rgb(231, 233, 234)",
-          colorBgMask: "rgba(91, 112, 131, 0.4)",
+          colorText: "var(--color-white-light)",
           colorBgContainer: "black",
-          colorTextPlaceholder: "rgb(113, 118, 123)",
-          colorSplit: "rgb(51, 54, 57)",
-          colorInfo: "rgb(29, 155, 240)",
+          colorSplit: "var(--color-gray)",
         },
         components: {
           Menu: {
-            itemSelectedColor: "rgb(231, 233, 234)",
-            itemDisabledColor: "rgb(231, 233, 234)",
-            horizontalItemSelectedColor: "rgb(231, 233, 234)",
+            itemSelectedColor: "var(--color-white-light)",
+            itemDisabledColor: "var(--color-white-light)",
+            horizontalItemSelectedColor: "var(--color-white)",
             iconSize: 26,
             iconMarginInlineEnd: 15,
             collapsedIconSize: 26,
           },
           Typography: {
-            colorLink: "rgb(113, 118, 123)",
-            colorLinkHover: "rgb(113, 118, 123)",
-            colorLinkActive: "rgb(113, 118, 123)",
+            colorLink: "var(--color-secondary)",
+            colorLinkHover: "var(--color-secondary)",
+            colorLinkActive: "var(--color-secondary)",
+            linkHoverDecoration: "underline",
+            linkFocusDecoration: "underline"
           },
+          Modal: {
+            contentBg: "black",
+            headerBg: "black",
+            colorBgMask: "var(--color-bg-mask)",
+          },
+          Input: {
+            colorBorder: "var(--color-gray)",
+            activeBorderColor: "var(--color-primary)",
+            boxShadow: "var(--color-primary) 0 0 0 1px",
+            colorTextPlaceholder: "var(--color-secondary)",
+          },
+          Result: {
+            colorInfo: "var(--color-primary)"
+          }
         }
       }}
     >

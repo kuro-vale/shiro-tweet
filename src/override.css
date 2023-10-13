@@ -1,40 +1,12 @@
 /* Override ant design styles */
 
-a.ant-typography:hover {
-    text-decoration: underline;
-}
-
-a.ant-typography:focus {
-    text-decoration: underline;
-}
-
-.ant-layout-sider {
-    background: black !important;
-    transition: none !important;
-    position: fixed !important;
-}
-
 .ant-modal-content {
-    background-color: black !important;
     padding-top: 10px !important;
-}
-
-.ant-modal-header {
-    background-color: black !important;
 }
 
 .ant-modal-close {
     inset-inline-start: 16px !important;
     color: white !important;
-}
-
-.ant-input {
-    border-color: rgb(51, 54, 57) !important;
-}
-
-.ant-input:focus {
-    border-color: var(--color-primary) !important;
-    box-shadow: var(--color-primary) 0 0 0 1px;
 }
 
 .ant-menu {
@@ -52,12 +24,12 @@ a.ant-typography:focus {
 }
 
 .ant-menu-item-active {
-    background-color: rgb(231, 233, 234, 0.1) !important;
+    background-color: var(--color-hover-menu-item) !important;
 }
 
 .ant-menu-title-content {
     font-size: 20px;
-    color: rgb(231, 233, 234);
+    color: var(--color-white-light);
 }
 
 .ant-popover-arrow::after {

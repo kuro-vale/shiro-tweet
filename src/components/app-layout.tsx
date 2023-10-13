@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Layout} from "antd";
 import {Outlet} from "react-router-dom";
 import Sidebar from "./menus/sidebar";
@@ -7,8 +7,6 @@ import MobileNavbar from "./menus/mobile-navbar";
 const {Content, Sider} = Layout;
 
 function AppLayout() {
-  const [collapsed, setCollapse] = useState(false);
-
   return (
     <Layout hasSider>
       <Sider
@@ -16,11 +14,11 @@ function AppLayout() {
         width="30vw"
         breakpoint="xl"
         collapsedWidth="15vw"
-        onCollapse={(broken) => setCollapse(broken)}
+        style={{transition: "none", backgroundColor: "black"}}
       >
         <Sidebar/>
       </Sider>
-      <Content className={`xs:ml-0 ht:ml-0 min-h-screen ${collapsed ? "ml-[15vw]" : "ml-[30vw]"}`}>
+      <Content className="min-h-screen">
         <Outlet/>
         <MobileNavbar/>
       </Content>
