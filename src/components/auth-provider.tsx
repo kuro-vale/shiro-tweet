@@ -1,6 +1,6 @@
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts";
-import {AuthContextProps, AuthData, AuthProviderProps, AuthRequest, User} from "../types";
+import {AuthContextProps, AuthData, AuthProviderProps, AuthRequest, UserJWT} from "../types";
 import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
@@ -19,7 +19,7 @@ async function handleError(messageApi: MessageInstance, e: any) {
 
 const AuthProvider = (props: AuthProviderProps) => {
   const localToken = localStorage.getItem(TOKEN_KEY);
-  let decoded: User | null = null;
+  let decoded: UserJWT | null = null;
   if (localToken) {
     try {
       decoded = jwtDecode(localToken);
@@ -28,7 +28,7 @@ const AuthProvider = (props: AuthProviderProps) => {
     }
   }
 
-  const [user, setUser] = useState<User | null>(decoded);
+  const [user, setUser] = useState<UserJWT | null>(decoded);
   const [mutateLogin] = useMutation<AuthData>(LOGIN_MUTATION);
   const [mutateRegister] = useMutation<AuthData>(REGISTER_MUTATION);
   const [messageApi, contextHolder] = message.useMessage();

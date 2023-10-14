@@ -15,7 +15,7 @@ export type LogoutPopoverProps = {
 }
 
 export type AuthContextProps = {
-  user: User | null,
+  user: UserJWT | null,
   onLogin: (request: AuthRequest) => Promise<void>,
   onLogout: () => Promise<void>,
   onRegister: (request: AuthRequest) => Promise<void>,
@@ -26,7 +26,7 @@ export type ModalProps = {
   onClose: () => void,
 }
 
-export type User = {
+export type UserJWT = {
   id: number,
   sub: string,
 }
@@ -40,7 +40,39 @@ export type AuthData = {
 
 export type AuthPayload = {
   token: string,
-  user: User | null,
+  user: UserJWT | null,
 }
 
 export type MenuItem = Required<MenuProps>["items"][number];
+
+export type IndexData = {
+  TweetQueries: {
+    index: Tweet[]
+  }
+}
+
+export type Tweet = {
+  id: number,
+  body: string,
+  comments: number,
+  createdAt: string,
+  hearts: number,
+  isRetweetedByYou: boolean,
+  isHeartedByYou: boolean,
+  retweets: number,
+  parentId: number | null,
+  parent?: Tweet
+  author: User
+}
+
+export type User = {
+  id: number,
+  username: string,
+  followers: number,
+  following: number,
+  hearts?: number,
+  isFollowedByYou: boolean,
+  isFollowingYou: boolean,
+  joined?: string,
+  tweets?: number,
+}

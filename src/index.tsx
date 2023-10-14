@@ -10,13 +10,28 @@ import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
-import {HOME_ROUTE, LANDING_ROUTE} from "./constants";
-import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
+import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY} from "./constants";
+import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
+import {setContext} from "@apollo/client/link/context";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API,
+});
+
+const authLink = setContext((_, {headers}) => {
+  const token = localStorage.getItem(TOKEN_KEY);
+  return {
+    headers: {
+      ...headers,
+      authorization: token,
+    }
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
 
