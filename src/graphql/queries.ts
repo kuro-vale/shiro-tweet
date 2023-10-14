@@ -43,4 +43,4 @@ export const INDEX_QUERY = gql`
       }
     }
   }
-`
+`;

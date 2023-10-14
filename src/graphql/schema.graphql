@@ -2,271 +2,271 @@
 scalar Date
 
 type Query {
-    """User Queries"""
-    UserQueries: UserQueries
+  """User Queries"""
+  UserQueries: UserQueries
 
-    """Tweet  Queries"""
-    TweetQueries: TweetQueries
+  """Tweet  Queries"""
+  TweetQueries: TweetQueries
 }
 
 type Mutation {
-    """Auth mutations"""
-    Auth: Auth
+  """Auth mutations"""
+  Auth: Auth
 
-    """User Mutations"""
-    UserOps: UserOps
+  """User Mutations"""
+  UserOps: UserOps
 
-    """Tweet mutations"""
-    TweetOps: TweetOps
+  """Tweet mutations"""
+  TweetOps: TweetOps
 }
 
 """Auth mutations"""
 type Auth {
-    """Create a new user an generate a token"""
-    register(username: String!, password: String!): AuthPayload
+  """Create a new user an generate a token"""
+  register(username: String!, password: String!): AuthPayload
 
-    """Generate a new token"""
-    login(username: String!, password: String!): AuthPayload
+  """Generate a new token"""
+  login(username: String!, password: String!): AuthPayload
 }
 
 """User Mutations"""
 type UserOps {
-    """Delete your user"""
-    deleteUser: String
+  """Delete your user"""
+  deleteUser: String
 
-    """Follow a user"""
-    follow(followId: Int!): String
+  """Follow a user"""
+  follow(followId: Int!): String
 
-    """Unfollow a user"""
-    unfollow(unFollowId: Int!): String
+  """Unfollow a user"""
+  unfollow(unFollowId: Int!): String
 }
 
 """Tweet mutations"""
 type TweetOps {
-    """Create a new tweet"""
-    compose(body: String!): Tweet
+  """Create a new tweet"""
+  compose(body: String!): Tweet
 
-    """Compose a comment"""
-    comment(body: String!, tweetId: Int!): Tweet
+  """Compose a comment"""
+  comment(body: String!, tweetId: Int!): Tweet
 
-    """Delete a tweet"""
-    deleteTweet(tweetId: Int!): String
+  """Delete a tweet"""
+  deleteTweet(tweetId: Int!): String
 
-    """Retweet a tweet"""
-    retweet(tweetId: Int!): String
+  """Retweet a tweet"""
+  retweet(tweetId: Int!): String
 
-    """Undo Retweet"""
-    unRetweet(tweetId: Int!): String
+  """Undo Retweet"""
+  unRetweet(tweetId: Int!): String
 
-    """Like a tweet"""
-    heart(tweetId: Int!): String
+  """Like a tweet"""
+  heart(tweetId: Int!): String
 
-    """Unlike a tweet"""
-    unHeart(tweetId: Int!): String
+  """Unlike a tweet"""
+  unHeart(tweetId: Int!): String
 }
 
 """UserQueries"""
 type UserQueries {
-    """Get logged user"""
-    profile: User
+  """Get logged user"""
+  profile: User
 
-    """Search 10 most followed users"""
-    searchUsers(filter: FilterUsers!): [User]
+  """Search 10 most followed users"""
+  searchUsers(filter: FilterUsers!): [User]
 
-    """Get user by ID"""
-    userById(userId: Int!): User
+  """Get user by ID"""
+  userById(userId: Int!): User
 
-    """Get users that follow X user"""
-    followers(
-        userId: Int!
+  """Get users that follow X user"""
+  followers(
+    userId: Int!
 
-        """Pagination by cursor, get users after X user ID"""
-        cursor: Int
-    ): [User]
+    """Pagination by cursor, get users after X user ID"""
+    cursor: Int
+  ): [User]
 
-    """Get users that X user follows"""
-    following(
-        userId: Int!
+  """Get users that X user follows"""
+  following(
+    userId: Int!
 
-        """Pagination by cursor, get users after X user ID"""
-        cursor: Int
-    ): [User]
+    """Pagination by cursor, get users after X user ID"""
+    cursor: Int
+  ): [User]
 
-    """Get followers of X user that you follow"""
-    followersYouMayKnow(
-        userId: Int!
+  """Get followers of X user that you follow"""
+  followersYouMayKnow(
+    userId: Int!
 
-        """Pagination by cursor, get users after X user ID"""
-        cursor: Int
-    ): [User]
+    """Pagination by cursor, get users after X user ID"""
+    cursor: Int
+  ): [User]
 }
 
 """Tweet Queries"""
 type TweetQueries {
-    """Get recent tweets of users you are following"""
-    index(
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [Tweet]
+  """Get recent tweets of users you are following"""
+  index(
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [Tweet]
 
-    """Search tweets"""
-    searchTweets(
-        filter: FilterTweets!
+  """Search tweets"""
+  searchTweets(
+    filter: FilterTweets!
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [Tweet]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [Tweet]
 
-    """Get tweet by id"""
-    tweetById(tweetId: Int!): Tweet
+  """Get tweet by id"""
+  tweetById(tweetId: Int!): Tweet
 
-    """Get tweet comments"""
-    tweetComments(
-        tweetId: Int!
+  """Get tweet comments"""
+  tweetComments(
+    tweetId: Int!
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [Tweet]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [Tweet]
 
-    """Query user's tweets"""
-    queryUserTweets(
-        userId: Int!
-        filter: FilterTweets
+  """Query user's tweets"""
+  queryUserTweets(
+    userId: Int!
+    filter: FilterTweets
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [Tweet]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [Tweet]
 
-    """Get only tweets of an user that are not responses"""
-    indexUserTweets(
-        userId: Int!
+  """Get only tweets of an user that are not responses"""
+  indexUserTweets(
+    userId: Int!
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [Tweet]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [Tweet]
 
-    """Get user's retweets"""
-    getUserRetweets(
-        userId: Int!
+  """Get user's retweets"""
+  getUserRetweets(
+    userId: Int!
 
-        """Pagination by cursor, get retweets after X retweet ID"""
-        cursor: Int
-    ): [CursorTweet]
+    """Pagination by cursor, get retweets after X retweet ID"""
+    cursor: Int
+  ): [CursorTweet]
 
-    """Get user's tweets hearted"""
-    getUserHearts(
-        userId: Int!
+  """Get user's tweets hearted"""
+  getUserHearts(
+    userId: Int!
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [CursorTweet]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [CursorTweet]
 
-    """Get users that hearted this tweet"""
-    getTweetsHearts(
-        tweetId: Int!
+  """Get users that hearted this tweet"""
+  getTweetsHearts(
+    tweetId: Int!
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [User]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [User]
 
-    """Get users that retweeted this tweet"""
-    getTweetsRetweets(
-        tweetId: Int!
+  """Get users that retweeted this tweet"""
+  getTweetsRetweets(
+    tweetId: Int!
 
-        """Pagination by cursor, get tweets after X tweet ID"""
-        cursor: Int
-    ): [User]
+    """Pagination by cursor, get tweets after X tweet ID"""
+    cursor: Int
+  ): [User]
 }
 
 """Type used for authentication"""
 type User {
-    """"ID of the user"""
-    id: Int
+  """"ID of the user"""
+  id: Int
 
-    """Username of the user, this field must be unique"""
-    username: String
+  """Username of the user, this field must be unique"""
+  username: String
 
-    """Date of registration"""
-    joined: Date
+  """Date of registration"""
+  joined: Date
 
-    """Amount of tweets of this user"""
-    tweets: Int
+  """Amount of tweets of this user"""
+  tweets: Int
 
-    """Amount of tweets this user likes"""
-    hearts: Int
+  """Amount of tweets this user likes"""
+  hearts: Int
 
-    """Amount of user followers"""
-    followers: Int
+  """Amount of user followers"""
+  followers: Int
 
-    """Amount of user following"""
-    following: Int
+  """Amount of user following"""
+  following: Int
 
-    """True if this user follows you"""
-    isFollowingYou: Boolean
+  """True if this user follows you"""
+  isFollowingYou: Boolean
 
-    """True if you are following this user"""
-    isFollowedByYou: Boolean
+  """True if you are following this user"""
+  isFollowedByYou: Boolean
 }
 
 """The main type of this app LMAO"""
 type Tweet {
-    """ID of the tweet"""
-    id: Int
+  """ID of the tweet"""
+  id: Int
 
-    """Content of the tweet"""
-    body: String
+  """Content of the tweet"""
+  body: String
 
-    """Writer of the tweet"""
-    author: User
+  """Writer of the tweet"""
+  author: User
 
-    """Amount of responses of this tweet"""
-    comments: Int
+  """Amount of responses of this tweet"""
+  comments: Int
 
-    """Amount of users who retweeted this"""
-    retweets: Int
+  """Amount of users who retweeted this"""
+  retweets: Int
 
-    """Amount of users who liked this"""
-    hearts: Int
+  """Amount of users who liked this"""
+  hearts: Int
 
-    """If this tweet is a response to another tweet, show its parent"""
-    parent: Tweet
+  """If this tweet is a response to another tweet, show its parent"""
+  parent: Tweet
 
-    """Null if tweet is not a response to another tweet"""
-    parentId: Int
+  """Null if tweet is not a response to another tweet"""
+  parentId: Int
 
-    """Date of creation"""
-    createdAt: Date
+  """Date of creation"""
+  createdAt: Date
 
-    """True if you already hearted this tweet"""
-    isHeartedByYou: Boolean
+  """True if you already hearted this tweet"""
+  isHeartedByYou: Boolean
 
-    """True if you already retweeted this tweet"""
-    isRetweetedByYou: Boolean
+  """True if you already retweeted this tweet"""
+  isRetweetedByYou: Boolean
 }
 
 """Authentication payload"""
 type AuthPayload {
-    """JWT Token, put it in your Authorization header"""
-    token: String!
+  """JWT Token, put it in your Authorization header"""
+  token: String!
 
-    """Your user"""
-    user: User!
+  """Your user"""
+  user: User!
 }
 
 """Retweets and Hearts use a different Id for cursor pagination"""
 type CursorTweet {
-    tweet: Tweet
-    cursorId: Int
+  tweet: Tweet
+  cursorId: Int
 }
 
 """Input to filter users"""
 input FilterUsers {
-    """Filter users by username"""
-    username: String!
+  """Filter users by username"""
+  username: String!
 }
 
 """Input to filter tweets"""
 input FilterTweets {
-    """Filter tweets by content"""
-    body: String!
+  """Filter tweets by content"""
+  body: String!
 }
