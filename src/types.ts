@@ -26,6 +26,10 @@ export type ModalProps = {
   onClose: () => void,
 }
 
+export type ErrorResultProps = {
+  message: string
+}
+
 export type UserJWT = {
   id: number,
   sub: string,

@@ -23,6 +23,7 @@ module.exports = {
       "hover-login": "var(--color-hover-login)",
       "hover-primary": "var(--color-hover-primary)",
       "hover-white": "var(--color-hover-white)",
+      "border": "var(--color-border)"
     }
   },
   plugins: [],

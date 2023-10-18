@@ -80,7 +80,10 @@ root.render(
           },
           Result: {
             colorInfo: "var(--color-primary)"
-          }
+          },
+          Layout: {
+            siderBg: "black",
+          },
         }
       }}
     >

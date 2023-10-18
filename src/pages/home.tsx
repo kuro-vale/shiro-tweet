@@ -1,29 +1,14 @@
-import {useQuery} from "@apollo/client";
-import {INDEX_QUERY} from "../graphql/queries";
-import {Spin} from "antd";
-import {IndexData} from "../types";
-import {getDateMinimal} from "../utils";
+import TweetList from "../components/tweet-list";
 
 function Home() {
-  const {loading, error, data} = useQuery<IndexData>(INDEX_QUERY);
-  if (loading) {
-    return (
-      <Spin spinning={loading}></Spin>
-    );
-  }
-  if (error) {
-    return (<>
-      <h1 className="text-white">{error.message}</h1>
-    </>);
-  }
-  const tweetList = data!.TweetQueries.index.map(tweet =>
-    <li key={tweet.id} className="text-white">
-      {tweet.body} - {getDateMinimal(tweet.createdAt)}
-    </li>
-  );
   return (
     <>
-      {tweetList}
+      <div className="w-[598px] h-full border-x-[1px] border-x-border xs:border-x-0">
+        <TweetList/>
+      </div>
+      <div className="w-[350px] md:hidden h-full fixed ml-[598px] ht:ml-[950px]">
+        <h1 className="text-white">Who to follow</h1>
+      </div>
     </>
   );
 }
