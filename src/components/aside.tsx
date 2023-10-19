@@ -11,7 +11,7 @@ type AsideProps = {
 
 function Aside(props: AsideProps) {
   const {loading, error, data} = useQuery<UserQueryData>(WHO_USER_QUERY);
-  if (loading) return (<Spin spinning={loading} className="w-[350px] xl:w-[250px] md:hidden h-full mt-20"></Spin>);
+  if (loading) return (<Spin spinning={loading} className="w-[350px] xl:w-[220px] md:hidden h-full mt-20"></Spin>);
   if (error) return (<div className="md:hidden"><ErrorResult message={error.message}/></div>);
 
   // TODO
@@ -22,12 +22,12 @@ function Aside(props: AsideProps) {
   );
 
   return (
-    <aside className="w-[350px] xl:w-[250px] md:hidden h-full fixed ml-[598px] ht:right-2">
+    <aside className="w-[350px] xl:w-[220px] md:hidden h-full fixed ml-[598px] ht:right-2">
       {props.showSearchBar && <div className="text-white">TODO: searchbar</div>}
       <Card title="Who to follow" bordered={false} className="bg-info ml-8 my-4">
         {userList}
       </Card>
-      <div className="flex flex-wrap justify-center w-60 h-10 ml-8">
+      <div className="flex flex-wrap justify-center w-60 h-10 ml-8 ht:ml-0 xl:ml-0">
         <Link className="pr-4 text-[13px]" href="https://github.com/kuro-vale/shiro-tweet" target="_blank">
           Repo</Link>
         <Link className="pr-4 text-[13px]" href="https://twitter.com/_Silvervale_" target="_blank">
