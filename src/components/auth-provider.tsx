@@ -1,6 +1,6 @@
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts";
-import {AuthContextProps, AuthData, AuthProviderProps, AuthRequest, UserJWT} from "../types";
+import {AuthContextProps, AuthData, AuthRequest, ParentProps, UserJWT} from "../types";
 import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
@@ -17,7 +17,7 @@ async function handleError(messageApi: MessageInstance, e: any) {
   }
 }
 
-const AuthProvider = (props: AuthProviderProps) => {
+const AuthProvider = (props: ParentProps) => {
   const localToken = localStorage.getItem(TOKEN_KEY);
   let decoded: UserJWT | null = null;
   if (localToken) {

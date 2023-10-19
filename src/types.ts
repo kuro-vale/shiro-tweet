@@ -6,11 +6,7 @@ export type AuthRequest = {
   password: string
 }
 
-export type AuthProviderProps = {
-  children: ReactNode
-}
-
-export type LogoutPopoverProps = {
+export type ParentProps = {
   children: ReactNode
 }
 
@@ -24,10 +20,6 @@ export type AuthContextProps = {
 export type ModalProps = {
   open: boolean,
   onClose: () => void,
-}
-
-export type ErrorResultProps = {
-  message: string
 }
 
 export type UserJWT = {

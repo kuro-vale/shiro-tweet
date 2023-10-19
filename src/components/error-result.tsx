@@ -1,9 +1,11 @@
-import {ErrorResultProps} from "../types";
 import {WarningOutlined} from "@ant-design/icons";
 import {Button, Result, Typography} from "antd";
 import {EXPLORE_ROUTE} from "../constants";
 
 const {Text} = Typography;
+type ErrorResultProps = {
+  message: string
+}
 
 function ErrorResult(props: ErrorResultProps) {
   return (

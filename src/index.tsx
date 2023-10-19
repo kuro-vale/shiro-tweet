@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppLayout from "./components/app-layout";
+import AppLayout from "./components/layouts/app-layout";
 import "./index.css";
 import "./override.css";
 import {ConfigProvider, Spin, theme} from "antd";

@@ -1,12 +1,12 @@
 import {Popover, Typography} from "antd";
 import {useAuth} from "../../hooks";
 import {useState} from "react";
-import {LogoutPopoverProps} from "../../types";
+import {ParentProps} from "../../types";
 import LogoutModal from "../auth-modals/logout-modal";
 
 const {Text} = Typography;
 
-function LogoutPopover(props: LogoutPopoverProps) {
+function LogoutPopover(props: ParentProps) {
   const {user} = useAuth();
   const [openPopover, setOpenPopover] = useState(false);
   const [openLogout, setOpenLogout] = useState(false);

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Layout} from "antd";
 import {Outlet} from "react-router-dom";
-import Sidebar from "./menus/sidebar";
-import MobileNavbar from "./menus/mobile-navbar";
+import Sidebar from "../menus/sidebar";
+import MobileNavbar from "../menus/mobile-navbar";
 
 const {Content, Sider} = Layout;
 
