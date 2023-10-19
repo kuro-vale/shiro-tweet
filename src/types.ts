@@ -47,6 +47,12 @@ export type IndexData = {
   }
 }
 
+export type UserQueryData = {
+  UserQueries: {
+    searchUsers: User[]
+  }
+}
+
 export type Tweet = {
   id: number,
   body: string,
@@ -64,8 +70,8 @@ export type Tweet = {
 export type User = {
   id: number,
   username: string,
-  followers: number,
-  following: number,
+  followers?: number,
+  following?: number,
   hearts?: number,
   isFollowedByYou: boolean,
   isFollowingYou: boolean,

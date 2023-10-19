@@ -21,8 +21,8 @@ function LogoutPopover(props: ParentProps) {
       <Popover
         content={
           <div className="flex flex-col">
-            <Text strong className="py-3 px1 hover:bg-hover-pop cursor-not-allowed">Add an existing account</Text>
-            <Text strong className="py-3 px1 hover:bg-hover-pop hover:cursor-pointer" onClick={onOpenLogout}>
+            <Text strong className="py-3 px1 hover:bg-info cursor-not-allowed">Add an existing account</Text>
+            <Text strong className="py-3 px1 hover:bg-info hover:cursor-pointer" onClick={onOpenLogout}>
               Log out @{user?.sub}
             </Text>
           </div>

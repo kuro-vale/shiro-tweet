@@ -10,6 +10,7 @@ function TweetList() {
   if (loading) return (<Spin spinning={loading}></Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
 
+  // TODO
   const tweetList = data!.TweetQueries.index.map(tweet =>
     <li key={tweet.id} className="text-white">
       {tweet.body} - {getDateMinimal(tweet.createdAt)}

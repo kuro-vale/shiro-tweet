@@ -44,3 +44,16 @@ export const INDEX_QUERY = gql`
     }
   }
 `;
+
+export const WHO_USER_QUERY = gql`
+  query WhoToFollow {
+    UserQueries {
+      searchUsers(filter: {username: ""}) {
+        id
+        username
+        isFollowedByYou
+        isFollowingYou
+      }
+    }
+  }
+`;

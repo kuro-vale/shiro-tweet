@@ -84,6 +84,9 @@ root.render(
           Layout: {
             siderBg: "black",
           },
+          Spin: {
+            colorPrimary: "var(--color-primary)"
+          }
         }
       }}
     >

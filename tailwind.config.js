@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
+      "xl": {"max": "1360px"},
       "lg": {"max": "1200px"},
       "md": {"max": "1000px"},
       "sm": {"max": "600px"},
@@ -18,7 +19,7 @@ module.exports = {
       "white": "white",
       "black": "black",
       "google": "var(--color-google)",
-      "hover-pop": "var(--color-hover-popover)",
+      "info": "var(--color-info)",
       "hover-black": "var(--color-hover-black)",
       "hover-login": "var(--color-hover-login)",
       "hover-primary": "var(--color-hover-primary)",

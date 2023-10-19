@@ -47,6 +47,16 @@
     background-color: black !important;
 }
 
+.ant-card-head {
+    border-bottom: none !important;
+    font-size: 20px !important;
+    padding: 12px 16px !important;
+}
+
+.ant-card-body {
+    padding: 0 !important;
+}
+
 @media (max-width: 1200px) {
     .ant-menu-item {
         width: 50px !important;
