@@ -27,6 +27,8 @@
     --color-secondary: rgb(113, 118, 123);
     --color-white-light: rgb(231, 233, 234);
     --color-gray: rgb(51, 54, 57);
+    --color-red: rgb(244, 33, 46);
+    --color-hover-red: rgba(244, 33, 46, 0.08);
     --color-bg-mask: rgba(91, 112, 131, 0.4);
     --color-google: rgb(60, 64, 67);
     --color-info: rgb(22, 24, 28);
@@ -36,10 +38,12 @@
     --color-hover-white: rgb(215, 219, 220);
     --color-hover-menu-item: rgb(231, 233, 234, 0.1);
     --color-hover-gray: rgba(255, 255, 255, 0.03);
+    --color-tag: rgb(32, 35, 39);
     --color-border: rgb(47, 51, 54);
     /* these colors prevent an awful effect when hovering a button, I just pick random colors */
     --color-button-border-primary: #424242;
     --color-button-border: rgb(83, 100, 113);
+    --color-button-border-red: rgb(103, 7, 15);
 }
 
 /* Input placeholder focus */
@@ -77,4 +81,8 @@ button.bg-primary {
 
 button.bg-black {
     border-color: var(--color-button-border) !important;
+}
+
+button.hover\:bg-hover-red:hover {
+    border-color: var(--color-button-border-red) !important;
 }

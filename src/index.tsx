@@ -86,7 +86,7 @@ root.render(
           },
           Spin: {
             colorPrimary: "var(--color-primary)"
-          }
+          },
         }
       }}
     >

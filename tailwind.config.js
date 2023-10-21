@@ -25,6 +25,9 @@ module.exports = {
       "hover-white": "var(--color-hover-white)",
       "hover-gray": "var(--color-hover-gray)",
       "border": "var(--color-border)",
+      "tag": "var(--color-tag)",
+      "red": "var(--color-red)",
+      "hover-red": "var(--color-hover-red)",
     }
   },
   plugins: [],
