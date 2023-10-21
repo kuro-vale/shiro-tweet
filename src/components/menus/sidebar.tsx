@@ -81,7 +81,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-20">
+    <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-16">
       <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
       <Button
         shape="round"

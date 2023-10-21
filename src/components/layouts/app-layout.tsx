@@ -13,9 +13,9 @@ function AppLayout() {
     <Layout hasSider>
       <Sider
         className="xs:hidden ht:hidden top-0 bottom-0 left-0 overflow-auto h-screen"
-        width="30vw"
+        width="22vw"
         breakpoint="xl"
-        collapsedWidth="18vw"
+        collapsedWidth="14vw"
         onCollapse={(broken) => setCollapse(broken)}
         style={{transition: "none", position: "fixed", overflow: "auto"}}
       >
@@ -24,7 +24,7 @@ function AppLayout() {
       <Content
         className={
           `xs:ml-0 ht:ml-0 min-h-screen flex flex-row ht:justify-center 
-          ${collapsed ? "ml-[18vw]" : "ml-[30vw]"}`
+          ${collapsed ? "ml-[14vw]" : "ml-[22vw]"}`
         }>
         <Outlet/>
         <MobileNavbar/>

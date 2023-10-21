@@ -35,6 +35,7 @@
     --color-hover-primary: rgb(26, 140, 216);
     --color-hover-white: rgb(215, 219, 220);
     --color-hover-menu-item: rgb(231, 233, 234, 0.1);
+    --color-hover-gray: rgba(255, 255, 255, 0.03);
     --color-border: rgb(47, 51, 54);
     /* these colors prevent an awful effect when hovering a button, I just pick random colors */
     --color-button-border-primary: #424242;
