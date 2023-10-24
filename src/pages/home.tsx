@@ -1,6 +1,6 @@
-import TweetList from "../components/tweet-list";
+import TweetList from "../components/tweets/tweet-list";
 import TimelineLayout from "../components/layouts/timeline-layout";
-import Aside from "../components/aside";
+import Aside from "../components/menus/aside";
 
 function Home() {
   return (

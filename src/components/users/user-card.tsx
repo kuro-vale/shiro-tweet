@@ -1,6 +1,7 @@
-import {User} from "../types";
+import {User} from "../../types";
 import {Avatar, Button, Tag, Typography} from "antd";
 import {useState} from "react";
+import {useAuth} from "../../hooks";
 
 const {Text} = Typography;
 
@@ -9,7 +10,9 @@ type UserCardProps = {
 }
 
 function UserCard(props: UserCardProps) {
+  const {user} = useAuth();
   const [unfollow, setUnfollow] = useState(false);
+  if (props.user.id === user?.id) return (<></>);
   const handleHover = () => {
     setUnfollow(!unfollow);
   };

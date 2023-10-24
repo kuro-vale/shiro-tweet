@@ -50,7 +50,7 @@ const AuthProvider = (props: ParentProps) => {
   const handleLogout = async () => {
     localStorage.removeItem(TOKEN_KEY);
     setUser(null);
-    navigate(LANDING_ROUTE);
+    window.location.href = LANDING_ROUTE;
     messageApi.success("Successful logout");
   };
 

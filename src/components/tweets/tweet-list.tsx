@@ -1,9 +1,9 @@
 import {useQuery} from "@apollo/client";
-import {IndexData} from "../types";
-import {INDEX_QUERY} from "../graphql/queries";
+import {IndexData} from "../../types";
+import {INDEX_QUERY} from "../../graphql/queries";
 import {Spin} from "antd";
-import {getDateMinimal} from "../utils";
-import ErrorResult from "./error-result";
+import {getDateMinimal} from "../../utils";
+import ErrorResult from "../error-result";
 
 function TweetList() {
   const {loading, error, data} = useQuery<IndexData>(INDEX_QUERY);
