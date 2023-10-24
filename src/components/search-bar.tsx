@@ -15,7 +15,7 @@ function SearchBar() {
   // TODO: make this work
   return (
     <div
-      className="h-[42px] mt-1 flex bg-tag rounded-full border focus-within:bg-black focus-within:border-primary"
+      className="h-[45px] mt-1 flex bg-tag rounded-full border focus-within:bg-black focus-within:border-primary"
       onClick={handleClick}
     >
       <SearchOutlined className={`text-xl pl-4 ${focused ? "text-primary" : "text-secondary"}`}/>
