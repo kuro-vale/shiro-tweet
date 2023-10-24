@@ -12,6 +12,7 @@ RUN npm ci --only=production && npm cache clean --force
 
 FROM nginx:alpine
 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/build .
