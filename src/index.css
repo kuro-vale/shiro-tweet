@@ -86,3 +86,7 @@ button.bg-black {
 button.hover\:bg-hover-red:hover {
     border-color: var(--color-button-border-red) !important;
 }
+
+input.focus\:bg-black {
+    box-shadow: none !important;
+}

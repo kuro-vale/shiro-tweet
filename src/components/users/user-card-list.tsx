@@ -14,7 +14,7 @@ function UserCardList() {
   );
 
   return (
-    <Card title="Who to follow" bordered={false} className="bg-info ml-8 my-4 w-[348px] lg:w-[288px]">
+    <Card title="Who to follow" bordered={false} className="bg-info my-4 w-[348px] lg:w-[288px]">
       <Spin spinning={loading} className="w-[350px] h-[300px] flex justify-center items-center">
         {userList}
       </Spin>
