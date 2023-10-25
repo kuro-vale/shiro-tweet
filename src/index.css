@@ -90,3 +90,16 @@ button.hover\:bg-hover-red:hover {
 input.focus\:bg-black {
     box-shadow: none !important;
 }
+
+textarea.shadow-none {
+    box-shadow: none !important;
+}
+
+button.cursor-default {
+    cursor: default !important;
+}
+
+button.bg-primary:disabled {
+    background-color: var(--color-primary);
+    opacity: 0.5;
+}

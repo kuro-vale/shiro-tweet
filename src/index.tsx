@@ -87,6 +87,10 @@ root.render(
           Spin: {
             colorPrimary: "var(--color-primary)"
           },
+          Progress: {
+            defaultColor: "var(--color-primary)",
+            circleTextColor: "var(--color-secondary)"
+          }
         }
       }}
     >
