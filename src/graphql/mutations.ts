@@ -19,3 +19,13 @@ export const REGISTER_MUTATION = gql`
     }
   }
 `;
+
+export const COMPOSE_MUTATION = gql`
+  mutation Compose($body: String!) {
+    TweetOps {
+      compose(body: $body) {
+        id
+      }
+    }
+  }
+`;

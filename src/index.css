@@ -103,3 +103,8 @@ button.bg-primary:disabled {
     background-color: var(--color-primary);
     opacity: 0.5;
 }
+
+textarea.ant-input-disabled {
+    background-color: inherit !important;
+    color: inherit !important;
+}

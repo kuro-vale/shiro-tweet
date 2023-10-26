@@ -4,18 +4,11 @@ import {AuthContextProps, AuthData, AuthRequest, ParentProps, UserJWT} from "../
 import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
-import {ApolloError, useMutation} from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import {LOGIN_MUTATION, REGISTER_MUTATION} from "../graphql/mutations";
 import {message} from "antd";
-import {MessageInstance} from "antd/lib/message/interface";
+import {handleError} from "../utils";
 
-async function handleError(messageApi: MessageInstance, e: any) {
-  if (e instanceof ApolloError) {
-    messageApi.error(e.message);
-  } else {
-    console.error(e);
-  }
-}
 
 const AuthProvider = (props: ParentProps) => {
   const localToken = localStorage.getItem(TOKEN_KEY);
