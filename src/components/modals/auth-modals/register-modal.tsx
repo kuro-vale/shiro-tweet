@@ -1,6 +1,6 @@
-import {AuthRequest, ModalProps} from "../../types";
+import {AuthRequest, ModalProps} from "../../../types";
 import {Button, Form, Input, Modal, Spin, Typography} from "antd";
-import {useAuth} from "../../hooks";
+import {useAuth} from "../../../hooks";
 import {useState} from "react";
 
 const {Title, Text} = Typography;

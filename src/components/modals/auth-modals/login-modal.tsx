@@ -1,10 +1,10 @@
 import {Button, Divider, Form, Input, Modal, Spin, Typography} from "antd";
 import React, {useState} from "react";
-import {useAuth} from "../../hooks";
-import {AuthRequest, ModalProps} from "../../types";
-import GoogleIcon from "../icons/google-icon";
-import AppleIcon from "../icons/apple-icon";
-import {REGISTER_ROUTE} from "../../constants";
+import {useAuth} from "../../../hooks";
+import {AuthRequest, ModalProps} from "../../../types";
+import GoogleIcon from "../../icons/google-icon";
+import AppleIcon from "../../icons/apple-icon";
+import {REGISTER_ROUTE} from "../../../constants";
 
 const {Title, Text, Link} = Typography;
 

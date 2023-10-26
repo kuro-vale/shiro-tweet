@@ -19,6 +19,8 @@ import {useAuth} from "../../hooks";
 import PencilOutlined from "../icons/pencil-outlined";
 import {MenuItem} from "../../types";
 import LogoutPopover from "./logout-popover";
+import {useState} from "react";
+import ComposeModal from "../modals/compose-modal";
 
 const {Text} = Typography;
 
@@ -26,6 +28,7 @@ function Sidebar() {
   const {user} = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
 
   const items: MenuItem[] = [
     {
@@ -81,30 +84,34 @@ function Sidebar() {
   };
 
   return (
-    <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-16">
-      <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
-      <Button
-        shape="round"
-        className="bg-primary hover:bg-hover-primary w-[233px] h-[50px] transition-none mt-3 ml-1 lg:hidden"
-      >
-        <Text strong className="text-[17px]">Tweet</Text>
-      </Button>
-      {/* Small button */}
-      {/*TODO show create tweet modal*/}
-      <Button
-        shape="round"
-        className="bg-primary hover:bg-hover-primary hidden lg:block h-[50px] mt-3 ml-1 transition-none"
-        icon={<PencilOutlined className="absolute top-[10px] left-3 w-[26px]"/>}
-        style={{width: 50}}
-        title="Tweet"
-      />
+    <>
+      <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
+      <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-16">
+        <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
+        <Button
+          shape="round"
+          className="bg-primary hover:bg-hover-primary w-[233px] h-[50px] transition-none mt-3 ml-1 lg:hidden"
+          onClick={() => setOpenModal(true)}
+        >
+          <Text strong className="text-[17px]">Tweet</Text>
+        </Button>
+        {/* Small button */}
+        <Button
+          shape="round"
+          className="bg-primary hover:bg-hover-primary hidden lg:block h-[50px] mt-3 ml-1 transition-none"
+          icon={<PencilOutlined className="absolute top-[10px] left-3 w-[26px]"/>}
+          style={{width: 50}}
+          title="Tweet"
+          onClick={() => setOpenModal(true)}
+        />
 
-      <LogoutPopover>
-        <div className="absolute bottom-0 mb-1 w-full lg:bottom-2">
-          <Menu mode="inline" items={[avatarItem]} selectable={false}/>
-        </div>
-      </LogoutPopover>
-    </div>
+        <LogoutPopover>
+          <div className="absolute bottom-0 mb-1 w-full lg:bottom-2">
+            <Menu mode="inline" items={[avatarItem]} selectable={false}/>
+          </div>
+        </LogoutPopover>
+      </div>
+    </>
   );
 }
 

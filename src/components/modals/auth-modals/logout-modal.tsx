@@ -1,6 +1,6 @@
 import {Button, Modal, Typography} from "antd";
-import {ModalProps} from "../../types";
-import {useAuth} from "../../hooks";
+import {ModalProps} from "../../../types";
+import {useAuth} from "../../../hooks";
 
 const {Title, Text} = Typography;
 

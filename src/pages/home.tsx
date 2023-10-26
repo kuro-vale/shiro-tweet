@@ -24,7 +24,9 @@ function Home() {
           <Text strong className="text-white text-xl ml-4">Home</Text>
         </div>
         <Tabs defaultActiveKey="2" items={items}/>
-        <ComposeTweet/>
+        <div className="xs:hidden px-4">
+          <ComposeTweet/>
+        </div>
         <TweetList/>
       </TimelineLayout>
       <Aside showSearchBar={true}/>

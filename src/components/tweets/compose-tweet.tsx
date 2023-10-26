@@ -91,7 +91,7 @@ function ComposeTweet(props: ComposeTweetProps) {
     <>
       {contextHolder}
       {loading && <Progress percent={progress} showInfo={false} size="small"/>}
-      <Form className={`flex flex-col px-4 xs:hidden ${loading ? "opacity-50" : ""}`} form={form} disabled={loading}>
+      <Form className={`flex flex-col ${loading ? "opacity-50" : ""}`} form={form} disabled={loading}>
         <div className="flex">
           <Avatar src={`https://picsum.photos/seed/${user?.sub}/400/`} size="large" alt={user?.id + " photo"}/>
           <Form.Item<TweetForm>

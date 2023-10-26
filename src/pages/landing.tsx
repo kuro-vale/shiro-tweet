@@ -1,10 +1,10 @@
 import {Button, Divider, Layout, Typography} from "antd";
 import {useState} from "react";
-import LoginModal from "../components/auth-modals/login-modal";
+import LoginModal from "../components/modals/auth-modals/login-modal";
 import {useSearchParams} from "react-router-dom";
 import AppleIcon from "../components/icons/apple-icon";
 import GoogleIcon from "../components/icons/google-icon";
-import RegisterModal from "../components/auth-modals/register-modal";
+import RegisterModal from "../components/modals/auth-modals/register-modal";
 
 const {Footer, Content} = Layout;
 const {Link, Text} = Typography;

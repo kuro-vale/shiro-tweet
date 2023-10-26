@@ -2,7 +2,7 @@ import {Popover, Typography} from "antd";
 import {useAuth} from "../../hooks";
 import {useState} from "react";
 import {ParentProps} from "../../types";
-import LogoutModal from "../auth-modals/logout-modal";
+import LogoutModal from "../modals/auth-modals/logout-modal";
 
 const {Text} = Typography;
 
