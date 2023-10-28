@@ -29,3 +29,19 @@ export const COMPOSE_MUTATION = gql`
     }
   }
 `;
+
+export const FOLLOW_MUTATION = gql`
+  mutation Follow($followId: Int!) {
+    UserOps {
+      follow(followId: $followId)
+    }
+  }
+`;
+
+export const UNFOLLOW_MUTATION = gql`
+  mutation Unfollow($unFollowId: Int!) {
+    UserOps {
+      unfollow(unFollowId: $unFollowId)
+    }
+  }
+`;

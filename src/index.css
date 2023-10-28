@@ -112,3 +112,15 @@ textarea.ant-input-disabled {
     background-color: inherit !important;
     color: inherit !important;
 }
+
+button.following-white {
+    background-color: var(--color-white-light);
+}
+
+button.following-white:hover {
+    background-color: var(--color-hover-white);
+}
+
+.following-white strong {
+    color: black;
+}
