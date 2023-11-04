@@ -35,6 +35,7 @@ function RegisterModal(props: ModalProps) {
       footer={null}
       afterOpenChange={() => form.resetFields()}
       closable={!loading}
+      className="min-w-[350px]"
     >
       <Spin spinning={loading}>
         <Form

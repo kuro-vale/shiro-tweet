@@ -121,6 +121,11 @@ button.following-white:hover {
     background-color: var(--color-hover-white);
 }
 
+nav .anticon {
+    display: inline-block !important;
+    margin-bottom: 3px;
+}
+
 .following-white strong {
     color: black;
 }

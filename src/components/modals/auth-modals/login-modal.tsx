@@ -49,6 +49,7 @@ function LoginModal(props: ModalProps) {
       maskClosable={false}
       footer={null}
       closable={!loading}
+      className="min-w-[350px]"
     >
       <Spin spinning={loading}>
         <Form

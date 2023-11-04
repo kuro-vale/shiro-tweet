@@ -19,19 +19,19 @@ function MobileNavbar() {
   const items: MenuItem[] = [
     {
       label: "", key: HOME_ROUTE, icon: location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
-      onClick: () => navigate(HOME_ROUTE), style: {marginLeft: "20px", marginRight: "20px"}
+      onClick: () => navigate(HOME_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
       label: "", key: EXPLORE_ROUTE,
       icon: <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "broad" : ""}/>,
-      onClick: () => navigate(EXPLORE_ROUTE), style: {marginLeft: "20px", marginRight: "20px"}
+      onClick: () => navigate(EXPLORE_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
       label: "", key: PROFILE_ROUTE, icon: location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
-      onClick: () => navigate(PROFILE_ROUTE), style: {marginLeft: "20px", marginRight: "20px"}
+      onClick: () => navigate(PROFILE_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
-      label: "", key: "logout", style: {marginLeft: "20px", marginRight: "20px"},
+      label: "", key: "logout", style: {marginLeft: "15px", marginRight: "15px"},
       icon: <LogoutPopover><EllipsisOutlined/></LogoutPopover>, disabled: true,
     },
   ];
@@ -40,7 +40,7 @@ function MobileNavbar() {
   return (
     <>
       <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
-      <div className="hidden xs:block ht:block fixed bottom-0 left-0 w-full h-[132px]">
+      <nav className="hidden xs:block ht:block fixed bottom-0 left-0 w-full h-[132px]">
         <div className="h-14 mb-5 flex justify-end mr-5">
           <Button
             shape="round"
@@ -56,7 +56,7 @@ function MobileNavbar() {
           items={items}
           className="flex justify-center"
         />
-      </div>
+      </nav>
     </>
   );
 }
