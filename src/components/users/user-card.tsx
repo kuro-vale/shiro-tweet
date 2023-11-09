@@ -12,13 +12,14 @@ type UserCardProps = {
 function UserCard(props: UserCardProps) {
   const {user} = useAuth();
   if (props.user.id === user?.id) return (<></>);
+  // TODO: redirect to user profile on click
 
   return (
     <div className="flex flex-row px-4 py-3 h-16 w-full justify-between hover:bg-hover-gray">
       <div className="flex">
         <Avatar src={`https://picsum.photos/seed/${props.user.username}/400/`} size="large"/>
         <div className="flex flex-col ml-3">
-          <Text strong className="h-[18px]">{props.user.username}</Text>
+          <Text strong className="h-[18px] hover:underline">{props.user.username}</Text>
           <div className="flex flex-shrink">
             <Text className="text-secondary h-[18px] overflow-hidden mr-1">@{props.user.username}</Text>
             {props.user.isFollowingYou &&

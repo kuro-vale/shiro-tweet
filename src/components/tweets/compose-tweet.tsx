@@ -55,7 +55,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
         />}
       <Button
         shape="round"
-        className={`bg-primary ${disabled ? "cursor-default" : "hover:bg-hover-primary"} w-20 h-9 transition-none`}
+        className={`bg-primary ${disabled ? "cursor-default" : "hover:bg-hover-primary"} w-20 h-9 transition-none mb-2`}
         disabled={disabled}
         onClick={props.onSubmit}
       >

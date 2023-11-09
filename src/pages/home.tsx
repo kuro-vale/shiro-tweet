@@ -2,10 +2,8 @@ import TweetList from "../components/tweets/tweet-list";
 import TimelineLayout from "../components/layouts/timeline-layout";
 import Aside from "../components/menus/aside";
 import type {TabsProps} from "antd";
-import {Tabs, Typography} from "antd";
+import {Tabs} from "antd";
 import ComposeTweet from "../components/tweets/compose-tweet";
-
-const {Text} = Typography;
 
 function Home() {
   const items: TabsProps["items"] = [{
@@ -20,11 +18,9 @@ function Home() {
   return (
     <>
       <TimelineLayout>
-        <div className="h-[53px] flex items-center">
-          <Text strong className="text-white text-xl ml-4">Home</Text>
-        </div>
-        <Tabs defaultActiveKey="2" items={items}/>
-        <div className="xs:hidden px-4">
+        <Tabs className="sticky xs:static top-0 bg-transparency z-10 backdrop-blur-md" defaultActiveKey="2"
+              items={items}/>
+        <div className="xs:hidden px-4 border-b-[1px] border-b-border mt-3">
           <ComposeTweet/>
         </div>
         <TweetList/>

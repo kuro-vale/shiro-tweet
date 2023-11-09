@@ -2,25 +2,23 @@ import {useQuery} from "@apollo/client";
 import {IndexData} from "../../types";
 import {INDEX_QUERY} from "../../graphql/queries";
 import {Spin} from "antd";
-import {getDateMinimal} from "../../utils";
 import ErrorResult from "../error-result";
+import TweetCard from "./tweet-card";
 
 function TweetList() {
   const {loading, error, data} = useQuery<IndexData>(INDEX_QUERY);
-  if (loading) return (<Spin spinning={loading}></Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
 
-  // TODO
-  const tweetList = data!.TweetQueries.index.map(tweet =>
-    <li key={tweet.id} className="text-white">
-      {tweet.body} - {getDateMinimal(tweet.createdAt)}
-    </li>
+  const tweetList = data?.TweetQueries.index.map(tweet =>
+    <TweetCard key={tweet.id} tweet={tweet}/>
   );
 
   return (
-    <>
-      {tweetList}
-    </>
+    <Spin spinning={loading}>
+      <ul className="min-h-[50vh]">
+        {tweetList}
+      </ul>
+    </Spin>
   );
 }
 

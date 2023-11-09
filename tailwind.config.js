@@ -28,6 +28,7 @@ module.exports = {
       "tag": "var(--color-tag)",
       "red": "var(--color-red)",
       "hover-red": "var(--color-hover-red)",
+      "transparency": "var(--color-transparency)",
     }
   },
   plugins: [],

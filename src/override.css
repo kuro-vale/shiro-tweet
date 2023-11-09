@@ -92,6 +92,10 @@
     background-color: var(--color-primary) !important;
 }
 
+.ant-tabs-top > .ant-tabs-nav {
+    margin: 0 !important;
+}
+
 @media (max-width: 1200px) {
     .ant-menu-item {
         width: 50px !important;

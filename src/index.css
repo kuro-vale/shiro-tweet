@@ -44,6 +44,7 @@
     --color-button-border-primary: #424242;
     --color-button-border: rgb(83, 100, 113);
     --color-button-border-red: rgb(103, 7, 15);
+    --color-transparency: rgba(0, 0, 0, 0.65);
 }
 
 /* Input placeholder focus */

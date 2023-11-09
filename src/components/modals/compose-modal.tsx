@@ -10,7 +10,7 @@ function ComposeModal(props: ModalProps) {
       footer={null}
       width={600}
     >
-      <div className="mt-10">
+      <div className="mt-14">
         <ComposeTweet onComplete={() => props.onClose()}/>
       </div>
     </Modal>
