@@ -1,11 +1,10 @@
-import {Avatar, Button, Form, FormInstance, Input, message, Progress, Typography} from "antd";
+import {Avatar, Button, Form, FormInstance, message, Progress, Typography} from "antd";
 import {useAuth} from "../../hooks";
-import {useEffect, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {COMPOSE_MUTATION} from "../../graphql/mutations";
 import {handleError} from "../../utils";
 
-const {TextArea} = Input;
 const {Text} = Typography;
 type TweetForm = {
   body: string
@@ -87,6 +86,12 @@ function ComposeTweet(props: ComposeTweetProps) {
     }
   };
 
+  const handleResize = (e: FormEvent<HTMLTextAreaElement>) => {
+    const target = e.target as HTMLTextAreaElement;
+    target.style.height = "120px";
+    target.style.height = Math.min(target.scrollHeight, 240) + "px";
+  };
+
   return (
     <>
       {contextHolder}
@@ -101,12 +106,12 @@ function ComposeTweet(props: ComposeTweetProps) {
               {max: 255, message: ""},
               {whitespace: true, message: ""}
             ]}
-            className="w-full"
+            className="w-full mt-1 pr-4 mb-0"
           >
-            <TextArea
-              autoSize={{minRows: 2, maxRows: 18}}
+            <textarea
               placeholder="What is happening?!"
-              className="max-w-[510px] text-xl ml-3 border-0 shadow-none"
+              className="w-full h-[120px] placeholder:text-secondary outline-none text-xl ml-3 resize-none bg-transparency"
+              onInput={handleResize}
             />
           </Form.Item>
         </div>

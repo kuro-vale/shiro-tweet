@@ -20,7 +20,7 @@ function Home() {
       <TimelineLayout>
         <Tabs className="sticky xs:static top-0 bg-transparency z-10 backdrop-blur-md" defaultActiveKey="2"
               items={items}/>
-        <div className="xs:hidden px-4 border-b-[1px] border-b-border mt-3">
+        <div className="xs:hidden ht:hidden px-4 border-b-[1px] border-b-border mt-3">
           <ComposeTweet/>
         </div>
         <TweetList/>

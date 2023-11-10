@@ -7,6 +7,9 @@ import TweetCard from "./tweet-card";
 
 function TweetList() {
   const {loading, error, data} = useQuery<IndexData>(INDEX_QUERY);
+  if (loading) return (<Spin spinning={loading} className="min-h-[50vh]">
+    <div></div>
+  </Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
 
   const tweetList = data?.TweetQueries.index.map(tweet =>
@@ -14,11 +17,9 @@ function TweetList() {
   );
 
   return (
-    <Spin spinning={loading}>
-      <ul className="min-h-[50vh]">
-        {tweetList}
-      </ul>
-    </Spin>
+    <ul>
+      {tweetList}
+    </ul>
   );
 }
 

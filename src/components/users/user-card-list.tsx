@@ -7,7 +7,7 @@ import UserCard from "./user-card";
 
 function UserCardList() {
   const {loading, error, data} = useQuery<UserQueryData>(WHO_USER_QUERY);
-  if (error) return (<div className="md:hidden"><ErrorResult message={error.message}/></div>);
+  if (error) return (<div><ErrorResult message={error.message}/></div>);
 
   const userList = data?.UserQueries.searchUsers.map(user =>
     <UserCard user={user} key={user.id}/>
