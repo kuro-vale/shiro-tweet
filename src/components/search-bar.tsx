@@ -24,6 +24,7 @@ function SearchBar() {
              placeholder="Search"
              onFocus={() => setFocused(true)}
              onBlur={() => setFocused(false)}
+             name="search"
       />
     </div>
   );

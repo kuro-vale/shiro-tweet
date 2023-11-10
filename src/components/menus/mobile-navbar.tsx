@@ -10,8 +10,11 @@ import LogoutPopover from "./logout-popover";
 import PencilOutlined from "../icons/pencil-outlined";
 import {useState} from "react";
 import ComposeModal from "../modals/compose-modal";
+import {useMediaQuery} from "react-responsive";
 
 function MobileNavbar() {
+  const isMobile = useMediaQuery({maxWidth: 1000});
+  const isTablet = useMediaQuery({maxHeight: 800});
   const location = useLocation();
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
@@ -39,24 +42,26 @@ function MobileNavbar() {
   // TODO transparency on scroll
   return (
     <>
-      <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
-      <nav className="hidden xs:block ht:block fixed bottom-0 left-0 w-full h-[132px]">
-        <div className="h-14 mb-5 flex justify-end mr-5">
-          <Button
-            shape="round"
-            className="bg-primary hover:bg-hover-primary h-14 transition-none"
-            icon={<PencilOutlined className="w-[26px] h-[26px]"/>}
-            style={{width: 56}}
-            title="Tweet"
-            onClick={() => setOpenModal(true)}
+      {(isMobile || isTablet) &&
+        <nav className="fixed bottom-0 left-0 w-full h-[132px]">
+          <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
+          <div className="h-14 mb-5 flex justify-end mr-5">
+            <Button
+              shape="round"
+              className="bg-primary hover:bg-hover-primary h-14 transition-none"
+              icon={<PencilOutlined className="w-[26px] h-[26px]"/>}
+              style={{width: 56}}
+              title="Tweet"
+              onClick={() => setOpenModal(true)}
+            />
+          </div>
+          <Menu
+            mode="horizontal"
+            items={items}
+            className="flex justify-center"
           />
-        </div>
-        <Menu
-          mode="horizontal"
-          items={items}
-          className="flex justify-center"
-        />
-      </nav>
+        </nav>
+      }
     </>
   );
 }
