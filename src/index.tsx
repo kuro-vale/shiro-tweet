@@ -13,6 +13,7 @@ import {LoadingOutlined} from "@ant-design/icons";
 import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY} from "./constants";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
+import {relayStylePagination} from "@apollo/client/utilities";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -32,7 +33,15 @@ const authLink = setContext((_, {headers}) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+    typePolicies: {
+      TweetQueries: {
+        fields: {
+          index: relayStylePagination(),
+        }
+      }
+    }
+  })
 });
 
 const root = ReactDOM.createRoot(
