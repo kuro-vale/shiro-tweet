@@ -8,16 +8,17 @@ import UserSolid from "../icons/user-solid";
 import UserOutlined from "../icons/user-outlined";
 import LogoutPopover from "./logout-popover";
 import PencilOutlined from "../icons/pencil-outlined";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ComposeModal from "../modals/compose-modal";
 import {useMediaQuery} from "react-responsive";
 
 function MobileNavbar() {
-  const isMobile = useMediaQuery({maxWidth: 1000});
+  const isMobile = useMediaQuery({maxWidth: 500});
   const isTablet = useMediaQuery({maxHeight: 800});
   const location = useLocation();
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
 
   const items: MenuItem[] = [
     {
@@ -38,12 +39,35 @@ function MobileNavbar() {
       icon: <LogoutPopover><EllipsisOutlined/></LogoutPopover>, disabled: true,
     },
   ];
+  useEffect(() => {
+    let previousY = 0;
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (previousY < scrollY) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+      previousY = scrollY;
+    };
 
-  // TODO transparency on scroll
+    if (isMobile || isTablet) {
+      window.addEventListener("scroll", handleScroll);
+    } else {
+      window.removeEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMobile, isTablet]);
+
   return (
     <>
       {(isMobile || isTablet) &&
-        <nav className="fixed bottom-0 left-0 w-full h-[132px]">
+        <nav className={`fixed bottom-0 left-0 w-full h-[132px] ${scrolling ? "opacity-30" : ""}`}
+             style={{transitionDuration: "170ms", transitionTimingFunction: "cubic-bezier(0, 0, 1, 1)"}}
+        >
           <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
           <div className="h-14 mb-5 flex justify-end mr-5">
             <Button
