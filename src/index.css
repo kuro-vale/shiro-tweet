@@ -45,6 +45,8 @@
     --color-button-border: rgb(83, 100, 113);
     --color-button-border-red: rgb(103, 7, 15);
     --color-transparency: rgba(0, 0, 0, 0.65);
+    --color-heart: rgb(249, 24, 128);
+    --color-retweet: rgb(0, 186, 124);
 }
 
 /* Input placeholder focus */

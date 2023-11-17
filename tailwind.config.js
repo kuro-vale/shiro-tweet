@@ -29,6 +29,8 @@ module.exports = {
       "red": "var(--color-red)",
       "hover-red": "var(--color-hover-red)",
       "transparency": "var(--color-transparency)",
+      "heart": "var(--color-heart)",
+      "retweet": "var(--color-retweet)",
     }
   },
   plugins: [],

@@ -21,6 +21,7 @@ function RegisterModal(props: ModalProps) {
       setLoading(true);
       await onRegister(form.getFieldsValue());
       setLoading(false);
+      props.onClose();
     }
   };
 

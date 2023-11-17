@@ -45,3 +45,35 @@ export const UNFOLLOW_MUTATION = gql`
     }
   }
 `;
+
+export const HEART_MUTATION = gql`
+  mutation Heart($tweetId: Int!) {
+    TweetOps {
+      heart(tweetId: $tweetId)
+    }
+  }
+`;
+
+export const UNHEART_MUTATION = gql`
+  mutation UnHeart($tweetId: Int!) {
+    TweetOps {
+      unHeart(tweetId: $tweetId)
+    }
+  }
+`;
+
+export const RETWEET_MUTATION = gql`
+  mutation Retweet($tweetId: Int!) {
+    TweetOps {
+      retweet(tweetId: $tweetId)
+    }
+  }
+`;
+
+export const UNRETWEET_MUTATION = gql`
+  mutation UnRetweet($tweetId: Int!) {
+    TweetOps {
+      unRetweet(tweetId: $tweetId)
+    }
+  }
+`;

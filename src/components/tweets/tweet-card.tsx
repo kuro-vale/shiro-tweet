@@ -1,7 +1,10 @@
 import {Tweet} from "../../types";
-import {Avatar, Typography} from "antd";
-import {getDateMinimal} from "../../utils";
-import {HeartOutlined, MessageOutlined, RetweetOutlined} from "@ant-design/icons";
+import {Avatar, message, Typography} from "antd";
+import {getDateMinimal, handleError} from "../../utils";
+import {HeartFilled, HeartOutlined, MessageOutlined, RetweetOutlined} from "@ant-design/icons";
+import {useState} from "react";
+import {useMutation} from "@apollo/client";
+import {HEART_MUTATION, RETWEET_MUTATION, UNHEART_MUTATION, UNRETWEET_MUTATION} from "../../graphql/mutations";
 
 const {Text} = Typography;
 
@@ -9,46 +12,100 @@ type TweetCardProps = {
   tweet: Tweet
 }
 
-function TweetCard(props: TweetCardProps) {
+function TweetCard({tweet}: TweetCardProps) {
+  const [messageApi, contextHolder] = message.useMessage();
+  const [isHeartedByYou, setIsHeartedByYou] = useState(tweet.isHeartedByYou);
+  const [isRetweetedByYou, setIsRetweetedByYou] = useState(tweet.isRetweetedByYou);
+  const [heart] = useMutation(HEART_MUTATION);
+  const [unHeart] = useMutation(UNHEART_MUTATION);
+  const [retweet] = useMutation(RETWEET_MUTATION);
+  const [unRetweet] = useMutation(UNRETWEET_MUTATION);
+
+  const toggleHeart = async () => {
+    try {
+      if (!isHeartedByYou) {
+        setIsHeartedByYou(true);
+        await heart({variables: {tweetId: tweet.id}});
+      } else {
+        setIsHeartedByYou(false);
+        await unHeart({variables: {tweetId: tweet.id}});
+      }
+    } catch (e) {
+      await handleError(messageApi, e);
+    }
+  };
+
+  const toggleRetweet = async () => {
+    try {
+      if (!isRetweetedByYou) {
+        setIsRetweetedByYou(true);
+        await retweet({variables: {tweetId: tweet.id}});
+      } else {
+        setIsRetweetedByYou(false);
+        await unRetweet({variables: {tweetId: tweet.id}});
+      }
+    } catch (e) {
+      await handleError(messageApi, e);
+    }
+  };
+
+  const getHeartCount = (): number => tweet.hearts - (tweet.isHeartedByYou ? 1 : 0) + (isHeartedByYou ? 1 : 0);
+  const getRetweetCount = (): number => tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0) + (isRetweetedByYou ? 1 : 0);
+
   // TODO: User hover
   return (
-    <li className="px-4 pt-3 border-b-[1px] border-b-border">
-      <article className="flex">
-        <Avatar
-          src={`https://picsum.photos/seed/${props.tweet.author.username}/400/`}
-          size="large"
-          alt={props.tweet.author.username + " photo"}
-        />
-        <div className="ml-3 flex-1">
-          <Text strong className="hover:underline">{props.tweet.author.username}</Text>
-          <Text className="text-secondary"> @{props.tweet.author.username}</Text>
-          <Text className="text-secondary"> · </Text>
-          <Text className="text-secondary hover:underline">{getDateMinimal(props.tweet.createdAt)}</Text>
-          <p><Text className="whitespace-pre-line">{props.tweet.body}</Text></p>
-          <div className="flex max-w-xs h-5 justify-between my-3">
-            {/* TODO */}
-            <div className="text-secondary">
-              <MessageOutlined/>
-              {props.tweet.comments > 0 &&
-                <Text className="text-secondary">{props.tweet.comments}</Text>
-              }
-            </div>
-            <div className="text-secondary">
-              <RetweetOutlined/>
-              {props.tweet.retweets > 0 &&
-                <Text className="text-secondary">{props.tweet.retweets}</Text>
-              }
-            </div>
-            <div className="text-secondary">
-              <HeartOutlined/>
-              {props.tweet.hearts > 0 &&
-                <Text className="text-secondary">{props.tweet.hearts}</Text>
-              }
+    <>
+      {contextHolder}
+      <li className="px-4 pt-3 border-b-[1px] border-b-border">
+        <article className="flex">
+          <Avatar
+            src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
+            size="large"
+            alt={tweet.author.username + " photo"}
+          />
+          <div className="ml-3 flex-1">
+            <Text strong className="hover:underline">{tweet.author.username}</Text>
+            <Text className="text-secondary"> @{tweet.author.username}</Text>
+            <Text className="text-secondary"> · </Text>
+            <Text className="text-secondary hover:underline">{getDateMinimal(tweet.createdAt)}</Text>
+            <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
+            <div className="flex max-w-md h-5 justify-between my-3 flex-1">
+              {/*TODO: compose comment modal*/}
+              <div className=" w-full">
+                <div className="text-secondary cursor-pointer hover:text-primary w-fit">
+                  <MessageOutlined/>
+                  {tweet.comments > 0 &&
+                    <Text style={{color: "inherit"}} className="text-secondary px-2">{tweet.comments}</Text>
+                  }
+                </div>
+              </div>
+              <div className="w-full">
+                <div
+                  className={`${isRetweetedByYou ? "text-retweet" : "text-secondary"} cursor-pointer hover:text-retweet w-fit`}
+                  onClick={toggleRetweet}
+                >
+                  <RetweetOutlined/>
+                  {getRetweetCount() > 0 &&
+                    <Text style={{color: "inherit"}} className="text-secondary px-2">{getRetweetCount()}</Text>
+                  }
+                </div>
+              </div>
+              <div className="w-full">
+                <div
+                  className={`${isHeartedByYou ? "text-heart" : "text-secondary"} cursor-pointer hover:text-heart w-fit`}
+                  onClick={toggleHeart}>
+                  {isHeartedByYou ? <HeartFilled className="text-heart"/> : <HeartOutlined/>}
+                  {getHeartCount() > 0 &&
+                    <Text style={{color: "inherit"}} className="an px-2">{getHeartCount()}</Text>
+                  }
+                </div>
+              </div>
+              <div/>
             </div>
           </div>
-        </div>
-      </article>
-    </li>
+        </article>
+      </li>
+    </>
   );
 }
 

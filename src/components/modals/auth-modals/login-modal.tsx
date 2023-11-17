@@ -31,6 +31,7 @@ function LoginModal(props: ModalProps) {
       setLoading(true);
       await onLogin(form.getFieldsValue());
       setLoading(false);
+      props.onClose();
     }
   };
 

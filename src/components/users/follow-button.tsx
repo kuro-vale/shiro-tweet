@@ -56,7 +56,7 @@ function FollowButton(props: FollowButtonProps) {
         // Unfollow button
         ? <Button
           shape="round"
-          className={`${v.followingWhiteButton ? "following-white" : ""} bg-black hover:bg-hover-red transition-none h-[34px] w-24 self-center`}
+          className={`${v.followingWhiteButton ? "following-white border-none" : ""} bg-black hover:bg-hover-red transition-none h-[34px] w-24 self-center`}
           onMouseEnter={() => setValues({...v, unfollowHover: true})}
           onMouseLeave={() => setValues({...v, unfollowHover: false, followingWhiteButton: false})}
           onClick={() => props.confirmUnfollow ? setValues({...v, unfollowModal: true}) : onUnfollow()}
