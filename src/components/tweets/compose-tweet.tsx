@@ -23,14 +23,14 @@ const getRemaining = (percent: number): number => {
   return 255 - percent * 255 / 100;
 };
 
-const SubmitButton = (props: SubmitButtonProps) => {
+const SubmitButton = ({form, onSubmit}: SubmitButtonProps) => {
   const [disabled, setDisabled] = useState(false);
   const [percent, setPercent] = useState(0);
 
-  const values = Form.useWatch<TweetForm>([], props.form);
+  const values = Form.useWatch<TweetForm>([], form);
 
   useEffect(() => {
-    props.form.validateFields({validateOnly: true}).then(
+    form.validateFields({validateOnly: true}).then(
       () => {
         setDisabled(false);
       },
@@ -39,7 +39,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
       }
     );
     setPercent(values?.body?.trim() === "" ? 0 : values?.body?.length * 100 / 255);
-  }, [props.form, values]);
+  }, [form, values]);
 
   return (
     <div className="flex justify-end items-end h-12">
@@ -58,7 +58,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
         shape="round"
         className={`bg-primary ${disabled ? "cursor-default" : "hover:bg-hover-primary"} w-20 h-9 transition-none mb-2`}
         disabled={disabled}
-        onClick={props.onSubmit}
+        onClick={onSubmit}
       >
         <Text strong>Tweet</Text>
       </Button>
@@ -66,10 +66,10 @@ const SubmitButton = (props: SubmitButtonProps) => {
   );
 };
 
-function ComposeTweet(props: ComposeTweetProps) {
+function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
   const {user} = useAuth();
   const [form] = Form.useForm<TweetForm>();
-  const [compose, {loading}] = useMutation(props.tweet ? COMMENT_MUTATION : COMPOSE_MUTATION);
+  const [compose, {loading}] = useMutation(tweet ? COMMENT_MUTATION : COMPOSE_MUTATION);
   const [messageApi, contextHolder] = message.useMessage();
   const [progress, setProgress] = useState(10);
 
@@ -78,11 +78,11 @@ function ComposeTweet(props: ComposeTweetProps) {
       setTimeout(() => {
         setProgress(90);
       }, 10);
-      await compose({variables: {body: form.getFieldValue("body"), tweetId: props.tweet?.id}});
+      await compose({variables: {body: form.getFieldValue("body"), tweetId: tweet?.id}});
       setProgress(10);
       form.resetFields();
       messageApi.success("Tweet created :)");
-      props.onComplete?.();
+      onComplete?.();
     } catch (e) {
       await handleError(messageApi, e);
     }
@@ -111,7 +111,7 @@ function ComposeTweet(props: ComposeTweetProps) {
             className="w-full mt-1 pr-4 mb-0"
           >
             <textarea
-              placeholder="What is happening?!"
+              placeholder={`${tweet ? "Tweet your reply" : "What is happening?!"}`}
               className="w-full h-[120px] placeholder:text-secondary outline-none text-xl ml-3 resize-none bg-transparency"
               onInput={handleResize}
             />
