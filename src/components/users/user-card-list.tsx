@@ -6,7 +6,7 @@ import ErrorResult from "../error-result";
 import UserCard from "./user-card";
 
 function UserCardList() {
-  const {loading, error, data} = useQuery<UserQueryData>(WHO_USER_QUERY);
+  const {loading, error, data} = useQuery<UserQueryData>(WHO_USER_QUERY, {fetchPolicy: "no-cache"});
   if (error) return (<div><ErrorResult message={error.message}/></div>);
 
   const userList = data?.UserQueries.searchUsers.map(user =>
