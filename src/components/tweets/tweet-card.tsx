@@ -5,6 +5,7 @@ import {HeartFilled, HeartOutlined, MessageOutlined, RetweetOutlined} from "@ant
 import {useState} from "react";
 import {useMutation} from "@apollo/client";
 import {HEART_MUTATION, RETWEET_MUTATION, UNHEART_MUTATION, UNRETWEET_MUTATION} from "../../graphql/mutations";
+import ComposeModal from "../modals/compose-modal";
 
 const {Text} = Typography;
 
@@ -16,6 +17,7 @@ function TweetCard({tweet}: TweetCardProps) {
   const [messageApi, contextHolder] = message.useMessage();
   const [isHeartedByYou, setIsHeartedByYou] = useState(tweet.isHeartedByYou);
   const [isRetweetedByYou, setIsRetweetedByYou] = useState(tweet.isRetweetedByYou);
+  const [openComposeModal, setOpenComposeModal] = useState(false);
   const [heart] = useMutation(HEART_MUTATION);
   const [unHeart] = useMutation(UNHEART_MUTATION);
   const [retweet] = useMutation(RETWEET_MUTATION);
@@ -50,9 +52,11 @@ function TweetCard({tweet}: TweetCardProps) {
   };
 
   // TODO: User hover
+  // TODO: Show parent for response tweets
   return (
     <>
       {contextHolder}
+      <ComposeModal open={openComposeModal} onClose={() => setOpenComposeModal(false)} tweet={tweet}/>
       <li className="px-4 pt-3 border-b-[1px] border-b-border">
         <article className="flex">
           <Avatar
@@ -67,9 +71,9 @@ function TweetCard({tweet}: TweetCardProps) {
             <Text className="text-secondary hover:underline">{getDateMinimal(tweet.createdAt)}</Text>
             <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
             <div className="flex max-w-md h-5 justify-between my-3 flex-1">
-              {/*TODO: compose comment modal*/}
               <div className=" w-full">
-                <div className="text-secondary cursor-pointer hover:text-primary w-fit">
+                <div className="text-secondary cursor-pointer hover:text-primary w-fit"
+                     onClick={() => setOpenComposeModal(true)}>
                   <MessageOutlined/>
                   {tweet.comments > 0 &&
                     <Text style={{color: "inherit"}} className="text-secondary px-2">{tweet.comments}</Text>

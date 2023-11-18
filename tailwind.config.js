@@ -17,6 +17,7 @@ module.exports = {
       "secondary": "var(--color-secondary)",
       "white": "white",
       "black": "black",
+      "gray": "var(--color-gray)",
       "google": "var(--color-google)",
       "info": "var(--color-info)",
       "hover-black": "var(--color-hover-black)",

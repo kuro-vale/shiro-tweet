@@ -30,6 +30,16 @@ export const COMPOSE_MUTATION = gql`
   }
 `;
 
+export const COMMENT_MUTATION = gql`
+  mutation Comment($body: String!, $tweetId: Int!) {
+    TweetOps {
+      comment(body: $body, tweetId: $tweetId) {
+        id
+      }
+    }
+  }
+`;
+
 export const FOLLOW_MUTATION = gql`
   mutation Follow($followId: Int!) {
     UserOps {

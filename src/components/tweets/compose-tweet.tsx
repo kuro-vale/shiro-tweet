@@ -2,8 +2,9 @@ import {Avatar, Button, Form, FormInstance, message, Progress, Typography} from 
 import {useAuth} from "../../hooks";
 import {FormEvent, useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
-import {COMPOSE_MUTATION} from "../../graphql/mutations";
+import {COMMENT_MUTATION, COMPOSE_MUTATION} from "../../graphql/mutations";
 import {handleError} from "../../utils";
+import {Tweet} from "../../types";
 
 const {Text} = Typography;
 type TweetForm = {
@@ -15,6 +16,7 @@ type SubmitButtonProps = {
 }
 type ComposeTweetProps = {
   onComplete?: () => void,
+  tweet?: Tweet,
 }
 
 const getRemaining = (percent: number): number => {
@@ -67,7 +69,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
 function ComposeTweet(props: ComposeTweetProps) {
   const {user} = useAuth();
   const [form] = Form.useForm<TweetForm>();
-  const [compose, {loading}] = useMutation(COMPOSE_MUTATION);
+  const [compose, {loading}] = useMutation(props.tweet ? COMMENT_MUTATION : COMPOSE_MUTATION);
   const [messageApi, contextHolder] = message.useMessage();
   const [progress, setProgress] = useState(10);
 
@@ -76,7 +78,7 @@ function ComposeTweet(props: ComposeTweetProps) {
       setTimeout(() => {
         setProgress(90);
       }, 10);
-      await compose({variables: form.getFieldsValue()});
+      await compose({variables: {body: form.getFieldValue("body"), tweetId: props.tweet?.id}});
       setProgress(10);
       form.resetFields();
       messageApi.success("Tweet created :)");
