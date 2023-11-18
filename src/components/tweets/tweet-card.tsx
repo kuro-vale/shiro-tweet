@@ -49,9 +49,6 @@ function TweetCard({tweet}: TweetCardProps) {
     }
   };
 
-  const getHeartCount = (): number => tweet.hearts - (tweet.isHeartedByYou ? 1 : 0) + (isHeartedByYou ? 1 : 0);
-  const getRetweetCount = (): number => tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0) + (isRetweetedByYou ? 1 : 0);
-
   // TODO: User hover
   return (
     <>
@@ -79,25 +76,49 @@ function TweetCard({tweet}: TweetCardProps) {
                   }
                 </div>
               </div>
-              <div className="w-full">
+              <div className="w-full relative overflow-hidden">
                 <div
                   className={`${isRetweetedByYou ? "text-retweet" : "text-secondary"} cursor-pointer hover:text-retweet w-fit`}
                   onClick={toggleRetweet}
                 >
                   <RetweetOutlined/>
-                  {getRetweetCount() > 0 &&
-                    <Text style={{color: "inherit"}} className="text-secondary px-2">{getRetweetCount()}</Text>
-                  }
+                  {/*Count without user retweet*/}
+                  {tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0) > 0 &&
+                    <Text
+                      style={{color: "inherit"}}
+                      className={`${!isRetweetedByYou ? "" : "-translate-y-full"} px-2 absolute number-transition`}
+                    >
+                      {tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0)}
+                    </Text>}
+                  {/*Count with user retweet*/}
+                  <Text
+                    style={{color: "inherit"}}
+                    className={`${isRetweetedByYou ? "" : "translate-y-full"} px-2 absolute number-transition`}
+                  >
+                    {tweet.retweets + (tweet.isRetweetedByYou ? 0 : 1)}
+                  </Text>
                 </div>
               </div>
-              <div className="w-full">
+              <div className="w-full relative overflow-hidden">
                 <div
                   className={`${isHeartedByYou ? "text-heart" : "text-secondary"} cursor-pointer hover:text-heart w-fit`}
                   onClick={toggleHeart}>
                   {isHeartedByYou ? <HeartFilled className="text-heart"/> : <HeartOutlined/>}
-                  {getHeartCount() > 0 &&
-                    <Text style={{color: "inherit"}} className="an px-2">{getHeartCount()}</Text>
-                  }
+                  {/*Count without user heart*/}
+                  {tweet.hearts - (tweet.isHeartedByYou ? 1 : 0) > 0 &&
+                    <Text
+                      style={{color: "inherit"}}
+                      className={`${!isHeartedByYou ? "" : "-translate-y-full"} px-2 absolute number-transition`}
+                    >
+                      {tweet.hearts - (tweet.isHeartedByYou ? 1 : 0)}
+                    </Text>}
+                  {/*Count with user heart*/}
+                  <Text
+                    style={{color: "inherit"}}
+                    className={`${isHeartedByYou ? "" : "translate-y-full"} px-2 absolute number-transition`}
+                  >
+                    {tweet.hearts + (tweet.isHeartedByYou ? 0 : 1)}
+                  </Text>
                 </div>
               </div>
               <div/>

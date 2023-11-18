@@ -132,3 +132,8 @@ nav .anticon {
 .following-white strong {
     color: black;
 }
+
+.number-transition {
+    transition-property: transform;
+    transition-duration: 0.3s;
+}
