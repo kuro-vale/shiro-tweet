@@ -137,3 +137,12 @@ nav .anticon {
     transition-property: transform;
     transition-duration: 0.3s;
 }
+
+.message-primary {
+    margin-top: 90vh;
+}
+
+.ant-message-notice.message-primary .ant-message-notice-content {
+    background-color: var(--color-primary);
+    width: 230px;
+}

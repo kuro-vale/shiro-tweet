@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode";
 import {useMutation} from "@apollo/client";
 import {LOGIN_MUTATION, REGISTER_MUTATION} from "../graphql/mutations";
 import {message} from "antd";
-import {handleError} from "../utils";
+import {handleError, showMessage} from "../utils";
 
 
 const AuthProvider = (props: ParentProps) => {
@@ -44,7 +44,7 @@ const AuthProvider = (props: ParentProps) => {
     localStorage.removeItem(TOKEN_KEY);
     setUser(null);
     navigate(LANDING_ROUTE);
-    messageApi.success("Successful logout");
+    await showMessage(messageApi, "Successfully logout.");
   };
 
   const handleRegister = async (request: AuthRequest) => {

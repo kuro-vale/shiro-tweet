@@ -1,6 +1,7 @@
 import moment from "moment";
 import {MessageInstance} from "antd/lib/message/interface";
 import {ApolloError} from "@apollo/client";
+import {Link} from "react-router-dom";
 
 export function getDateMinimal(formattedDate: string): string {
   const time = moment.utc(formattedDate, "MMMM DD, YYYY at h:mm a");
@@ -28,4 +29,17 @@ export async function handleError(messageApi: MessageInstance, e: any) {
   } else {
     console.error(e);
   }
+}
+
+export async function showMessage(messageApi: MessageInstance, message: string, viewUrl?: string) {
+  messageApi.open({
+    type: "success",
+    content: <div className="flex justify-evenly">
+      <p>{message}</p>
+      {viewUrl &&
+        <Link className="font-bold hover:underline hover:text-white" to={viewUrl}>View</Link>}
+    </div>,
+    className: "message-primary text-white",
+    icon: <></>,
+  });
 }

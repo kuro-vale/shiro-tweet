@@ -3,7 +3,7 @@ import {useAuth} from "../../hooks";
 import {FormEvent, useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {COMMENT_MUTATION, COMPOSE_MUTATION} from "../../graphql/mutations";
-import {handleError} from "../../utils";
+import {handleError, showMessage} from "../../utils";
 import {Tweet} from "../../types";
 
 const {Text} = Typography;
@@ -81,7 +81,8 @@ function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
       await compose({variables: {body: form.getFieldValue("body"), tweetId: tweet?.id}});
       setProgress(10);
       form.resetFields();
-      messageApi.success("Tweet created :)");
+      // TODO: URL to show tweet
+      await showMessage(messageApi, "Your tweet was sent.", "/");
       onComplete?.();
     } catch (e) {
       await handleError(messageApi, e);
