@@ -15,6 +15,7 @@ function ComposeModal({open, onClose, tweet}: ComposeModalProps) {
       onCancel={onClose}
       footer={null}
       width={600}
+      destroyOnClose={true}
     >
       <div className="mt-14">
         {tweet && <ParentTweet tweet={tweet} replying={true}/>}

@@ -20,6 +20,7 @@ function LogoutModal(props: ModalProps) {
       onCancel={props.onClose}
       footer={null}
       closeIcon={null}
+      destroyOnClose={true}
     >
       <Title level={4} className="mt-[10px]">Log out of Kuro-Tweet?</Title>
       <Text>You can always log back in at any time.</Text>

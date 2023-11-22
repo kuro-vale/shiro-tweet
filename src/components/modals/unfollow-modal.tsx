@@ -17,6 +17,7 @@ function UnfollowModal(props: UnfollowModalProps) {
       closeIcon={null}
       footer={null}
       centered
+      destroyOnClose={true}
     >
       <div className="flex flex-col p-3">
         <Text strong className="text-xl py-2">Unfollow @{props.username}?</Text>

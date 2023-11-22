@@ -112,7 +112,9 @@ function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
             className="w-full mt-1 pr-4 mb-0"
           >
             <textarea
-              placeholder={`${tweet ? "Tweet your reply" : "What is happening?!"}`}
+              placeholder={`${tweet ?
+                user?.id === tweet.author.id ? "Add another tweet" : "Tweet your reply"
+                : "What is happening?!"}`}
               className="w-full h-[120px] placeholder:text-secondary outline-none text-xl ml-3 resize-none bg-transparency"
               onInput={handleResize}
             />

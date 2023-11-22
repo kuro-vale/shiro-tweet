@@ -2,6 +2,9 @@ import {Tweet} from "../../types";
 import {Avatar, Typography} from "antd";
 import {getDateMinimal} from "../../utils";
 import TweetButtons from "./tweet-buttons";
+import UserPopover from "../users/user-popover";
+import {useState} from "react";
+import {useAuth} from "../../hooks";
 
 const {Text} = Typography;
 type ParentTweetProps = {
@@ -10,7 +13,9 @@ type ParentTweetProps = {
 }
 
 function ParentTweet({tweet, replying}: ParentTweetProps) {
-  // TODO: User hover
+  const {user} = useAuth();
+  const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
+
   return (
     <article className="flex mb-3">
       <div>
@@ -24,13 +29,25 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
         </div>
       </div>
       <div className="ml-3 flex-1">
-        <Text strong className="hover:underline">{tweet.author.username}</Text>
-        <Text className="text-secondary"> @{tweet.author.username}</Text>
+        {replying ?
+          <>
+            <Text strong>{tweet.author.username}</Text>
+            <Text className="text-secondary"> @{tweet.author.username}</Text>
+          </>
+          :
+          <>
+            <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
+              <Text strong className="hover:underline">{tweet.author.username}</Text>
+            </UserPopover>
+            <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
+              <Text className="text-secondary"> @{tweet.author.username}</Text>
+            </UserPopover></>
+        }
         <Text className="text-secondary"> · </Text>
-        <Text className="text-secondary hover:underline">{getDateMinimal(tweet.createdAt)}</Text>
+        <Text className={`text-secondary ${replying ? "" : "hover:underline"}`}>{getDateMinimal(tweet.createdAt)}</Text>
         <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
         {replying ?
-          <p className="py-4">
+          user?.id !== tweet.author.id && <p className="py-4">
             <Text className="text-secondary">Replying to</Text>
             <Text className="text-primary"> @{tweet.author.username}</Text>
           </p> :

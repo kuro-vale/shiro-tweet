@@ -1,21 +1,22 @@
 import {Button, message, Typography} from "antd";
-import {useState} from "react";
 import {useMutation} from "@apollo/client";
 import {FOLLOW_MUTATION, UNFOLLOW_MUTATION} from "../../graphql/mutations";
 import {handleError} from "../../utils";
 import {User} from "../../types";
 import UnfollowModal from "../modals/unfollow-modal";
+import {useState} from "react";
 
 const {Text} = Typography;
 type FollowButtonProps = {
   user: User,
-  confirmUnfollow: boolean
+  confirmUnfollow: boolean,
+  isFollowedByYou: boolean,
+  setIsFollowedByYou: (v: boolean) => void
 }
 
-function FollowButton(props: FollowButtonProps) {
+function FollowButton({user, confirmUnfollow, isFollowedByYou, setIsFollowedByYou}: FollowButtonProps) {
   const [messageApi, contextHolder] = message.useMessage();
   const [v, setValues] = useState({
-    following: props.user.isFollowedByYou,
     followingWhiteButton: false,
     unfollowHover: false,
     unfollowModal: false
@@ -25,8 +26,9 @@ function FollowButton(props: FollowButtonProps) {
 
   const onFollow = async () => {
     try {
-      setValues({...v, followingWhiteButton: true, following: true, unfollowHover: false});
-      await follow({variables: {followId: props.user.id}});
+      setValues({...v, followingWhiteButton: true, unfollowHover: false});
+      setIsFollowedByYou(true);
+      await follow({variables: {followId: user.id}});
     } catch (e) {
       await handleError(messageApi, e);
     }
@@ -34,8 +36,9 @@ function FollowButton(props: FollowButtonProps) {
 
   const onUnfollow = async () => {
     try {
-      setValues({...v, following: false, unfollowModal: false});
-      await unfollow({variables: {unFollowId: props.user.id}});
+      setValues({...v, unfollowModal: false});
+      setIsFollowedByYou(false);
+      await unfollow({variables: {unFollowId: user.id}});
     } catch (e) {
       await handleError(messageApi, e);
     }
@@ -44,22 +47,22 @@ function FollowButton(props: FollowButtonProps) {
   return (
     <>
       {contextHolder}
-      {props.confirmUnfollow &&
+      {confirmUnfollow &&
         <UnfollowModal
           open={v.unfollowModal}
           onClose={() => setValues({...v, unfollowModal: false})}
           onUnfollow={onUnfollow}
-          username={props.user.username}
+          username={user.username}
         />
       }
-      {v.following
+      {isFollowedByYou
         // Unfollow button
         ? <Button
           shape="round"
           className={`${v.followingWhiteButton ? "following-white border-none" : ""} bg-black hover:bg-hover-red transition-none h-[34px] w-24 self-center`}
           onMouseEnter={() => setValues({...v, unfollowHover: true})}
           onMouseLeave={() => setValues({...v, unfollowHover: false, followingWhiteButton: false})}
-          onClick={() => props.confirmUnfollow ? setValues({...v, unfollowModal: true}) : onUnfollow()}
+          onClick={() => confirmUnfollow ? setValues({...v, unfollowModal: true}) : onUnfollow()}
         >
           <Text strong className={`${v.unfollowHover ? "text-red" : "text-white"} text-sm`}>
             {v.unfollowHover ? "Unfollow" : "Following"}

@@ -2,6 +2,8 @@ import {User} from "../../types";
 import {Avatar, Tag, Typography} from "antd";
 import {useAuth} from "../../hooks";
 import FollowButton from "./follow-button";
+import UserPopover from "./user-popover";
+import {useState} from "react";
 
 const {Text} = Typography;
 
@@ -9,20 +11,39 @@ type UserCardProps = {
   user: User
 }
 
-function UserCard(props: UserCardProps) {
-  const {user} = useAuth();
-  if (props.user.id === user?.id) return (<></>);
-  // TODO: redirect to user profile on click
+function UserCard({user}: UserCardProps) {
+  const {user: currentUser} = useAuth();
+  const [isFollowedByYou, setIsFollowedByYou] = useState(user.isFollowedByYou);
+  if (user.id === currentUser?.id) return (<></>);
 
+  // TODO: redirect to user profile on click
   return (
     <div className="flex flex-row px-4 py-3 h-16 w-full justify-between hover:bg-hover-gray">
       <div className="flex">
-        <Avatar src={`https://picsum.photos/seed/${props.user.username}/400/`} size="large"/>
+        <UserPopover
+          user={user}
+          isFollowedByYou={isFollowedByYou}
+          setIsFollowedByYou={setIsFollowedByYou}
+        >
+          <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size="large"/>
+        </UserPopover>
         <div className="flex flex-col ml-3">
-          <Text strong className="h-[18px] hover:underline">{props.user.username}</Text>
+          <UserPopover
+            user={user}
+            isFollowedByYou={isFollowedByYou}
+            setIsFollowedByYou={setIsFollowedByYou}
+          >
+            <Text strong className="h-[18px] hover:underline">{user.username}</Text>
+          </UserPopover>
           <div className="flex flex-shrink">
-            <Text className="text-secondary h-[18px] overflow-hidden mr-1">@{props.user.username}</Text>
-            {props.user.isFollowingYou &&
+            <UserPopover
+              user={user}
+              isFollowedByYou={isFollowedByYou}
+              setIsFollowedByYou={setIsFollowedByYou}
+            >
+              <Text className="text-secondary h-[18px] overflow-hidden mr-1">@{user.username}</Text>
+            </UserPopover>
+            {user.isFollowingYou &&
               <Tag className="text-[11px] bg-tag h-3 border-0 self-center text-secondary font-bold p-0 m-0"
                    bordered={false}>
                 Follows you
@@ -30,7 +51,12 @@ function UserCard(props: UserCardProps) {
           </div>
         </div>
       </div>
-      <FollowButton user={props.user} confirmUnfollow={true}/>
+      <FollowButton
+        user={user}
+        confirmUnfollow={true}
+        isFollowedByYou={isFollowedByYou}
+        setIsFollowedByYou={setIsFollowedByYou}
+      />
     </div>
   );
 }

@@ -30,6 +30,7 @@ function LogoutPopover(props: ParentProps) {
         open={openPopover}
         trigger="click"
         onOpenChange={setOpenPopover}
+        destroyTooltipOnHide={true}
       >
         {props.children}
       </Popover>
