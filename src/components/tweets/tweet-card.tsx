@@ -19,11 +19,13 @@ function TweetCard({tweet}: TweetCardProps) {
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
       <article className="flex">
-        <Avatar
-          src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
-          size="large"
-          alt={tweet.author.username + " photo"}
-        />
+        <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
+          <Avatar
+            src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
+            size="large"
+            alt={tweet.author.username + " photo"}
+          />
+        </UserPopover>
         <div className="ml-3 flex-1">
           <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
             <Text strong className="hover:underline">{tweet.author.username}</Text>

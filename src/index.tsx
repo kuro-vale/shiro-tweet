@@ -39,6 +39,9 @@ const client = new ApolloClient({
         fields: {
           index: relayStylePagination(),
         }
+      },
+      UserQueries: {
+        keyFields: []
       }
     }
   })

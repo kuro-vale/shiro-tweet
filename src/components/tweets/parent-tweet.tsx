@@ -19,11 +19,13 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
   return (
     <article className="flex mb-3">
       <div>
-        <Avatar
-          src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
-          size="large"
-          alt={tweet.author.username + " photo"}
-        />
+        <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
+          <Avatar
+            src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
+            size="large"
+            alt={tweet.author.username + " photo"}
+          />
+        </UserPopover>
         <div className={`w-[2px] pt-1 h-full mx-auto ${replying ? "pb-10" : "pb-8"}`}>
           <div className="bg-gray h-full"/>
         </div>

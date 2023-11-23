@@ -53,6 +53,12 @@ export type UserQueryData = {
   }
 }
 
+export type FollowersYouMayKnowData = {
+  UserQueries: {
+    followersYouMayKnow: User[]
+  }
+}
+
 export type Tweet = {
   id: number,
   body: string,

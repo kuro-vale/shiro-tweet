@@ -4,7 +4,7 @@ import {AuthContextProps, AuthData, AuthRequest, ParentProps, UserJWT} from "../
 import {useState} from "react";
 import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
 import jwtDecode from "jwt-decode";
-import {useMutation} from "@apollo/client";
+import {useApolloClient, useMutation} from "@apollo/client";
 import {LOGIN_MUTATION, REGISTER_MUTATION} from "../graphql/mutations";
 import {message} from "antd";
 import {handleError, showMessage} from "../utils";
@@ -27,6 +27,7 @@ const AuthProvider = (props: ParentProps) => {
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
   const location = useLocation();
+  const apolloClient = useApolloClient();
 
   const handleLogin = async (request: AuthRequest) => {
     try {
@@ -44,6 +45,7 @@ const AuthProvider = (props: ParentProps) => {
     localStorage.removeItem(TOKEN_KEY);
     setUser(null);
     navigate(LANDING_ROUTE);
+    await apolloClient.clearStore();
     await showMessage(messageApi, "Successfully logout.");
   };
 
