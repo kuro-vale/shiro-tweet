@@ -10,10 +10,10 @@ import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
-import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY} from "./constants";
+import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY, TWEET_DETAILS} from "./constants";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
-import {relayStylePagination} from "@apollo/client/utilities";
+import TweetDetails from "./pages/tweet-details";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -35,11 +35,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache({
     typePolicies: {
-      TweetQueries: {
-        fields: {
-          index: relayStylePagination(),
-        }
-      },
       UserQueries: {
         keyFields: []
       }
@@ -114,6 +109,7 @@ root.render(
               <Route path={LANDING_ROUTE} element={<Landing/>}/>
               <Route element={<AppLayout/>}>
                 <Route path={HOME_ROUTE} element={<Home/>}/>
+                <Route path={TWEET_DETAILS} element={<TweetDetails/>}/>
                 <Route path="*" element={<NotFound/>}/>
               </Route>
 

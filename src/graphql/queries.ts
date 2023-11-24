@@ -71,3 +71,48 @@ export const COMMON_FOLLOWERS = gql`
     }
   }
 `;
+
+export const TWEET_BY_ID_QUERY = gql`
+  query TweetById($tweetId: Int!) {
+    TweetQueries {
+      tweetById(tweetId: $tweetId) {
+        id
+        body
+        author {
+          id
+          username
+          followers
+          following
+          isFollowedByYou
+          isFollowingYou
+        }
+        createdAt
+        comments
+        hearts
+        retweets
+        isHeartedByYou
+        isRetweetedByYou
+        parentId
+        parent {
+          id
+          body
+          author {
+            id
+            username
+            followers
+            following
+            isFollowedByYou
+            isFollowingYou
+          }
+          createdAt
+          comments
+          hearts
+          retweets
+          isHeartedByYou
+          isRetweetedByYou
+          parentId
+        }
+      }
+    }
+  }
+`;

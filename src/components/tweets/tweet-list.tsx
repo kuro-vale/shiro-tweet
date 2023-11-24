@@ -13,7 +13,8 @@ function TweetList() {
   const {loading, error, data} = useQuery<IndexData>(INDEX_QUERY, {
     variables: {
       cursor
-    }
+    },
+    fetchPolicy: "no-cache"
   });
 
   useEffect(() => {

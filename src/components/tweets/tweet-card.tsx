@@ -14,7 +14,7 @@ type TweetCardProps = {
 
 function TweetCard({tweet}: TweetCardProps) {
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
-
+  // TODO: cursor pointer and link
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}

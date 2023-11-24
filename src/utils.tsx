@@ -20,7 +20,7 @@ export function getDateMinimal(formattedDate: string): string {
 
 export function getDateDetails(formattedDate: string): string {
   const time = moment.utc(formattedDate, "MMMM DD, YYYY at h:mm a");
-  return time.local().format("h:mm A - MMM D, YYYY");
+  return time.local().format("h:mm A · MMM D, YYYY");
 }
 
 export async function handleError(messageApi: MessageInstance, e: any) {

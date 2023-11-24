@@ -47,6 +47,12 @@ export type IndexData = {
   }
 }
 
+export type TweetByIdData = {
+  TweetQueries: {
+    tweetById: Tweet
+  }
+}
+
 export type UserQueryData = {
   UserQueries: {
     searchUsers: User[]
