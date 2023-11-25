@@ -7,10 +7,11 @@ import ComposeModal from "../modals/compose-modal";
 
 const {Text} = Typography;
 type TweetButtonsProps = {
-  tweet: Tweet
+  tweet: Tweet,
+  xl?: boolean
 }
 
-function TweetButtons({tweet}: TweetButtonsProps) {
+function TweetButtons({tweet, xl}: TweetButtonsProps) {
   const [messageApi, contextHolder] = message.useMessage();
   const [openComposeModal, setOpenComposeModal] = useState(false);
   const {
@@ -28,7 +29,7 @@ function TweetButtons({tweet}: TweetButtonsProps) {
         <div className=" w-full">
           <div className="text-secondary cursor-pointer hover:text-primary w-fit"
                onClick={() => setOpenComposeModal(true)}>
-            <MessageOutlined/>
+            <MessageOutlined className={`${xl ? "text-xl" : ""}`}/>
             {tweet.comments > 0 &&
               <Text style={{color: "inherit"}} className="text-secondary px-2">{tweet.comments}</Text>
             }
@@ -39,7 +40,7 @@ function TweetButtons({tweet}: TweetButtonsProps) {
             className={`${isRetweetedByYou ? "text-retweet" : "text-secondary"} cursor-pointer hover:text-retweet w-fit`}
             onClick={() => toggleRetweet(tweet.id, messageApi)}
           >
-            <RetweetOutlined/>
+            <RetweetOutlined className={`${xl ? "text-xl" : ""}`}/>
             {/*Count without user retweet*/}
             {tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0) > 0 &&
               <Text
@@ -61,7 +62,8 @@ function TweetButtons({tweet}: TweetButtonsProps) {
           <div
             className={`${isHeartedByYou ? "text-heart" : "text-secondary"} cursor-pointer hover:text-heart w-fit`}
             onClick={() => toggleHeart(tweet.id, messageApi)}>
-            {isHeartedByYou ? <HeartFilled className="text-heart"/> : <HeartOutlined/>}
+            {isHeartedByYou ? <HeartFilled className={`${xl ? "text-xl" : ""} text-heart`}/> :
+              <HeartOutlined className={`${xl ? "text-xl" : ""}`}/>}
             {/*Count without user heart*/}
             {tweet.hearts - (tweet.isHeartedByYou ? 1 : 0) > 0 &&
               <Text

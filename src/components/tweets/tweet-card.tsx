@@ -5,6 +5,8 @@ import ParentTweet from "./parent-tweet";
 import TweetButtons from "./tweet-buttons";
 import UserPopover from "../users/user-popover";
 import {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {TWEET_DETAILS} from "../../constants";
 
 const {Text} = Typography;
 
@@ -14,11 +16,13 @@ type TweetCardProps = {
 
 function TweetCard({tweet}: TweetCardProps) {
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
-  // TODO: cursor pointer and link
+  const navigate = useNavigate();
+
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
-      <article className="flex">
+      <article className="flex cursor-pointer"
+               onClick={() => navigate(TWEET_DETAILS.replace(":tweetId", `${tweet.id}`))}>
         <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
           <Avatar
             src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
@@ -34,9 +38,16 @@ function TweetCard({tweet}: TweetCardProps) {
             <Text className="text-secondary"> @{tweet.author.username}</Text>
           </UserPopover>
           <Text className="text-secondary"> · </Text>
-          <Text className="text-secondary hover:underline">{getDateMinimal(tweet.createdAt)}</Text>
+          <Link
+            to={TWEET_DETAILS.replace(":tweetId", `${tweet.id}`)}
+            className="text-secondary hover:underline hover:text-secondary"
+          >
+            {getDateMinimal(tweet.createdAt)}
+          </Link>
           <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
-          <TweetButtons tweet={tweet}/>
+          <span onClick={e => e.stopPropagation()} className="cursor-default">
+            <TweetButtons tweet={tweet}/>
+          </span>
         </div>
       </article>
     </li>

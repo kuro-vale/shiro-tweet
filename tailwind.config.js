@@ -25,6 +25,7 @@ module.exports = {
       "hover-primary": "var(--color-hover-primary)",
       "hover-white": "var(--color-hover-white)",
       "hover-gray": "var(--color-hover-gray)",
+      "hover-menu": "var(--color-hover-menu-item)",
       "border": "var(--color-border)",
       "tag": "var(--color-tag)",
       "red": "var(--color-red)",

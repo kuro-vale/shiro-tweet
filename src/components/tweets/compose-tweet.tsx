@@ -4,7 +4,8 @@ import {FormEvent, useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {COMMENT_MUTATION, COMPOSE_MUTATION} from "../../graphql/mutations";
 import {handleError, showMessage} from "../../utils";
-import {Tweet} from "../../types";
+import {ComposeData, Tweet} from "../../types";
+import {TWEET_DETAILS} from "../../constants";
 
 const {Text} = Typography;
 type TweetForm = {
@@ -17,6 +18,7 @@ type SubmitButtonProps = {
 type ComposeTweetProps = {
   onComplete?: () => void,
   tweet?: Tweet,
+  sm?: boolean,
 }
 
 const getRemaining = (percent: number): number => {
@@ -66,10 +68,10 @@ const SubmitButton = ({form, onSubmit}: SubmitButtonProps) => {
   );
 };
 
-function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
+function ComposeTweet({onComplete, tweet, sm}: ComposeTweetProps) {
   const {user} = useAuth();
   const [form] = Form.useForm<TweetForm>();
-  const [compose, {loading}] = useMutation(tweet ? COMMENT_MUTATION : COMPOSE_MUTATION);
+  const [compose, {loading}] = useMutation<ComposeData>(tweet ? COMMENT_MUTATION : COMPOSE_MUTATION);
   const [messageApi, contextHolder] = message.useMessage();
   const [progress, setProgress] = useState(10);
 
@@ -78,11 +80,11 @@ function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
       setTimeout(() => {
         setProgress(90);
       }, 10);
-      await compose({variables: {body: form.getFieldValue("body"), tweetId: tweet?.id}});
+      const {data} = await compose({variables: {body: form.getFieldValue("body"), tweetId: tweet?.id}});
+      const resultId = data?.TweetOps.compose?.id || data?.TweetOps.comment?.id;
       setProgress(10);
       form.resetFields();
-      // TODO: URL to show tweet
-      await showMessage(messageApi, "Your tweet was sent.", "/");
+      await showMessage(messageApi, "Your tweet was sent.", TWEET_DETAILS.replace(":tweetId", `${resultId}`));
       onComplete?.();
     } catch (e) {
       await handleError(messageApi, e);
@@ -91,7 +93,7 @@ function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
 
   const handleResize = (e: FormEvent<HTMLTextAreaElement>) => {
     const target = e.target as HTMLTextAreaElement;
-    target.style.height = "120px";
+    target.style.height = sm ? "52px" : "120px";
     target.style.height = Math.min(target.scrollHeight, 240) + "px";
   };
 
@@ -115,7 +117,7 @@ function ComposeTweet({onComplete, tweet}: ComposeTweetProps) {
               placeholder={`${tweet ?
                 user?.id === tweet.author.id ? "Add another tweet" : "Tweet your reply"
                 : "What is happening?!"}`}
-              className="w-full h-[120px] placeholder:text-secondary outline-none text-xl ml-3 resize-none bg-transparency"
+              className={`w-full ${sm ? "h-[52px]" : "h-[120px]"} placeholder:text-secondary outline-none text-xl ml-3 resize-none bg-transparency`}
               onInput={handleResize}
             />
           </Form.Item>

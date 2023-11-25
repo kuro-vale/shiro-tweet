@@ -37,6 +37,7 @@ function TweetList() {
     }
   };
 
+  // TODO: empty list show a result to follow someone xd
   return (
     <InfiniteScroll
       next={handleNext}

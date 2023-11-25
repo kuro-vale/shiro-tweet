@@ -59,6 +59,17 @@ export type UserQueryData = {
   }
 }
 
+export type ComposeData = {
+  TweetOps: {
+    compose?: {
+      id: number
+    },
+    comment?: {
+      id: number
+    },
+  }
+}
+
 export type FollowersYouMayKnowData = {
   UserQueries: {
     followersYouMayKnow: User[]

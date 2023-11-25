@@ -1,9 +1,10 @@
 import TimelineLayout from "../components/layouts/timeline-layout";
 import Aside from "../components/menus/aside";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {TWEET_BY_ID_QUERY} from "../graphql/queries";
 import {Avatar, Spin, Typography} from "antd";
+import {ArrowLeftOutlined} from "@ant-design/icons";
 import ErrorResult from "../components/error-result";
 import {TweetByIdData} from "../types";
 import {useEffect, useRef, useState} from "react";
@@ -11,15 +12,18 @@ import ParentTweet from "../components/tweets/parent-tweet";
 import UserPopover from "../components/users/user-popover";
 import TweetButtons from "../components/tweets/tweet-buttons";
 import {getDateDetails} from "../utils";
+import ComposeTweet from "../components/tweets/compose-tweet";
 
 const {Text} = Typography;
 
 function TweetDetails() {
   const {tweetId} = useParams();
+  const navigate = useNavigate();
   const {loading, error, data} = useQuery<TweetByIdData>(TWEET_BY_ID_QUERY, {
     variables: {
       tweetId: parseInt(tweetId!)
-    }
+    },
+    fetchPolicy: "no-cache"
   });
   const tweetRef = useRef<HTMLElement>(null);
   const tweet = data?.TweetQueries.tweetById;
@@ -36,9 +40,13 @@ function TweetDetails() {
   return (
     <>
       <TimelineLayout>
-        <div className="sticky top-0 bg-transparency z-10 backdrop-blur-md h-14 flex items-center">
-          {/*TODO: icon*/}
-          <button className="w-14">{"<-"}</button>
+        <div className="sticky top-0 bg-transparency z-10 backdrop-blur-md h-14 flex items-center pl-3">
+          <button
+            type="button" className="text-center mr-9 hover:bg-hover-menu rounded-full w-9 h-9"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeftOutlined className="text-lg"/>
+          </button>
           <Text strong className="text-xl">Tweet</Text>
         </div>
         {!tweet ? <Spin spinning={loading} className="min-h-[50vh]">
@@ -69,9 +77,12 @@ function TweetDetails() {
               <p className="mt-3"><Text className="whitespace-pre-line">{tweet.body}</Text></p>
               <p className="my-3"><Text className="text-secondary">{getDateDetails(tweet.createdAt)}</Text></p>
               <div className="border-y-[1px] border-y-border">
-                <TweetButtons tweet={tweet}/>
+                <TweetButtons tweet={tweet} xl={true}/>
               </div>
             </article>
+            <div className="my-3">
+              <ComposeTweet tweet={tweet} sm={true}/>
+            </div>
           </div>
         }
         {/*TODO: comments*/}
