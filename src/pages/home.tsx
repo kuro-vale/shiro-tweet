@@ -23,7 +23,7 @@ function Home() {
         <div className="xs:hidden ht:hidden px-4 border-b-[1px] border-b-border mt-3">
           <ComposeTweet/>
         </div>
-        <TweetList query={INDEX_QUERY}/>
+        <TweetList query={INDEX_QUERY} showResult={true}/>
       </TimelineLayout>
       <Aside showSearchBar={true}/>
     </>

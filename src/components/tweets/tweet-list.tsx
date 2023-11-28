@@ -1,17 +1,20 @@
 import {DocumentNode, useQuery} from "@apollo/client";
 import {TweetData} from "../../types";
-import {Spin} from "antd";
+import {Button, Result, Spin, Typography} from "antd";
 import ErrorResult from "../error-result";
 import TweetCard from "./tweet-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {ReactElement, useEffect, useState} from "react";
+import {EXPLORE_ROUTE} from "../../constants";
 
+const {Text} = Typography;
 type TweetListProps = {
   query: DocumentNode,
   tweetId?: number,
+  showResult?: boolean
 }
 
-function TweetList({query, tweetId}: TweetListProps) {
+function TweetList({query, tweetId, showResult}: TweetListProps) {
   const [cursor, setCursor] = useState<number | null>(null);
   const [tweetCards, setTweetCards] = useState<ReactElement[]>([]);
   const {loading, error, data} = useQuery<TweetData>(query, {
@@ -39,6 +42,16 @@ function TweetList({query, tweetId}: TweetListProps) {
     <div/>
   </Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
+  if (!loading && tweetList?.length === 0 && tweetCards.length === 0 && showResult) return (
+    <Result
+      title="Welcome to shiro-tweet"
+      subTitle="Here you will see recent tweets of people you follow."
+      extra={
+        <Button shape="round" size="large" className="bg-primary hover:bg-hover-primary" href={EXPLORE_ROUTE}>
+          <Text strong>Search</Text>
+        </Button>
+      }
+    />);
 
   const handleNext = () => {
     if (tweetList) {
