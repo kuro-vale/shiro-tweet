@@ -19,13 +19,16 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
   const {user: currentUser} = useAuth();
 
   // TODO: link to profile
+  // TODO: correct links
   return (
-    <a href="/">
+    <Link to={"/"} className="w-fit">
       <Popover
         content={
           <div className="flex flex-col p-1">
             <div className="flex w-full justify-between">
-              <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size={60}/>
+              <Link to={"/"}>
+                <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size={60}/>
+              </Link>
               {currentUser?.id !== user.id &&
                 <FollowButton
                   user={user}
@@ -35,9 +38,13 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
                 />}
             </div>
             <div className="flex flex-col">
-              <Text strong className="hover:underline">{user.username}</Text>
+              <Link to={"/"} className="w-fit">
+                <Text strong className="hover:underline">{user.username}</Text>
+              </Link>
               <Text className="text-secondary">
-                @{user.username}
+                <Link to={"/"}>
+                  @{user.username}
+                </Link>
                 {user.isFollowingYou &&
                   <Tag className="text-[11px] bg-tag h-4 border-0 self-center text-secondary font-bold ml-1"
                        bordered={false}>
@@ -46,7 +53,6 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
               </Text>
             </div>
             <div className="mt-3">
-              {/*TODO: correct links*/}
               <Link to={"/following"} className="hover:text-white hover:underline">
                 <Text>{user.following}</Text>
                 <Text className="text-secondary"> Following</Text>
@@ -63,7 +69,7 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
       >
         {children}
       </Popover>
-    </a>
+    </Link>
   );
 }
 
