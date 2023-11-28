@@ -41,10 +41,12 @@ function UserCard({user}: UserCardProps) {
               isFollowedByYou={isFollowedByYou}
               setIsFollowedByYou={setIsFollowedByYou}
             >
-              <Text className="text-secondary h-[18px] overflow-hidden mr-1">@{user.username}</Text>
+              <div className="h-[18px] overflow-y-hidden">
+                <Text className="text-secondary mr-1">@{user.username}</Text>
+              </div>
             </UserPopover>
             {user.isFollowingYou &&
-              <Tag className="text-[11px] bg-tag h-3 border-0 self-center text-secondary font-bold p-0 m-0"
+              <Tag className="text-[11px] bg-tag h-3 border-0 self-center text-secondary font-bold px-0.5 pb-0.5"
                    bordered={false}>
                 Follows you
               </Tag>}

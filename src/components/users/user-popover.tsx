@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import {Avatar, Popover, Typography} from "antd";
+import {Avatar, Popover, Tag, Typography} from "antd";
 import {User} from "../../types";
 import FollowButton from "./follow-button";
 import {useAuth} from "../../hooks";
@@ -36,7 +36,14 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
             </div>
             <div className="flex flex-col">
               <Text strong className="hover:underline">{user.username}</Text>
-              <Text className="text-secondary"> @{user.username}</Text>
+              <Text className="text-secondary">
+                @{user.username}
+                {user.isFollowingYou &&
+                  <Tag className="text-[11px] bg-tag h-4 border-0 self-center text-secondary font-bold ml-1"
+                       bordered={false}>
+                    Follows you
+                  </Tag>}
+              </Text>
             </div>
             <div className="mt-3">
               {/*TODO: correct links*/}
