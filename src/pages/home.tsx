@@ -4,6 +4,7 @@ import Aside from "../components/menus/aside";
 import type {TabsProps} from "antd";
 import {Tabs} from "antd";
 import ComposeTweet from "../components/tweets/compose-tweet";
+import {INDEX_QUERY} from "../graphql/queries";
 
 function Home() {
   const items: TabsProps["items"] = [{
@@ -22,7 +23,7 @@ function Home() {
         <div className="xs:hidden ht:hidden px-4 border-b-[1px] border-b-border mt-3">
           <ComposeTweet/>
         </div>
-        <TweetList/>
+        <TweetList query={INDEX_QUERY}/>
       </TimelineLayout>
       <Aside showSearchBar={true}/>
     </>

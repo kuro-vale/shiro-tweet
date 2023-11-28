@@ -41,9 +41,10 @@ export type AuthPayload = {
 
 export type MenuItem = Required<MenuProps>["items"][number];
 
-export type IndexData = {
+export type TweetData = {
   TweetQueries: {
-    index: Tweet[]
+    index: Tweet[],
+    tweetComments: Tweet[],
   }
 }
 

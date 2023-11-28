@@ -45,6 +45,32 @@ export const INDEX_QUERY = gql`
   }
 `;
 
+export const COMMENTS_QUERY = gql`
+  query TweetComments($tweetId: Int!, $cursor: Int) {
+    TweetQueries {
+      tweetComments(tweetId: $tweetId, cursor: $cursor) {
+        id
+        body
+        author {
+          id
+          username
+          followers
+          following
+          isFollowedByYou
+          isFollowingYou
+        }
+        createdAt
+        comments
+        hearts
+        retweets
+        isHeartedByYou
+        isRetweetedByYou
+        parentId
+      }
+    }
+  }
+`;
+
 export const WHO_USER_QUERY = gql`
   query WhoToFollow {
     UserQueries {

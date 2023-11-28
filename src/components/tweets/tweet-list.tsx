@@ -1,56 +1,67 @@
-import {useQuery} from "@apollo/client";
-import {IndexData} from "../../types";
-import {INDEX_QUERY} from "../../graphql/queries";
+import {DocumentNode, useQuery} from "@apollo/client";
+import {TweetData} from "../../types";
 import {Spin} from "antd";
 import ErrorResult from "../error-result";
 import TweetCard from "./tweet-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {ReactElement, useEffect, useState} from "react";
 
-function TweetList() {
+type TweetListProps = {
+  query: DocumentNode,
+  tweetId?: number,
+}
+
+function TweetList({query, tweetId}: TweetListProps) {
   const [cursor, setCursor] = useState<number | null>(null);
-  const [tweetList, setTweetList] = useState<ReactElement[]>([]);
-  const {loading, error, data} = useQuery<IndexData>(INDEX_QUERY, {
+  const [tweetCards, setTweetCards] = useState<ReactElement[]>([]);
+  const {loading, error, data} = useQuery<TweetData>(query, {
     variables: {
-      cursor
+      cursor,
+      tweetId
     },
     fetchPolicy: "no-cache"
   });
+  const [hasMore, setHasMore] = useState(true);
 
+  const tweetList = data?.TweetQueries.index || data?.TweetQueries.tweetComments;
   useEffect(() => {
-    if (data?.TweetQueries.index) {
-      setTweetList(tweets => [...tweets,
-        ...data.TweetQueries.index.map(tweet => (
-          <TweetCard key={tweet.id} tweet={tweet}/>)
+    if (tweetList) {
+      setTweetCards(tweets => [...tweets,
+        ...tweetList.map(tweet => {
+            if (tweet) return (<TweetCard key={tweet.id} tweet={tweet}/>);
+            else return <span key={tweetList.length}></span>;
+          }
         )]);
     }
-  }, [data]);
+  }, [tweetList]);
 
-  if (loading && tweetList.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
+  if (loading && tweetCards.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
     <div/>
   </Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
 
   const handleNext = () => {
-    if (data?.TweetQueries.index) {
-      setCursor(data.TweetQueries.index[data.TweetQueries.index.length - 1].id);
+    if (tweetList) {
+      const lastTweet = tweetList[tweetList.length - 1];
+      if (lastTweet) {
+        setCursor(lastTweet.id);
+      } else setHasMore(false);
     }
   };
 
-  // TODO: empty list show a result to follow someone xd
   return (
     <InfiniteScroll
       next={handleNext}
-      hasMore={data?.TweetQueries.index.length === 10}
+      hasMore={(tweetList?.length || 0) >= 10 && hasMore}
       loader={<Spin>
         <div className="min-h-[30vh]"/>
       </Spin>}
-      dataLength={tweetList.length}
+      dataLength={tweetCards.length}
       style={{overflow: "hidden"}}
       endMessage={<div className="min-h-[30vh]"/>}
     >
       <ul>
-        {tweetList}
+        {tweetCards}
       </ul>
     </InfiniteScroll>
   );
