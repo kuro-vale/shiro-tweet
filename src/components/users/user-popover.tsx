@@ -22,13 +22,13 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
   const profileRoute = USER_ROUTE.replace(":username", user.username);
 
   return (
-    <Link to={profileRoute} className="w-fit">
+    <Link to={profileRoute} className="w-fit h-fit" onClick={e => e.stopPropagation()}>
       <Popover
         content={
           <div className="flex flex-col p-1">
             <div className="flex w-full justify-between">
               <Link to={profileRoute}>
-                <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size={60}/>
+                <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size={60} className="bg-gray"/>
               </Link>
               {currentUser?.id !== user.id &&
                 <FollowButton

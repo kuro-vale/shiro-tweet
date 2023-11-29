@@ -103,7 +103,12 @@ function ComposeTweet({onComplete, tweet, sm}: ComposeTweetProps) {
       {loading && <Progress percent={progress} showInfo={false} size="small"/>}
       <Form className={`flex flex-col ${loading ? "opacity-50" : ""}`} form={form} disabled={loading}>
         <div className="flex">
-          <Avatar src={`https://picsum.photos/seed/${user?.sub}/400/`} size="large" alt={user?.id + " photo"}/>
+          <Avatar
+            src={`https://picsum.photos/seed/${user?.sub}/400/`}
+            size="large"
+            alt={user?.id + " photo"}
+            className="bg-gray"
+          />
           <Form.Item<TweetForm>
             name="body"
             rules={[

@@ -64,6 +64,7 @@ function TweetDetails() {
                       src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
                       size="large"
                       alt={tweet.author.username + " photo"}
+                      className="bg-gray"
                     />
                   </UserPopover>
                   <div className="ml-3 flex-1">

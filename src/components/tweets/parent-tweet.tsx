@@ -34,6 +34,7 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
               src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
               size="large"
               alt={tweet.author.username + " photo"}
+              className="bg-gray"
             />
           </UserPopover>}
         <div className={`w-[2px] pt-1 h-full mx-auto ${replying ? "pb-10" : "pb-8"}`}>
@@ -71,9 +72,7 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
             <Text className="text-secondary">Replying to</Text>
             <Text className="text-primary"> @{tweet.author.username}</Text>
           </p> :
-          <span onClick={e => e.stopPropagation()} className="cursor-default">
-            <TweetButtons tweet={tweet}/>
-          </span>
+          <TweetButtons tweet={tweet}/>
         }
       </div>
     </article>

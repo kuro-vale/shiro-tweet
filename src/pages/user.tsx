@@ -39,12 +39,14 @@ function User() {
             <Text className="text-[13px] text-secondary">{`${user ? user.tweets + " tweets" : ""}`}</Text>
           </div>
         </div>
-        <img src={`https://picsum.photos/seed/${username}1/600/200`} alt={username + " banner"}/>
+        <div className="w-full h-[200px] bg-gray">
+          <img src={`https://picsum.photos/seed/${username}1/600/200`} alt={username + " banner"}/>
+        </div>
         <Avatar
           src={`https://picsum.photos/seed/${username}/400/`}
           size={138}
           alt={username + " photo"}
-          className="ml-4 border-[3px] border-black -mt-[70px] mb-3"
+          className="ml-4 border-[3px] border-black -mt-[70px] mb-3 bg-gray"
         />
         {!!user && <>
           <div className="flex flex-col ml-4 mb-4">

@@ -21,13 +21,16 @@ function TweetCard({tweet}: TweetCardProps) {
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
-      <article className="flex cursor-pointer"
-               onClick={() => navigate(TWEET_DETAILS.replace(":tweetId", `${tweet.id}`))}>
+      <article
+        className="flex cursor-pointer"
+        onClick={() => navigate(TWEET_DETAILS.replace(":tweetId", `${tweet.id}`))}
+      >
         <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
           <Avatar
             src={`https://picsum.photos/seed/${tweet.author.username}/400/`}
             size="large"
             alt={tweet.author.username + " photo"}
+            className="bg-gray"
           />
         </UserPopover>
         <div className="ml-3 flex-1">
@@ -45,9 +48,7 @@ function TweetCard({tweet}: TweetCardProps) {
             {getDateMinimal(tweet.createdAt)}
           </Link>
           <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
-          <span onClick={e => e.stopPropagation()} className="cursor-default">
-            <TweetButtons tweet={tweet}/>
-          </span>
+          <TweetButtons tweet={tweet}/>
         </div>
       </article>
     </li>

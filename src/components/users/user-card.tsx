@@ -25,7 +25,7 @@ function UserCard({user}: UserCardProps) {
           isFollowedByYou={isFollowedByYou}
           setIsFollowedByYou={setIsFollowedByYou}
         >
-          <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size="large"/>
+          <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size="large" className="bg-gray"/>
         </UserPopover>
         <div className="flex flex-col ml-3">
           <UserPopover

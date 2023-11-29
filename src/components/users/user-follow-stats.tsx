@@ -4,8 +4,8 @@ import {Typography} from "antd";
 
 const {Text} = Typography;
 
-// TODO: correct links
 function UserFollowStats({user}: { user: User }) {
+  // TODO: correct links
   return (
     <div className="mt-3">
       <Link to={"/following"} className="hover:text-white hover:underline">

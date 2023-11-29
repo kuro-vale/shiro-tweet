@@ -2,7 +2,7 @@ import {Tweet} from "../../types";
 import {HeartFilled, HeartOutlined, MessageOutlined, RetweetOutlined} from "@ant-design/icons";
 import {useTweetToggles} from "../../hooks";
 import {message, Typography} from "antd";
-import {useState} from "react";
+import React, {useState} from "react";
 import ComposeModal from "../modals/compose-modal";
 
 const {Text} = Typography;
@@ -21,14 +21,30 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
     toggleRetweet
   } = useTweetToggles(tweet.isHeartedByYou, tweet.isRetweetedByYou);
 
+  const onClickComment = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setOpenComposeModal(true);
+  };
+
+  const onClickRetweet = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await toggleRetweet(tweet.id, messageApi);
+  };
+
+  const onClickHeart = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await toggleHeart(tweet.id, messageApi);
+  };
+
   return (
     <>
       {contextHolder}
-      <ComposeModal open={openComposeModal} onClose={() => setOpenComposeModal(false)} tweet={tweet}/>
+      <span onClick={e => e.stopPropagation()}>
+        <ComposeModal open={openComposeModal} onClose={() => setOpenComposeModal(false)} tweet={tweet}/>
+      </span>
       <div className="flex max-w-md h-5 justify-between my-3 flex-1">
         <div className=" w-full">
-          <div className="text-secondary cursor-pointer hover:text-primary w-fit"
-               onClick={() => setOpenComposeModal(true)}>
+          <div className="text-secondary cursor-pointer hover:text-primary w-fit" onClick={onClickComment}>
             <MessageOutlined className={`${xl ? "text-xl" : ""}`}/>
             {tweet.comments > 0 &&
               <Text style={{color: "inherit"}} className="text-secondary px-2">{tweet.comments}</Text>
@@ -38,7 +54,7 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
         <div className="w-full relative overflow-hidden">
           <div
             className={`${isRetweetedByYou ? "text-retweet" : "text-secondary"} cursor-pointer hover:text-retweet w-fit`}
-            onClick={() => toggleRetweet(tweet.id, messageApi)}
+            onClick={onClickRetweet}
           >
             <RetweetOutlined className={`${xl ? "text-xl" : ""}`}/>
             {/*Count without user retweet*/}
@@ -61,7 +77,8 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
         <div className="w-full relative overflow-hidden">
           <div
             className={`${isHeartedByYou ? "text-heart" : "text-secondary"} cursor-pointer hover:text-heart w-fit`}
-            onClick={() => toggleHeart(tweet.id, messageApi)}>
+            onClick={onClickHeart}
+          >
             {isHeartedByYou ? <HeartFilled className={`${xl ? "text-xl" : ""} text-heart`}/> :
               <HeartOutlined className={`${xl ? "text-xl" : ""}`}/>}
             {/*Count without user heart*/}

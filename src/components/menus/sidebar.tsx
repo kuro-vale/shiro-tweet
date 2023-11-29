@@ -73,7 +73,12 @@ function Sidebar() {
 
   const avatarItem: MenuItem = {
     key: "8",
-    icon: <Avatar src={`https://picsum.photos/seed/${user?.sub}/400/`} size="large" alt={user?.id + " photo"}/>,
+    icon: <Avatar
+      src={`https://picsum.photos/seed/${user?.sub}/400/`}
+      size="large"
+      alt={user?.id + " photo"}
+      className="bg-gray"
+    />,
     label:
       <div className="flex flex-row justify-between ml-1">
         <div className="flex flex-col">

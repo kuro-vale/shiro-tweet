@@ -21,7 +21,12 @@ function CommonFollowers({userId}: { userId: number }) {
         >
           <Avatar.Group>
             {users.slice(0, 3).map(username =>
-              <Avatar src={`https://picsum.photos/seed/${username}/100/`} size={24} key={username}/>)}
+              <Avatar
+                src={`https://picsum.photos/seed/${username}/100/`}
+                size={24}
+                key={username}
+                className="bg-gray"
+              />)}
           </Avatar.Group>
           <p className="text-[13px] text-secondary ml-3 hover:underline hover:text-secondary">
             Followed by {joinedUsernames}</p>
