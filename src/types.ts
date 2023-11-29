@@ -60,6 +60,12 @@ export type UserQueryData = {
   }
 }
 
+export type GetUserData = {
+  UserQueries: {
+    userByUsername: User | null
+  }
+}
+
 export type ComposeData = {
   TweetOps: {
     compose?: {

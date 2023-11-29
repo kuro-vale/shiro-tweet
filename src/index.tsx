@@ -10,10 +10,11 @@ import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
-import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY, TWEET_DETAILS} from "./constants";
+import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY, TWEET_DETAILS, USER_ROUTE} from "./constants";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
 import TweetDetails from "./pages/tweet-details";
+import User from "./pages/user";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -110,6 +111,7 @@ root.render(
               <Route element={<AppLayout/>}>
                 <Route path={HOME_ROUTE} element={<Home/>}/>
                 <Route path={TWEET_DETAILS} element={<TweetDetails/>}/>
+                <Route path={USER_ROUTE} element={<User/>}/>
                 <Route path="*" element={<NotFound/>}/>
               </Route>
 

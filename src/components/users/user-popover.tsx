@@ -5,6 +5,8 @@ import FollowButton from "./follow-button";
 import {useAuth} from "../../hooks";
 import CommonFollowers from "./common-followers";
 import {Link} from "react-router-dom";
+import UserFollowStats from "./user-follow-stats";
+import {USER_ROUTE} from "../../constants";
 
 const {Text} = Typography;
 type UserPopoverProps = {
@@ -17,16 +19,15 @@ type UserPopoverProps = {
 
 function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: UserPopoverProps) {
   const {user: currentUser} = useAuth();
+  const profileRoute = USER_ROUTE.replace(":username", user.username);
 
-  // TODO: link to profile
-  // TODO: correct links
   return (
-    <Link to={"/"} className="w-fit">
+    <Link to={profileRoute} className="w-fit">
       <Popover
         content={
           <div className="flex flex-col p-1">
             <div className="flex w-full justify-between">
-              <Link to={"/"}>
+              <Link to={profileRoute}>
                 <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size={60}/>
               </Link>
               {currentUser?.id !== user.id &&
@@ -38,11 +39,11 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
                 />}
             </div>
             <div className="flex flex-col">
-              <Link to={"/"} className="w-fit">
+              <Link to={profileRoute} className="w-fit">
                 <Text strong className="hover:underline">{user.username}</Text>
               </Link>
               <Text className="text-secondary">
-                <Link to={"/"}>
+                <Link to={profileRoute}>
                   @{user.username}
                 </Link>
                 {user.isFollowingYou &&
@@ -52,16 +53,7 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
                   </Tag>}
               </Text>
             </div>
-            <div className="mt-3">
-              <Link to={"/following"} className="hover:text-white hover:underline">
-                <Text>{user.following}</Text>
-                <Text className="text-secondary"> Following</Text>
-              </Link>
-              <Link to={"/followers"} className="ml-5 hover:text-white hover:underline">
-                <Text>{user.followers}</Text>
-                <Text className="text-secondary"> Followers</Text>
-              </Link>
-            </div>
+            <UserFollowStats user={user}/>
             {currentUser?.id !== user.id &&
               <CommonFollowers userId={user.id}/>}
           </div>}

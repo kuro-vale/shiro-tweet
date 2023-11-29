@@ -86,6 +86,24 @@ export const WHO_USER_QUERY = gql`
   }
 `;
 
+export const GET_USER_QUERY = gql`
+  query UserByUsername($username: String!) {
+    UserQueries {
+      userByUsername(username: $username) {
+        id
+        username
+        tweets
+        joined
+        isFollowingYou
+        isFollowedByYou
+        hearts
+        following
+        followers
+      }
+    }
+  }
+`;
+
 // Minified version of followers you may know
 export const COMMON_FOLLOWERS = gql`
   query CommonFollowers($userId: Int!, $cursor: Int) {

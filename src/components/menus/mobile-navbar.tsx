@@ -1,6 +1,6 @@
 import {Button, Menu} from "antd";
 import {MenuItem} from "../../types";
-import {EXPLORE_ROUTE, HOME_ROUTE, PROFILE_ROUTE} from "../../constants";
+import {EXPLORE_ROUTE, HOME_ROUTE, USER_ROUTE} from "../../constants";
 import {useLocation, useNavigate} from "react-router-dom";
 import {EllipsisOutlined, HomeFilled, HomeOutlined} from "@ant-design/icons";
 import SearchOutlined from "../icons/search-outlined";
@@ -11,6 +11,7 @@ import PencilOutlined from "../icons/pencil-outlined";
 import {useEffect, useState} from "react";
 import ComposeModal from "../modals/compose-modal";
 import {useMediaQuery} from "react-responsive";
+import {useAuth} from "../../hooks";
 
 function MobileNavbar() {
   const isMobile = useMediaQuery({maxWidth: 500});
@@ -19,6 +20,8 @@ function MobileNavbar() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const {user} = useAuth();
+  const profileRoute = USER_ROUTE.replace(":username", user!.sub);
 
   const items: MenuItem[] = [
     {
@@ -31,8 +34,8 @@ function MobileNavbar() {
       onClick: () => navigate(EXPLORE_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
-      label: "", key: PROFILE_ROUTE, icon: location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
-      onClick: () => navigate(PROFILE_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
+      label: "", key: profileRoute, icon: location.pathname === profileRoute ? <UserSolid/> : <UserOutlined/>,
+      onClick: () => navigate(profileRoute), style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
       label: "", key: "logout", style: {marginLeft: "15px", marginRight: "15px"},

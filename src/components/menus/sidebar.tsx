@@ -10,7 +10,7 @@ import {
   UnorderedListOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
-import {EXPLORE_ROUTE, HOME_ROUTE, PROFILE_ROUTE} from "../../constants";
+import {EXPLORE_ROUTE, HOME_ROUTE, USER_ROUTE} from "../../constants";
 import {useLocation, useNavigate} from "react-router-dom";
 import SearchOutlined from "../icons/search-outlined";
 import UserSolid from "../icons/user-solid";
@@ -29,6 +29,7 @@ function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const profileRoute = USER_ROUTE.replace(":username", user!.sub);
 
   const items: MenuItem[] = [
     {
@@ -62,8 +63,8 @@ function Sidebar() {
       label: "Freemium", key: "6", icon: <TwitterOutlined/>, disabled: true
     },
     {
-      label: "Profile", key: PROFILE_ROUTE, onClick: () => navigate(PROFILE_ROUTE),
-      icon: location.pathname === PROFILE_ROUTE ? <UserSolid/> : <UserOutlined/>,
+      label: "Profile", key: profileRoute, onClick: () => navigate(profileRoute),
+      icon: location.pathname === profileRoute ? <UserSolid/> : <UserOutlined/>,
     },
     {
       label: "More", key: "7", icon: <EllipsisOutlined/>, disabled: true
