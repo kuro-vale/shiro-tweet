@@ -4,6 +4,7 @@ import {useTweetToggles} from "../../hooks";
 import {message, Typography} from "antd";
 import React, {useState} from "react";
 import ComposeModal from "../modals/compose-modal";
+import {shortNumber} from "../../utils";
 
 const {Text} = Typography;
 type TweetButtonsProps = {
@@ -47,7 +48,9 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
           <div className="text-secondary cursor-pointer hover:text-primary w-fit" onClick={onClickComment}>
             <MessageOutlined className={`${xl ? "text-xl" : ""}`}/>
             {tweet.comments > 0 &&
-              <Text style={{color: "inherit"}} className="text-secondary px-2">{tweet.comments}</Text>
+              <Text style={{color: "inherit"}} className="text-secondary px-2 text-[13px]">
+                {shortNumber(tweet.comments)}
+              </Text>
             }
           </div>
         </div>
@@ -61,16 +64,16 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
             {tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0) > 0 &&
               <Text
                 style={{color: "inherit"}}
-                className={`${!isRetweetedByYou ? "" : "-translate-y-full"} px-2 absolute number-transition`}
+                className={`${!isRetweetedByYou ? "" : "-translate-y-full"} px-2 absolute number-transition text-[13px]`}
               >
-                {tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0)}
+                {shortNumber(tweet.retweets - (tweet.isRetweetedByYou ? 1 : 0))}
               </Text>}
             {/*Count with user retweet*/}
             <Text
               style={{color: "inherit"}}
-              className={`${isRetweetedByYou ? "" : "translate-y-full"} px-2 absolute number-transition`}
+              className={`${isRetweetedByYou ? "" : "translate-y-full"} px-2 absolute number-transition text-[13px]`}
             >
-              {tweet.retweets + (tweet.isRetweetedByYou ? 0 : 1)}
+              {shortNumber(tweet.retweets + (tweet.isRetweetedByYou ? 0 : 1))}
             </Text>
           </div>
         </div>
@@ -85,16 +88,16 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
             {tweet.hearts - (tweet.isHeartedByYou ? 1 : 0) > 0 &&
               <Text
                 style={{color: "inherit"}}
-                className={`${!isHeartedByYou ? "" : "-translate-y-full"} px-2 absolute number-transition`}
+                className={`${!isHeartedByYou ? "" : "-translate-y-full"} px-2 absolute number-transition text-[13px]`}
               >
-                {tweet.hearts - (tweet.isHeartedByYou ? 1 : 0)}
+                {shortNumber(tweet.hearts - (tweet.isHeartedByYou ? 1 : 0))}
               </Text>}
             {/*Count with user heart*/}
             <Text
               style={{color: "inherit"}}
-              className={`${isHeartedByYou ? "" : "translate-y-full"} px-2 absolute number-transition`}
+              className={`${isHeartedByYou ? "" : "translate-y-full"} px-2 absolute number-transition text-[13px]`}
             >
-              {tweet.hearts + (tweet.isHeartedByYou ? 0 : 1)}
+              {shortNumber(tweet.hearts + (tweet.isHeartedByYou ? 0 : 1))}
             </Text>
           </div>
         </div>

@@ -11,10 +11,11 @@ type FollowButtonProps = {
   user: User,
   confirmUnfollow: boolean,
   isFollowedByYou: boolean,
-  setIsFollowedByYou: (v: boolean) => void
+  setIsFollowedByYou: (v: boolean) => void,
+  xl?: boolean,
 }
 
-function FollowButton({user, confirmUnfollow, isFollowedByYou, setIsFollowedByYou}: FollowButtonProps) {
+function FollowButton({user, confirmUnfollow, isFollowedByYou, setIsFollowedByYou, xl}: FollowButtonProps) {
   const [messageApi, contextHolder] = message.useMessage();
   const [v, setValues] = useState({
     followingWhiteButton: false,
@@ -59,22 +60,22 @@ function FollowButton({user, confirmUnfollow, isFollowedByYou, setIsFollowedByYo
         // Unfollow button
         ? <Button
           shape="round"
-          className={`${v.followingWhiteButton ? "following-white border-none" : ""} bg-black hover:bg-hover-red transition-none h-[34px] w-24 self-center`}
+          className={`${v.followingWhiteButton ? "following-white border-none" : ""} ${xl ? "w-28 h-[38px]" : "w-24 h-[34px]"} bg-black hover:bg-hover-red transition-none self-center`}
           onMouseEnter={() => setValues({...v, unfollowHover: true})}
           onMouseLeave={() => setValues({...v, unfollowHover: false, followingWhiteButton: false})}
           onClick={() => confirmUnfollow ? setValues({...v, unfollowModal: true}) : onUnfollow()}
         >
-          <Text strong className={`${v.unfollowHover ? "text-red" : "text-white"} text-sm`}>
+          <Text strong className={`${v.unfollowHover ? "text-red" : "text-white"} ${xl ? "" : "text-sm"}`}>
             {v.unfollowHover ? "Unfollow" : "Following"}
           </Text>
         </Button>
         // Follow button
         : <Button
           shape="round"
-          className="bg-white hover:bg-hover-white transition-none h-[34px] w-20 self-center"
+          className={`${xl ? "w-28 h-[38px]" : "w-20 h-[34px]"} bg-white hover:bg-hover-white transition-none self-center`}
           onClick={onFollow}
         >
-          <Text strong className="text-black text-sm">Follow</Text>
+          <Text strong className={`${xl ? "" : "text-sm"} text-black`}>Follow</Text>
         </Button>
       }
     </>

@@ -49,3 +49,15 @@ export async function showMessage(messageApi: MessageInstance, message: string, 
     icon: <></>,
   });
 }
+
+export function shortNumber(num: number): string {
+  if (num < 1000) {
+    return num.toString();
+  } else if (num < 1_000_000) {
+    return (num / 1000).toFixed(1) + "K";
+  } else if (num < 1_000_000_000) {
+    return (num / 1_000_000).toFixed(1) + "M";
+  } else {
+    return (num / 1_000_000_000).toFixed(1) + "B";
+  }
+}

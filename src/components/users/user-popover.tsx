@@ -47,7 +47,7 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
                   @{user.username}
                 </Link>
                 {user.isFollowingYou &&
-                  <Tag className="text-[11px] bg-tag h-4 border-0 self-center text-secondary font-bold ml-1"
+                  <Tag className="text-[11px] bg-tag h-4 border-0 self-center text-secondary font-bold px-1 ml-1"
                        bordered={false}>
                     Follows you
                   </Tag>}
