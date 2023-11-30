@@ -6,7 +6,7 @@ import {
   HomeFilled,
   HomeOutlined,
   MailOutlined,
-  TwitterOutlined,
+  ThunderboltOutlined,
   UnorderedListOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
@@ -30,6 +30,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const profileRoute = USER_ROUTE.replace(":username", user!.sub);
+  const locationPath = `/${location.pathname.split("/")[1]}`;
 
   const items: MenuItem[] = [
     {
@@ -38,11 +39,11 @@ function Sidebar() {
     },
     {
       label: "Home", key: HOME_ROUTE, onClick: () => navigate(HOME_ROUTE),
-      icon: location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
+      icon: locationPath === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
     },
     {
       label: "Explore", key: EXPLORE_ROUTE, onClick: () => navigate(EXPLORE_ROUTE),
-      icon: <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "broad" : ""}/>,
+      icon: <SearchOutlined className={locationPath === EXPLORE_ROUTE ? "broad" : ""}/>,
     },
     {
       label: "Notifications", key: "1", icon: <BellOutlined/>, disabled: true
@@ -60,11 +61,11 @@ function Sidebar() {
       label: "Communities", key: "5", icon: <UsergroupAddOutlined/>, disabled: true
     },
     {
-      label: "Freemium", key: "6", icon: <TwitterOutlined/>, disabled: true
+      label: "Freemium", key: "6", icon: <ThunderboltOutlined/>, disabled: true
     },
     {
       label: "Profile", key: profileRoute, onClick: () => navigate(profileRoute),
-      icon: location.pathname === profileRoute ? <UserSolid/> : <UserOutlined/>,
+      icon: locationPath === profileRoute ? <UserSolid/> : <UserOutlined/>,
     },
     {
       label: "More", key: "7", icon: <EllipsisOutlined/>, disabled: true
@@ -93,7 +94,7 @@ function Sidebar() {
     <>
       <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
       <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-16">
-        <Menu mode="inline" items={items} selectedKeys={[location.pathname]}/>
+        <Menu mode="inline" items={items} selectedKeys={[locationPath]}/>
         <Button
           shape="round"
           className="bg-primary hover:bg-hover-primary w-[233px] h-[50px] transition-none mt-3 ml-1 lg:hidden"

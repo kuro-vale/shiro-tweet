@@ -10,11 +10,22 @@ import Home from "./pages/home";
 import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
-import {HOME_ROUTE, LANDING_ROUTE, TOKEN_KEY, TWEET_DETAILS, USER_ROUTE} from "./constants";
+import {
+  HOME_ROUTE,
+  LANDING_ROUTE,
+  LIKES_ROUTE,
+  RETWEETS_ROUTE,
+  TOKEN_KEY,
+  TWEET_DETAILS,
+  USER_ROUTE
+} from "./constants";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
 import TweetDetails from "./pages/tweet-details";
 import UserPage from "./pages/user-page";
+import UserIndex from "./pages/user-index";
+import UserRetweets from "./pages/user-retweets";
+import UserLikes from "./pages/user-likes";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -111,7 +122,11 @@ root.render(
               <Route element={<AppLayout/>}>
                 <Route path={HOME_ROUTE} element={<Home/>}/>
                 <Route path={TWEET_DETAILS} element={<TweetDetails/>}/>
-                <Route path={USER_ROUTE} element={<UserPage/>}/>
+                <Route path={USER_ROUTE} element={<UserPage/>}>
+                  <Route path="" element={<UserIndex/>}/>
+                  <Route path={RETWEETS_ROUTE} element={<UserRetweets/>}/>
+                  <Route path={LIKES_ROUTE} element={<UserLikes/>}/>
+                </Route>
                 <Route path="*" element={<NotFound/>}/>
               </Route>
 

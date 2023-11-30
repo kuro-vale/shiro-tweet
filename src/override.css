@@ -74,6 +74,11 @@
 .ant-tabs-tab {
     width: 50% !important;
     justify-content: center !important;
+    color: var(--color-secondary) !important;
+}
+
+.ant-tabs-tab:hover {
+    background-color: var(--color-hover-menu-item);
 }
 
 .ant-tabs-tab-active {

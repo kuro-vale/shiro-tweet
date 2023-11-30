@@ -1,7 +1,7 @@
 import TimelineLayout from "../components/layouts/timeline-layout";
-import {useNavigate, useParams} from "react-router-dom";
+import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
 import {ArrowLeftOutlined, CalendarOutlined} from "@ant-design/icons";
-import {Avatar, Tag, Typography} from "antd";
+import {Avatar, Tabs, TabsProps, Tag, Typography} from "antd";
 import Aside from "../components/menus/aside";
 import {useQuery} from "@apollo/client";
 import {GetUserData, User} from "../types";
@@ -12,6 +12,8 @@ import UserFollowStats from "../components/users/user-follow-stats";
 import {useAuth} from "../hooks";
 import {useState} from "react";
 import FollowButton from "../components/users/follow-button";
+import CommonFollowers from "../components/users/common-followers";
+import {LIKES_ROUTE, RETWEETS_ROUTE, USER_ROUTE} from "../constants";
 
 const {Text} = Typography;
 
@@ -33,6 +35,7 @@ const FollowButtonState = ({user}: { user: User }) => {
 
 function UserPage() {
   const {username} = useParams();
+  const location = useLocation();
   const {user: currentUser} = useAuth();
   const navigate = useNavigate();
   const {error, data} = useQuery<GetUserData>(GET_USER_QUERY, {
@@ -43,6 +46,16 @@ function UserPage() {
   });
   if (error) return (<ErrorResult message={error.message}/>);
   const user = data?.UserQueries.userByUsername;
+  const items: TabsProps["items"] = [{
+    key: USER_ROUTE.replace(":username", user?.username || ""),
+    label: "Tweets"
+  }, {
+    key: RETWEETS_ROUTE.replace(":username", user?.username || ""),
+    label: "Retweets"
+  }, {
+    key: LIKES_ROUTE.replace(":username", user?.username || ""),
+    label: "Likes",
+  }];
 
   return (
     <>
@@ -86,7 +99,14 @@ function UserPage() {
             </Text>
             <Text className="text-secondary"><CalendarOutlined/> Joined {getMonthAndYear(user.joined!)}</Text>
             <UserFollowStats user={user}/>
+            <CommonFollowers userId={user.id}/>
           </div>
+          <Tabs
+            defaultActiveKey={location.pathname}
+            items={items}
+            onTabClick={k => navigate(k, {replace: true})}
+          />
+          <Outlet/>
         </>}
         {user === null && <ErrorResult message="This account doesn’t exist"/>}
       </TimelineLayout>
