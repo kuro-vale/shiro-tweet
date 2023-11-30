@@ -15,6 +15,7 @@ import {
   LANDING_ROUTE,
   LIKES_ROUTE,
   NOT_FOUND_ROUTE,
+  REPLIES_ROUTE,
   RETWEETS_ROUTE,
   TOKEN_KEY,
   TWEET_DETAILS,
@@ -27,6 +28,7 @@ import UserPage from "./pages/user-page";
 import UserIndex from "./pages/user-index";
 import UserRetweets from "./pages/user-retweets";
 import UserLikes from "./pages/user-likes";
+import UserReplies from "./pages/user-replies";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -125,6 +127,7 @@ root.render(
                 <Route path={TWEET_DETAILS} element={<TweetDetails/>}/>
                 <Route path={USER_ROUTE} element={<UserPage/>}>
                   <Route path="" element={<UserIndex/>}/>
+                  <Route path={REPLIES_ROUTE} element={<UserReplies/>}/>
                   <Route path={RETWEETS_ROUTE} element={<UserRetweets/>}/>
                   <Route path={LIKES_ROUTE} element={<UserLikes/>}/>
                 </Route>

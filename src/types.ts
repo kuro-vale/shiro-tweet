@@ -17,6 +17,10 @@ export type AuthContextProps = {
   onRegister: (request: AuthRequest) => Promise<void>,
 }
 
+export type ProfileContextProps = {
+  profile: User | null,
+}
+
 export type ModalProps = {
   open: boolean,
   onClose: () => void,
@@ -45,6 +49,7 @@ export type TweetData = {
   TweetQueries: {
     index: Tweet[],
     tweetComments: Tweet[],
+    indexUserTweets: Tweet[],
   }
 }
 

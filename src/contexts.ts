@@ -1,4 +1,4 @@
-import {AuthContextProps} from "./types";
+import {AuthContextProps, ProfileContextProps} from "./types";
 import {createContext} from "react";
 
 export const AuthContext = createContext<AuthContextProps>({
@@ -12,4 +12,8 @@ export const AuthContext = createContext<AuthContextProps>({
   onRegister: () => {
     throw new Error("Not Implemented");
   },
+});
+
+export const ProfileContext = createContext<ProfileContextProps>({
+  profile: null,
 });

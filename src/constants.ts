@@ -6,6 +6,7 @@ export const LANDING_ROUTE = "/";
 export const EXPLORE_ROUTE = "/explore";
 export const USER_ROUTE = "/:username";
 
+export const REPLIES_ROUTE = "/:username/with_replies";
 export const RETWEETS_ROUTE = "/:username/retweets";
 export const LIKES_ROUTE = "/:username/likes";
 

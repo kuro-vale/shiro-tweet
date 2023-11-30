@@ -24,6 +24,7 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
   return (
     <Link to={profileRoute} className="w-fit h-fit" onClick={e => e.stopPropagation()}>
       <Popover
+        mouseEnterDelay={.3}
         content={
           <div className="flex flex-col p-1">
             <div className="flex w-full justify-between">

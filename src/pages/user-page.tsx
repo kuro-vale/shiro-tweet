@@ -10,10 +10,11 @@ import ErrorResult from "../components/error-result";
 import {getMonthAndYear} from "../utils";
 import UserFollowStats from "../components/users/user-follow-stats";
 import {useAuth} from "../hooks";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import FollowButton from "../components/users/follow-button";
 import CommonFollowers from "../components/users/common-followers";
-import {LIKES_ROUTE, RETWEETS_ROUTE, USER_ROUTE} from "../constants";
+import {LIKES_ROUTE, REPLIES_ROUTE, RETWEETS_ROUTE, USER_ROUTE} from "../constants";
+import ProfileProvider from "../profile-provider";
 
 const {Text} = Typography;
 
@@ -44,14 +45,29 @@ function UserPage() {
     },
     fetchPolicy: "no-cache"
   });
-  if (error) return (<ErrorResult message={error.message}/>);
+  const [profile, setProfile] = useState<User | null>(null);
   const user = data?.UserQueries.userByUsername;
+  useEffect(() => {
+    if (user) setProfile(user);
+
+    return () => {
+      setProfile(null);
+    };
+  }, [user]);
+  if (error) return (<ErrorResult message={error.message}/>);
   const items: TabsProps["items"] = [{
     key: USER_ROUTE.replace(":username", user?.username || ""),
     label: "Tweets"
   }, {
+    key: REPLIES_ROUTE.replace(":username", user?.username || ""),
+    label: "Replies"
+  }, {
     key: RETWEETS_ROUTE.replace(":username", user?.username || ""),
     label: "Retweets"
+  }, {
+    key: "0",
+    label: "Media",
+    disabled: true
   }, {
     key: LIKES_ROUTE.replace(":username", user?.username || ""),
     label: "Likes",
@@ -106,7 +122,9 @@ function UserPage() {
             items={items}
             onTabClick={k => navigate(k, {replace: true})}
           />
-          <Outlet/>
+          <ProfileProvider profile={profile}>
+            <Outlet/>
+          </ProfileProvider>
         </>}
         {user === null && <ErrorResult message="This account doesn’t exist"/>}
       </TimelineLayout>

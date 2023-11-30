@@ -45,6 +45,51 @@ export const INDEX_QUERY = gql`
   }
 `;
 
+export const USER_INDEX_QUERY = gql`
+  query IndexUserTweets($userId: Int!) {
+    TweetQueries {
+      indexUserTweets(userId: $userId) {
+        id
+        body
+        author {
+          id
+          username
+          followers
+          following
+          isFollowedByYou
+          isFollowingYou
+        }
+        createdAt
+        comments
+        hearts
+        retweets
+        isHeartedByYou
+        isRetweetedByYou
+        parentId
+        parent {
+          id
+          body
+          author {
+            id
+            username
+            followers
+            following
+            isFollowedByYou
+            isFollowingYou
+          }
+          createdAt
+          comments
+          hearts
+          retweets
+          isHeartedByYou
+          isRetweetedByYou
+          parentId
+        }
+      }
+    }
+  }
+`;
+
 export const COMMENTS_QUERY = gql`
   query TweetComments($tweetId: Int!, $cursor: Int) {
     TweetQueries {

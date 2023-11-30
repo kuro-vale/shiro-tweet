@@ -1,38 +1,52 @@
 import {DocumentNode, useQuery} from "@apollo/client";
-import {TweetData} from "../../types";
+import {Tweet, TweetData} from "../../types";
 import {Button, Result, Spin, Typography} from "antd";
 import ErrorResult from "../error-result";
 import TweetCard from "./tweet-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {ReactElement, useEffect, useState} from "react";
 import {EXPLORE_ROUTE} from "../../constants";
+import {COMMENTS_QUERY, INDEX_QUERY, USER_INDEX_QUERY} from "../../graphql/queries";
 
 const {Text} = Typography;
 type TweetListProps = {
   query: DocumentNode,
   tweetId?: number,
-  showResult?: boolean
+  userId?: number,
+  showResult?: boolean,
 }
 
-function TweetList({query, tweetId, showResult}: TweetListProps) {
+function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
   const [cursor, setCursor] = useState<number | null>(null);
   const [tweetCards, setTweetCards] = useState<ReactElement[]>([]);
   const {loading, error, data} = useQuery<TweetData>(query, {
     variables: {
       cursor,
-      tweetId
+      tweetId,
+      userId,
     },
     fetchPolicy: "no-cache"
   });
   const [hasMore, setHasMore] = useState(true);
 
-  const tweetList = data?.TweetQueries.index || data?.TweetQueries.tweetComments;
+  let tweetList: Tweet[] | undefined;
+  switch (query) {
+    case INDEX_QUERY:
+      tweetList = data?.TweetQueries.index;
+      break;
+    case COMMENTS_QUERY:
+      tweetList = data?.TweetQueries.tweetComments;
+      break;
+    case USER_INDEX_QUERY:
+      tweetList = data?.TweetQueries.indexUserTweets;
+      break;
+  }
   useEffect(() => {
     if (tweetList) {
       setTweetCards(tweets => [...tweets,
-        ...tweetList.map(tweet => {
+        ...tweetList!.map(tweet => {
             if (tweet) return (<TweetCard key={tweet.id} tweet={tweet}/>);
-            else return <span key={tweetList.length}></span>;
+            else return <span key={0}></span>;
           }
         )]);
     }

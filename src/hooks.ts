@@ -1,4 +1,4 @@
-import {AuthContext} from "./contexts";
+import {AuthContext, ProfileContext} from "./contexts";
 import {useContext, useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {HEART_MUTATION, RETWEET_MUTATION, UNHEART_MUTATION, UNRETWEET_MUTATION} from "./graphql/mutations";
@@ -7,6 +7,10 @@ import {MessageInstance} from "antd/lib/message/interface";
 
 export const useAuth = () => {
   return useContext(AuthContext);
+};
+
+export const useProfile = () => {
+  return useContext(ProfileContext);
 };
 
 export const useTitle = (title: string) => {
