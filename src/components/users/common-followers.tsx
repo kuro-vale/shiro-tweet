@@ -2,9 +2,15 @@ import {useQuery} from "@apollo/client";
 import {COMMON_FOLLOWERS} from "../../graphql/queries";
 import {FollowersYouMayKnowData} from "../../types";
 import {Link} from "react-router-dom";
-import {Avatar} from "antd";
+import {Avatar, Typography} from "antd";
 
-function CommonFollowers({userId}: { userId: number }) {
+const {Text} = Typography;
+type CommonFollowersProps = {
+  userId: number,
+  showMessage?: boolean
+}
+
+function CommonFollowers({userId, showMessage}: CommonFollowersProps) {
   const {data} = useQuery<FollowersYouMayKnowData>(COMMON_FOLLOWERS, {variables: {userId}});
 
   const users = data?.UserQueries.followersYouMayKnow.map(user => user.username) || [];
@@ -14,7 +20,7 @@ function CommonFollowers({userId}: { userId: number }) {
   return (
     // TODO: Fix url
     <>
-      {users.length > 0 &&
+      {users.length > 0 ?
         <Link
           to={"/followers_you_follow"}
           className="flex flex-row mt-3 text-secondary hover:underline hover:text-secondary"
@@ -30,7 +36,10 @@ function CommonFollowers({userId}: { userId: number }) {
           </Avatar.Group>
           <p className="text-[13px] text-secondary ml-3 hover:underline hover:text-secondary">
             Followed by {joinedUsernames}</p>
-        </Link>}
+        </Link>
+        : showMessage &&
+        <Text className="text-[13px] text-secondary mt-2">Not followed by anyone you’re following</Text>
+      }
     </>
   );
 }
