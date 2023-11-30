@@ -21,7 +21,7 @@ const {Text} = Typography;
 
 function TweetDetails() {
   const {tweetId} = useParams();
-  if (!parseInt(tweetId!)) window.location.href = NOT_FOUND_ROUTE;
+  if (!/^[0-9]+$/.test(tweetId!)) window.location.href = NOT_FOUND_ROUTE;
   const navigate = useNavigate();
   const {loading, error, data} = useQuery<TweetByIdData>(TWEET_BY_ID_QUERY, {
     variables: {
