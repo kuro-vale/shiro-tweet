@@ -99,7 +99,7 @@ function UserPage() {
             </Text>
             <Text className="text-secondary"><CalendarOutlined/> Joined {getMonthAndYear(user.joined!)}</Text>
             <UserFollowStats user={user}/>
-            <CommonFollowers userId={user.id}/>
+            {currentUser?.id !== user.id && <CommonFollowers userId={user.id}/>}
           </div>
           <Tabs
             defaultActiveKey={location.pathname}

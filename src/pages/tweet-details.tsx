@@ -42,8 +42,9 @@ function TweetDetails() {
   useEffect(() => {
     if (tweet && username !== tweet.author.username) {
       navigate(TWEET_DETAILS
-        .replace(":tweetId", `${tweet.id}`)
-        .replace(":username", tweet.author.username));
+          .replace(":tweetId", `${tweet.id}`)
+          .replace(":username", tweet.author.username),
+        {replace: true});
     }
   }, [navigate, tweet, username]);
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet?.author.isFollowedByYou);
