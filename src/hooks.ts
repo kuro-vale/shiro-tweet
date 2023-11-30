@@ -1,5 +1,5 @@
 import {AuthContext} from "./contexts";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {HEART_MUTATION, RETWEET_MUTATION, UNHEART_MUTATION, UNRETWEET_MUTATION} from "./graphql/mutations";
 import {handleError} from "./utils";
@@ -7,6 +7,14 @@ import {MessageInstance} from "antd/lib/message/interface";
 
 export const useAuth = () => {
   return useContext(AuthContext);
+};
+
+export const useTitle = (title: string) => {
+  useEffect(() => {
+    if (!title.includes("undefined")) {
+      document.title = title + " / shiro-tweet";
+    }
+  }, [title]);
 };
 
 export const useTweetToggles = (isHeartedByYouInitial: boolean, isRetweetedByYouInitial: boolean) => {

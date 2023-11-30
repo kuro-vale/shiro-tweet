@@ -1,10 +1,13 @@
 import {Button, Result, Typography} from "antd";
 import {QuestionOutlined} from "@ant-design/icons";
 import {EXPLORE_ROUTE} from "../constants";
+import {useTitle} from "../hooks";
 
 const {Text} = Typography;
 
 function NotFound() {
+  useTitle("Not Found");
+
   return (
     <Result
       icon={<QuestionOutlined/>}

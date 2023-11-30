@@ -6,9 +6,11 @@ export const LANDING_ROUTE = "/";
 export const EXPLORE_ROUTE = "/explore";
 export const USER_ROUTE = "/:username";
 
-export const RETWEETS_ROUTE = "/:username/retweets"
-export const LIKES_ROUTE = "/:username/likes"
+export const RETWEETS_ROUTE = "/:username/retweets";
+export const LIKES_ROUTE = "/:username/likes";
 
 export const TWEET_DETAILS = "/tweets/:tweetId";
+
+export const NOT_FOUND_ROUTE = "/404";
 
 export const DATE_FORMAT = "MMMM DD, YYYY at h:mm a";

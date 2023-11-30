@@ -14,6 +14,7 @@ import {
   HOME_ROUTE,
   LANDING_ROUTE,
   LIKES_ROUTE,
+  NOT_FOUND_ROUTE,
   RETWEETS_ROUTE,
   TOKEN_KEY,
   TWEET_DETAILS,
@@ -128,6 +129,7 @@ root.render(
                   <Route path={LIKES_ROUTE} element={<UserLikes/>}/>
                 </Route>
                 <Route path="*" element={<NotFound/>}/>
+                <Route path={NOT_FOUND_ROUTE} element={<NotFound/>}/>
               </Route>
 
             </Routes>

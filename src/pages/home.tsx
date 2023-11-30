@@ -5,8 +5,10 @@ import type {TabsProps} from "antd";
 import {Tabs} from "antd";
 import ComposeTweet from "../components/tweets/compose-tweet";
 import {INDEX_QUERY} from "../graphql/queries";
+import {useTitle} from "../hooks";
 
 function Home() {
+  useTitle("Home");
   const items: TabsProps["items"] = [{
     key: "1",
     label: "For you",

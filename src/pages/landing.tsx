@@ -5,11 +5,13 @@ import {useSearchParams} from "react-router-dom";
 import AppleIcon from "../components/icons/apple-icon";
 import GoogleIcon from "../components/icons/google-icon";
 import RegisterModal from "../components/modals/auth-modals/register-modal";
+import {useTitle} from "../hooks";
 
 const {Footer, Content} = Layout;
 const {Link, Text} = Typography;
 
 function Landing() {
+  useTitle("It’s what’s happening");
   const [search] = useSearchParams();
   const [openLogin, setOpenLogin] = useState(!!search.get("login"));
   const [openRegister, setOpenRegister] = useState(!!search.get("register"));
