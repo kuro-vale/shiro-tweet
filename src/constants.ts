@@ -9,7 +9,7 @@ export const USER_ROUTE = "/:username";
 export const RETWEETS_ROUTE = "/:username/retweets";
 export const LIKES_ROUTE = "/:username/likes";
 
-export const TWEET_DETAILS = "/tweets/:tweetId";
+export const TWEET_DETAILS = "/:username/:tweetId";
 
 export const NOT_FOUND_ROUTE = "/404";
 

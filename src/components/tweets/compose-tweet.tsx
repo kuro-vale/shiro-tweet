@@ -84,7 +84,10 @@ function ComposeTweet({onComplete, tweet, sm}: ComposeTweetProps) {
       const resultId = data?.TweetOps.compose?.id || data?.TweetOps.comment?.id;
       setProgress(10);
       form.resetFields();
-      await showMessage(messageApi, "Your tweet was sent.", TWEET_DETAILS.replace(":tweetId", `${resultId}`));
+      await showMessage(messageApi, "Your tweet was sent.",
+        TWEET_DETAILS
+          .replace(":tweetId", `${resultId}`)
+          .replace(":username", user!.sub));
       onComplete?.();
     } catch (e) {
       await handleError(messageApi, e);

@@ -14,13 +14,13 @@ import TweetButtons from "../components/tweets/tweet-buttons";
 import {getDateDetails} from "../utils";
 import ComposeTweet from "../components/tweets/compose-tweet";
 import TweetList from "../components/tweets/tweet-list";
-import {NOT_FOUND_ROUTE} from "../constants";
+import {NOT_FOUND_ROUTE, TWEET_DETAILS} from "../constants";
 import {useTitle} from "../hooks";
 
 const {Text} = Typography;
 
 function TweetDetails() {
-  const {tweetId} = useParams();
+  const {tweetId, username} = useParams();
   if (!/^[0-9]+$/.test(tweetId!)) window.location.href = NOT_FOUND_ROUTE;
   const navigate = useNavigate();
   const {loading, error, data} = useQuery<TweetByIdData>(TWEET_BY_ID_QUERY, {
@@ -39,6 +39,13 @@ function TweetDetails() {
       window.history.scrollRestoration = "auto";
     };
   }, [tweet]);
+  useEffect(() => {
+    if (tweet && username !== tweet.author.username) {
+      navigate(TWEET_DETAILS
+        .replace(":tweetId", `${tweet.id}`)
+        .replace(":username", tweet.author.username));
+    }
+  }, [navigate, tweet, username]);
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet?.author.isFollowedByYou);
   if (error) return (<ErrorResult message={error.message}/>);
   if (!loading && !tweet) window.location.href = NOT_FOUND_ROUTE;

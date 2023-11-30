@@ -21,7 +21,10 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
 
   return (
     <article className={`flex mb-3 ${replying ? "" : "cursor-pointer"}`}
-             onClick={() => !replying && navigate(TWEET_DETAILS.replace(":tweetId", `${tweet.id}`))}>
+             onClick={() => !replying &&
+               navigate(TWEET_DETAILS
+                 .replace(":tweetId", `${tweet.id}`)
+                 .replace(":username", tweet.author.username))}>
       <div>
         {replying ?
           <Avatar
@@ -61,7 +64,9 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
           <Text
             className={`text-secondary ${replying ? "" : "hover:underline"}`}>{getDateMinimal(tweet.createdAt)}</Text>
           : <Link
-            to={TWEET_DETAILS.replace(":tweetId", `${tweet.id}`)}
+            to={TWEET_DETAILS
+              .replace(":tweetId", `${tweet.id}`)
+              .replace(":username", tweet.author.username)}
             className={`text-secondary ${replying ? "" : "hover:underline hover:text-secondary"}`}
           >
             {getDateMinimal(tweet.createdAt)}

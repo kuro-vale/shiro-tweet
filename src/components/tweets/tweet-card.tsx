@@ -23,7 +23,10 @@ function TweetCard({tweet}: TweetCardProps) {
       {tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
       <article
         className="flex cursor-pointer"
-        onClick={() => navigate(TWEET_DETAILS.replace(":tweetId", `${tweet.id}`))}
+        onClick={() =>
+          navigate(TWEET_DETAILS
+            .replace(":tweetId", `${tweet.id}`)
+            .replace(":username", tweet.author.username))}
       >
         <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
           <Avatar
@@ -42,7 +45,9 @@ function TweetCard({tweet}: TweetCardProps) {
           </UserPopover>
           <Text className="text-secondary"> · </Text>
           <Link
-            to={TWEET_DETAILS.replace(":tweetId", `${tweet.id}`)}
+            to={TWEET_DETAILS
+              .replace(":tweetId", `${tweet.id}`)
+              .replace(":username", tweet.author.username)}
             className="text-secondary hover:underline hover:text-secondary"
           >
             {getDateMinimal(tweet.createdAt)}
