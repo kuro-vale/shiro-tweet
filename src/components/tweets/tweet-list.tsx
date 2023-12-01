@@ -79,15 +79,16 @@ function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage}: Twe
     <div/>
   </Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
-  if (!loading && tweetCards.length === 0 && emptyMessage) return (
-    <Result
-      title={emptyMessage}
-      extra={
-        <Button shape="round" size="large" className="bg-primary hover:bg-hover-primary" href={EXPLORE_ROUTE}>
-          <Text strong>Search</Text>
-        </Button>
-      }
-    />);
+  if (!loading && (tweetList?.length === 0 || cursorTweetList?.length === 0) && tweetCards.length === 0 && emptyMessage)
+    return (
+      <Result
+        title={emptyMessage}
+        extra={
+          <Button shape="round" size="large" className="bg-primary hover:bg-hover-primary" href={EXPLORE_ROUTE}>
+            <Text strong>Search</Text>
+          </Button>
+        }
+      />);
 
   const handleNext = () => {
     if (tweetList) {

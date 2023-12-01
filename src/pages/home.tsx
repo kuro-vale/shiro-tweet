@@ -25,7 +25,10 @@ function Home() {
         <div className="xs:hidden ht:hidden px-4 border-b-[1px] border-b-border mt-3">
           <ComposeTweet/>
         </div>
-        <TweetList query={INDEX_QUERY} emptyMessage="Your feed is empty, but you can follow someone to see their tweets."/>
+        <TweetList
+          query={INDEX_QUERY}
+          emptyMessage="Your feed is empty, but you can follow someone to see their tweets."
+        />
       </TimelineLayout>
       <Aside showSearchBar={true}/>
     </>

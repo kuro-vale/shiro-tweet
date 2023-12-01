@@ -7,7 +7,7 @@ import {useQuery} from "@apollo/client";
 import {GetUserData, User} from "../types";
 import {GET_USER_QUERY} from "../graphql/queries";
 import ErrorResult from "../components/error-result";
-import {getMonthAndYear} from "../utils";
+import {getMonthAndYear, shortNumber} from "../utils";
 import UserFollowStats from "../components/users/user-follow-stats";
 import {useAuth} from "../hooks";
 import {useEffect, useState} from "react";
@@ -15,6 +15,7 @@ import FollowButton from "../components/users/follow-button";
 import CommonFollowers from "../components/users/common-followers";
 import {LIKES_ROUTE, REPLIES_ROUTE, RETWEETS_ROUTE, USER_ROUTE} from "../constants";
 import ProfileProvider from "../profile-provider";
+import {useMediaQuery} from "react-responsive";
 
 const {Text} = Typography;
 
@@ -37,6 +38,7 @@ const FollowButtonState = ({user}: { user: User }) => {
 function UserPage() {
   const {username} = useParams();
   const location = useLocation();
+  const isMobile = useMediaQuery({maxWidth: 500});
   const {user: currentUser} = useAuth();
   const navigate = useNavigate();
   const {error, data} = useQuery<GetUserData>(GET_USER_QUERY, {
@@ -47,6 +49,7 @@ function UserPage() {
   });
   const [profile, setProfile] = useState<User | null>(null);
   const user = data?.UserQueries.userByUsername;
+  const likesRoute = LIKES_ROUTE.replace(":username", user?.username || "");
   useEffect(() => {
     if (user) setProfile(user);
 
@@ -69,9 +72,10 @@ function UserPage() {
     label: "Media",
     disabled: true
   }, {
-    key: LIKES_ROUTE.replace(":username", user?.username || ""),
+    key: likesRoute,
     label: "Likes",
   }];
+  if (isMobile) items.splice(3, 1);
 
   return (
     <>
@@ -85,18 +89,20 @@ function UserPage() {
           </button>
           <div className="flex flex-col">
             <Text strong className="text-xl">{username}</Text>
-            <Text className="text-[13px] text-secondary">{`${user ? user.tweets + " tweets" : ""}`}</Text>
+            {!!user && <Text className="text-[13px] text-secondary">
+              {location.pathname === likesRoute ? `${shortNumber(user.hearts!)} likes` : `${shortNumber(user.tweets!)} tweets`}
+            </Text>}
           </div>
         </div>
-        <div className="w-full h-[200px] bg-gray">
+        <div className="w-full max-h-[200px] bg-gray">
           <img src={`https://picsum.photos/seed/${username}1/600/200`} alt={username + " banner"}/>
         </div>
         <div className="flex justify-between mx-4 mb-3">
           <Avatar
             src={`https://picsum.photos/seed/${username}/400/`}
-            size={138}
+            size={isMobile ? 90 : 138}
             alt={username + " photo"}
-            className="border-[3px] border-black -mt-[70px] bg-gray"
+            className={`${isMobile ? "-mt-[42px]" : "-mt-[70px]"} border-[3px] border-black bg-gray`}
           />
           {user && currentUser!.id !== user.id &&
             <FollowButtonState user={user}/>

@@ -2,7 +2,7 @@ import {ParentProps} from "../../types";
 
 function TimelineLayout(props: ParentProps) {
   return (
-    <section className="w-[600px] h-full border-x-[1px] border-x-border xs:border-x-0">
+    <section className="w-full max-w-[600px] h-full border-x-[1px] border-x-border xs:border-x-0">
       {props.children}
     </section>
   );

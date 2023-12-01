@@ -85,6 +85,10 @@
     font-weight: 600;
 }
 
+.ant-tabs-tab-btn:active {
+    color: inherit !important;
+}
+
 .ant-tabs-tab-active .ant-tabs-tab-btn {
     color: var(--color-white-light) !important;
 }
