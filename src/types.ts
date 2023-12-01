@@ -51,6 +51,7 @@ export type TweetData = {
     tweetComments: Tweet[],
     indexUserTweets: Tweet[],
     queryUserTweets: Tweet[],
+    getUserHearts: CursorTweet[],
   }
 }
 
@@ -101,6 +102,11 @@ export type Tweet = {
   parentId: number | null,
   parent?: Tweet
   author: User
+}
+
+export type CursorTweet = {
+  cursorId: number,
+  tweet: Tweet,
 }
 
 export type User = {

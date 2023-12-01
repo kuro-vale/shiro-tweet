@@ -66,25 +66,6 @@ export const USER_INDEX_QUERY = gql`
         isHeartedByYou
         isRetweetedByYou
         parentId
-        parent {
-          id
-          body
-          author {
-            id
-            username
-            followers
-            following
-            isFollowedByYou
-            isFollowingYou
-          }
-          createdAt
-          comments
-          hearts
-          retweets
-          isHeartedByYou
-          isRetweetedByYou
-          parentId
-        }
       }
     }
   }
@@ -130,6 +111,35 @@ export const USER_TWEETS = gql`
           isRetweetedByYou
           parentId
         }
+      }
+    }
+  }
+`;
+
+export const USER_HEARTS = gql`
+  query GetUserHearts($userId: Int!, $cursor: Int) {
+    TweetQueries {
+      getUserHearts(userId: $userId, cursor: $cursor) {
+        tweet {
+          id
+          body
+          author {
+            id
+            username
+            followers
+            following
+            isFollowedByYou
+            isFollowingYou
+          }
+          createdAt
+          comments
+          hearts
+          retweets
+          isHeartedByYou
+          isRetweetedByYou
+          parentId
+        }
+        cursorId
       }
     }
   }

@@ -1,12 +1,12 @@
 import {DocumentNode, useQuery} from "@apollo/client";
-import {Tweet, TweetData} from "../../types";
+import {CursorTweet, Tweet, TweetData} from "../../types";
 import {Button, Result, Spin, Typography} from "antd";
 import ErrorResult from "../error-result";
 import TweetCard from "./tweet-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {ReactElement, useEffect, useState} from "react";
 import {EXPLORE_ROUTE} from "../../constants";
-import {COMMENTS_QUERY, INDEX_QUERY, USER_INDEX_QUERY, USER_TWEETS} from "../../graphql/queries";
+import {COMMENTS_QUERY, INDEX_QUERY, USER_HEARTS, USER_INDEX_QUERY, USER_TWEETS} from "../../graphql/queries";
 
 const {Text} = Typography;
 type TweetListProps = {
@@ -30,6 +30,7 @@ function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
   const [hasMore, setHasMore] = useState(true);
 
   let tweetList: Tweet[] | undefined;
+  let cursorTweetList: CursorTweet[] | undefined;
   switch (query) {
     case INDEX_QUERY:
       tweetList = data?.TweetQueries.index;
@@ -43,6 +44,9 @@ function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
     case USER_TWEETS:
       tweetList = data?.TweetQueries.queryUserTweets;
       break;
+    case USER_HEARTS:
+      cursorTweetList = data?.TweetQueries.getUserHearts;
+      break;
   }
   useEffect(() => {
     if (tweetList) {
@@ -52,8 +56,12 @@ function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
             else return <span key={0}></span>;
           }
         )]);
+    } else if (cursorTweetList) {
+      setTweetCards(tweets => [...tweets,
+        ...cursorTweetList!.map(ct => <TweetCard key={ct.cursorId} tweet={ct.tweet}/>)
+      ]);
     }
-  }, [tweetList]);
+  }, [cursorTweetList, tweetList]);
 
   if (loading && tweetCards.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
     <div/>
@@ -76,13 +84,18 @@ function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
       if (lastTweet) {
         setCursor(lastTweet.id);
       } else setHasMore(false);
+    } else if (cursorTweetList) {
+      const lastCursorTweet = cursorTweetList[cursorTweetList.length - 1];
+      if (lastCursorTweet) {
+        setCursor(lastCursorTweet.cursorId);
+      }
     }
   };
 
   return (
     <InfiniteScroll
       next={handleNext}
-      hasMore={(tweetList?.length || 0) >= 10 && hasMore}
+      hasMore={(tweetList?.length || cursorTweetList?.length || 0) >= 10 && hasMore}
       loader={<Spin>
         <div className="min-h-[30vh]"/>
       </Spin>}

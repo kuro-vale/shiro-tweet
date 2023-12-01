@@ -1,12 +1,19 @@
 import {useParams} from "react-router-dom";
-import {useTitle} from "../hooks";
+import {useProfile, useTitle} from "../hooks";
+import TweetList from "../components/tweets/tweet-list";
+import {USER_HEARTS} from "../graphql/queries";
 
 function UserLikes() {
   const {username} = useParams();
   useTitle(`Tweets liked by ${username}`);
+  const {profile} = useProfile();
 
   return (
-    <p>likes</p>
+    <>
+      {!!profile &&
+        <TweetList query={USER_HEARTS} userId={profile.id}/>
+      }
+    </>
   );
 }
 
