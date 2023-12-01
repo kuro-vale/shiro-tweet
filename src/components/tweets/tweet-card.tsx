@@ -18,16 +18,22 @@ type TweetCardProps = {
 function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
   const navigate = useNavigate();
+  const handleClick = () => {
+    let selection = window.getSelection();
+    if (!selection?.toString().trim()) {
+      navigate(TWEET_DETAILS
+        .replace(":tweetId", `${tweet.id}`)
+        .replace(":username", tweet.author.username));
+    }
+  };
+
   // TODO: delete tweet
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {!!tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
       <article
         className="flex cursor-pointer"
-        onClick={() =>
-          navigate(TWEET_DETAILS
-            .replace(":tweetId", `${tweet.id}`)
-            .replace(":username", tweet.author.username))}
+        onClick={handleClick}
       >
         <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
           <Avatar

@@ -94,7 +94,7 @@ function Sidebar() {
   return (
     <>
       <ComposeModal open={openModal} onClose={() => setOpenModal(false)}/>
-      <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-16">
+      <div className="absolute w-64 right-2 h-screen lg:pt-2 lg:w-16 select-none">
         <Menu mode="inline" items={items} selectedKeys={[locationPath]}/>
         <Button
           shape="round"

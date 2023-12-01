@@ -146,3 +146,7 @@ nav .anticon {
     background-color: var(--color-primary);
     width: 230px;
 }
+
+img {
+    user-select: none;
+}

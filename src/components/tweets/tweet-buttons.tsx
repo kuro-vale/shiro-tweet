@@ -43,7 +43,7 @@ function TweetButtons({tweet, xl}: TweetButtonsProps) {
       <span onClick={e => e.stopPropagation()}>
         <ComposeModal open={openComposeModal} onClose={() => setOpenComposeModal(false)} tweet={tweet}/>
       </span>
-      <div className="flex max-w-md h-5 justify-between my-3 flex-1">
+      <div className="flex max-w-md h-5 justify-between my-3 flex-1 select-none">
         <div className=" w-full">
           <div className="text-secondary cursor-pointer hover:text-primary w-fit" onClick={onClickComment}>
             <MessageOutlined className={`${xl ? "text-xl" : ""}`}/>
