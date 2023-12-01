@@ -11,10 +11,11 @@ import {TWEET_DETAILS} from "../../constants";
 const {Text} = Typography;
 
 type TweetCardProps = {
-  tweet: Tweet
+  tweet: Tweet,
+  hideReplyMessage?: boolean,
 }
 
-function TweetCard({tweet}: TweetCardProps) {
+function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
   const navigate = useNavigate();
 
@@ -52,7 +53,11 @@ function TweetCard({tweet}: TweetCardProps) {
           >
             {getDateMinimal(tweet.createdAt)}
           </Link>
-          <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
+          <p className="flex flex-col">
+            {tweet.parentId && !tweet.parent && !hideReplyMessage &&
+              <Text className="text-secondary">Replying to a tweet</Text>}
+            <Text className="whitespace-pre-line">{tweet.body}</Text>
+          </p>
           <TweetButtons tweet={tweet}/>
         </div>
       </article>

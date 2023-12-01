@@ -103,7 +103,7 @@ function TweetDetails() {
           </>
         }
         <div className="min-h-[100vh]">
-          {tweet && <TweetList query={COMMENTS_QUERY} tweetId={tweet.id}/>}
+          {tweet && <TweetList query={COMMENTS_QUERY} tweetId={tweet.id} hideReplyMessage={true}/>}
         </div>
       </TimelineLayout>
       <Aside showSearchBar={true}/>

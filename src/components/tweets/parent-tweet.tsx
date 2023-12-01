@@ -71,7 +71,11 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
           >
             {getDateMinimal(tweet.createdAt)}
           </Link>}
-        <p><Text className="whitespace-pre-line">{tweet.body}</Text></p>
+        <p className="flex flex-col">
+          {tweet.parentId && !tweet.parent &&
+            <Text className="text-secondary">Replying to a tweet</Text>}
+          <Text className="whitespace-pre-line">{tweet.body}</Text>
+        </p>
         {replying ?
           user?.id !== tweet.author.id && <p className="py-4">
             <Text className="text-secondary">Replying to</Text>

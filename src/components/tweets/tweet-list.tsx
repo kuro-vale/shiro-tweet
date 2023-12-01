@@ -21,9 +21,10 @@ type TweetListProps = {
   tweetId?: number,
   userId?: number,
   emptyMessage?: string,
+  hideReplyMessage?: boolean
 }
 
-function TweetList({query, tweetId, userId, emptyMessage}: TweetListProps) {
+function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage}: TweetListProps) {
   const [cursor, setCursor] = useState<number | null>(null);
   const [tweetCards, setTweetCards] = useState<ReactElement[]>([]);
   const {loading, error, data} = useQuery<TweetData>(query, {
@@ -62,16 +63,17 @@ function TweetList({query, tweetId, userId, emptyMessage}: TweetListProps) {
     if (tweetList) {
       setTweetCards(tweets => [...tweets,
         ...tweetList!.map(tweet => {
-            if (tweet) return (<TweetCard key={tweet.id} tweet={tweet}/>);
+            if (tweet) return (<TweetCard key={tweet.id} tweet={tweet} hideReplyMessage={hideReplyMessage}/>);
             else return <span key={0}></span>;
           }
         )]);
     } else if (cursorTweetList) {
       setTweetCards(tweets => [...tweets,
-        ...cursorTweetList!.map(ct => <TweetCard key={ct.cursorId} tweet={ct.tweet}/>)
+        ...cursorTweetList!.map(ct =>
+          <TweetCard key={ct.cursorId} tweet={ct.tweet} hideReplyMessage={hideReplyMessage}/>)
       ]);
     }
-  }, [cursorTweetList, tweetList]);
+  }, [cursorTweetList, hideReplyMessage, tweetList]);
 
   if (loading && tweetCards.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
     <div/>
