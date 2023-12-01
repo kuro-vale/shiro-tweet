@@ -134,6 +134,7 @@ function UserPage() {
         </>}
         {user === null && <ErrorResult message="This account doesn’t exist"/>}
       </TimelineLayout>
+      {/* TODO: search user's tweets */}
       <Aside showSearchBar={true}/>
     </>
   );

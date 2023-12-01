@@ -30,7 +30,8 @@ function Sidebar() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const profileRoute = USER_ROUTE.replace(":username", user!.sub);
-  const locationPath = `/${location.pathname.split("/")[1]}`;
+  const locationParts = location.pathname.split("/");
+  const locationPath = `/${locationParts[1]}${!parseInt(locationParts[2]) ? "" : locationParts[2]}`;
 
   const items: MenuItem[] = [
     {

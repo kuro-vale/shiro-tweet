@@ -18,7 +18,7 @@ type TweetCardProps = {
 function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
   const navigate = useNavigate();
-
+  // TODO: delete tweet
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {!!tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
