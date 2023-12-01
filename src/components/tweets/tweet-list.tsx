@@ -20,10 +20,10 @@ type TweetListProps = {
   query: DocumentNode,
   tweetId?: number,
   userId?: number,
-  showResult?: boolean,
+  emptyMessage?: string,
 }
 
-function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
+function TweetList({query, tweetId, userId, emptyMessage}: TweetListProps) {
   const [cursor, setCursor] = useState<number | null>(null);
   const [tweetCards, setTweetCards] = useState<ReactElement[]>([]);
   const {loading, error, data} = useQuery<TweetData>(query, {
@@ -77,10 +77,9 @@ function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
     <div/>
   </Spin>);
   if (error) return (<ErrorResult message={error.message}/>);
-  if (!loading && tweetList?.length === 0 && tweetCards.length === 0 && showResult) return (
+  if (!loading && tweetCards.length === 0 && emptyMessage) return (
     <Result
-      title="Welcome to shiro-tweet"
-      subTitle="Here you will see recent tweets of people you follow."
+      title={emptyMessage}
       extra={
         <Button shape="round" size="large" className="bg-primary hover:bg-hover-primary" href={EXPLORE_ROUTE}>
           <Text strong>Search</Text>

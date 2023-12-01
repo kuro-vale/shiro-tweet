@@ -11,7 +11,7 @@ function UserRetweets() {
   return (
     <>
       {!!profile &&
-        <TweetList query={USER_RETWEETS} userId={profile.id}/>
+        <TweetList query={USER_RETWEETS} userId={profile.id} emptyMessage={`${profile.username} has no retweets.`}/>
       }
     </>
   );

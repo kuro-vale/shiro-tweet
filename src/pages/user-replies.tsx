@@ -11,7 +11,7 @@ function UserReplies() {
   return (
     <>
       {!!profile &&
-        <TweetList query={USER_TWEETS} userId={profile.id}/>
+        <TweetList query={USER_TWEETS} userId={profile.id} emptyMessage={`${profile.username} has no tweets.`}/>
       }
     </>
   );

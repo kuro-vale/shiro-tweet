@@ -11,7 +11,7 @@ function UserLikes() {
   return (
     <>
       {!!profile &&
-        <TweetList query={USER_HEARTS} userId={profile.id}/>
+        <TweetList query={USER_HEARTS} userId={profile.id} emptyMessage={`${profile.username} has no likes.`}/>
       }
     </>
   );

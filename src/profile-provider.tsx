@@ -13,7 +13,9 @@ function ProfileProvider({children, profile}: ProfileProviderProps) {
 
   return (
     <ProfileContext.Provider value={value}>
-      {children}
+      <div className="min-h-screen">
+        {children}
+      </div>
     </ProfileContext.Provider>
   );
 }

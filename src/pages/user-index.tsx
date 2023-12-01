@@ -10,7 +10,7 @@ function UserIndex() {
   return (
     <>
       {!!profile &&
-        <TweetList query={USER_INDEX_QUERY} userId={profile.id}/>
+        <TweetList query={USER_INDEX_QUERY} userId={profile.id} emptyMessage={`${profile.username} has no tweets.`}/>
       }
     </>
 
