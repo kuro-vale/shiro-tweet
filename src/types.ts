@@ -52,6 +52,7 @@ export type TweetData = {
     indexUserTweets: Tweet[],
     queryUserTweets: Tweet[],
     getUserHearts: CursorTweet[],
+    getUserRetweets: CursorTweet[],
   }
 }
 
