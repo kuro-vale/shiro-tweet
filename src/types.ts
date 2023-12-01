@@ -50,6 +50,7 @@ export type TweetData = {
     index: Tweet[],
     tweetComments: Tweet[],
     indexUserTweets: Tweet[],
+    queryUserTweets: Tweet[],
   }
 }
 

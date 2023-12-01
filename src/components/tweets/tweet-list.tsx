@@ -6,7 +6,7 @@ import TweetCard from "./tweet-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {ReactElement, useEffect, useState} from "react";
 import {EXPLORE_ROUTE} from "../../constants";
-import {COMMENTS_QUERY, INDEX_QUERY, USER_INDEX_QUERY} from "../../graphql/queries";
+import {COMMENTS_QUERY, INDEX_QUERY, USER_INDEX_QUERY, USER_TWEETS} from "../../graphql/queries";
 
 const {Text} = Typography;
 type TweetListProps = {
@@ -39,6 +39,9 @@ function TweetList({query, tweetId, userId, showResult}: TweetListProps) {
       break;
     case USER_INDEX_QUERY:
       tweetList = data?.TweetQueries.indexUserTweets;
+      break;
+    case USER_TWEETS:
+      tweetList = data?.TweetQueries.queryUserTweets;
       break;
   }
   useEffect(() => {

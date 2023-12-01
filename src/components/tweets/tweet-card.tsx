@@ -20,7 +20,7 @@ function TweetCard({tweet}: TweetCardProps) {
 
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
-      {tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
+      {!!tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
       <article
         className="flex cursor-pointer"
         onClick={() =>

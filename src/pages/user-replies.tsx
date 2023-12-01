@@ -1,12 +1,19 @@
 import {useParams} from "react-router-dom";
-import {useTitle} from "../hooks";
+import {useProfile, useTitle} from "../hooks";
+import TweetList from "../components/tweets/tweet-list";
+import {USER_TWEETS} from "../graphql/queries";
 
 function UserReplies() {
   const {username} = useParams();
   useTitle(`Tweets with reply by ${username}`);
+  const {profile} = useProfile();
 
   return (
-    <p>Replies</p>
+    <>
+      {!!profile &&
+        <TweetList query={USER_TWEETS} userId={profile.id}/>
+      }
+    </>
   );
 }
 
