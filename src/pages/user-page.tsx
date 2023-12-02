@@ -94,7 +94,7 @@ function UserPage() {
             </Text>}
           </div>
         </div>
-        <div className="w-full max-h-[200px] bg-gray">
+        <div className="w-full h-full max-h-[200px] bg-gray">
           <img src={`https://picsum.photos/seed/${username}1/600/200`} alt={username + " banner"}/>
         </div>
         <div className="flex justify-between mx-4 mb-3">

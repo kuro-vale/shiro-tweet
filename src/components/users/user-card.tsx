@@ -4,6 +4,8 @@ import {useAuth} from "../../hooks";
 import FollowButton from "./follow-button";
 import UserPopover from "./user-popover";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {USER_ROUTE} from "../../constants";
 
 const {Text} = Typography;
 
@@ -14,11 +16,20 @@ type UserCardProps = {
 function UserCard({user}: UserCardProps) {
   const {user: currentUser} = useAuth();
   const [isFollowedByYou, setIsFollowedByYou] = useState(user.isFollowedByYou);
+  const navigate = useNavigate();
   if (user.id === currentUser?.id) return (<></>);
+  const handleClick = () => {
+    let selection = window.getSelection();
+    if (!selection?.toString().trim()) {
+      navigate(USER_ROUTE.replace(":username", user.username));
+    }
+  };
 
-  // TODO: redirect to user profile on click
   return (
-    <div className="flex flex-row px-4 py-3 h-16 w-full justify-between hover:bg-hover-gray">
+    <div
+      className="flex flex-row px-4 py-3 h-16 w-full justify-between hover:bg-hover-gray cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="flex">
         <UserPopover
           user={user}

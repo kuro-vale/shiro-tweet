@@ -2,7 +2,7 @@ import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts";
 import {AuthContextProps, AuthData, AuthRequest, ParentProps, UserJWT} from "../types";
 import {useState} from "react";
-import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY} from "../constants";
+import {HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, TOKEN_KEY, USER_ROUTE} from "../constants";
 import jwtDecode from "jwt-decode";
 import {useApolloClient, useMutation} from "@apollo/client";
 import {LOGIN_MUTATION, REGISTER_MUTATION} from "../graphql/mutations";
@@ -54,9 +54,9 @@ const AuthProvider = (props: ParentProps) => {
       const {data} = await mutateRegister({variables: request});
       const token = data!.Auth.register.token;
       localStorage.setItem(TOKEN_KEY, token);
-      setUser(jwtDecode(token));
-      // TODO navigate to profile
-      navigate(HOME_ROUTE);
+      const decodedUser: UserJWT = jwtDecode(token);
+      setUser(decodedUser);
+      navigate(USER_ROUTE.replace(":username", decodedUser.sub));
     } catch (e) {
       await handleError(messageApi, e);
     }

@@ -18,13 +18,17 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
   const {user} = useAuth();
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
   const navigate = useNavigate();
+  const handleClick = () => {
+    let selection = window.getSelection();
+    if (!selection?.toString().trim()) {
+      navigate(TWEET_DETAILS
+        .replace(":tweetId", `${tweet.id}`)
+        .replace(":username", tweet.author.username));
+    }
+  };
 
   return (
-    <article className={`flex mb-3 ${replying ? "" : "cursor-pointer"}`}
-             onClick={() => !replying &&
-               navigate(TWEET_DETAILS
-                 .replace(":tweetId", `${tweet.id}`)
-                 .replace(":username", tweet.author.username))}>
+    <article className={`flex mb-3 ${replying ? "" : "cursor-pointer"}`} onClick={handleClick}>
       <div>
         {replying ?
           <Avatar
