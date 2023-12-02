@@ -4,9 +4,10 @@ import {getDateMinimal} from "../../utils";
 import ParentTweet from "./parent-tweet";
 import TweetButtons from "./tweet-buttons";
 import UserPopover from "../users/user-popover";
-import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {TWEET_DETAILS} from "../../constants";
+import {useTweetVars} from "../../hooks";
+import TweetOptionsPopover from "./tweet-options-popover";
 
 const {Text} = Typography;
 
@@ -16,18 +17,8 @@ type TweetCardProps = {
 }
 
 function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
-  const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
-  const navigate = useNavigate();
-  const handleClick = () => {
-    let selection = window.getSelection();
-    if (!selection?.toString().trim()) {
-      navigate(TWEET_DETAILS
-        .replace(":tweetId", `${tweet.id}`)
-        .replace(":username", tweet.author.username));
-    }
-  };
+  const {user, isFollowedByYou, setIsFollowedByYou, handleClick, handleDelete} = useTweetVars(tweet);
 
-  // TODO: delete tweet
   return (
     <li className="px-4 pt-3 border-b-[1px] border-b-border">
       {!!tweet.parent && <ParentTweet tweet={tweet.parent} replying={false}/>}
@@ -44,21 +35,34 @@ function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
           />
         </UserPopover>
         <div className="ml-3 flex-1">
-          <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
-            <Text strong className="hover:underline">{tweet.author.username}</Text>
-          </UserPopover>
-          <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou} setIsFollowedByYou={setIsFollowedByYou}>
-            <Text className="text-secondary"> @{tweet.author.username}</Text>
-          </UserPopover>
-          <Text className="text-secondary"> · </Text>
-          <Link
-            to={TWEET_DETAILS
-              .replace(":tweetId", `${tweet.id}`)
-              .replace(":username", tweet.author.username)}
-            className="text-secondary hover:underline hover:text-secondary"
-          >
-            {getDateMinimal(tweet.createdAt)}
-          </Link>
+          <div className="flex flex-row justify-between">
+            <span>
+              <UserPopover
+                user={tweet.author}
+                isFollowedByYou={isFollowedByYou}
+                setIsFollowedByYou={setIsFollowedByYou}
+              >
+                <Text strong className="hover:underline">{tweet.author.username}</Text>
+              </UserPopover>
+              <UserPopover
+                user={tweet.author}
+                isFollowedByYou={isFollowedByYou}
+                setIsFollowedByYou={setIsFollowedByYou}
+              >
+                <Text className="text-secondary"> @{tweet.author.username}</Text>
+              </UserPopover>
+              <Text className="text-secondary"> · </Text>
+              <Link
+                to={TWEET_DETAILS
+                  .replace(":tweetId", `${tweet.id}`)
+                  .replace(":username", tweet.author.username)}
+                className="text-secondary hover:underline hover:text-secondary"
+              >
+                {getDateMinimal(tweet.createdAt)}
+              </Link>
+            </span>
+            {user?.id === tweet.author.id && <TweetOptionsPopover tweet={tweet} onDelete={handleDelete}/>}
+          </div>
           <p className="flex flex-col">
             {tweet.parentId && !tweet.parent && !hideReplyMessage &&
               <Text className="text-secondary">Replying to a tweet</Text>}

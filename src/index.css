@@ -111,6 +111,10 @@ button.bg-primary svg {
     color: var(--color-white-light) !important;
 }
 
+button.hover\:bg-red:hover {
+    border-color: var(--color-button-border-red) !important;
+}
+
 textarea.ant-input-disabled {
     background-color: inherit !important;
     color: inherit !important;

@@ -4,6 +4,9 @@ import {useMutation} from "@apollo/client";
 import {HEART_MUTATION, RETWEET_MUTATION, UNHEART_MUTATION, UNRETWEET_MUTATION} from "./graphql/mutations";
 import {handleError} from "./utils";
 import {MessageInstance} from "antd/lib/message/interface";
+import {Tweet} from "./types";
+import {useNavigate} from "react-router-dom";
+import {TWEET_DETAILS} from "./constants";
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -58,4 +61,24 @@ export const useTweetToggles = (isHeartedByYouInitial: boolean, isRetweetedByYou
   };
 
   return {isHeartedByYou, isRetweetedByYou, toggleHeart, toggleRetweet};
+};
+
+export const useTweetVars = (tweet: Tweet) => {
+  const {user} = useAuth();
+  const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    let selection = window.getSelection();
+    if (!selection?.toString().trim()) {
+      navigate(TWEET_DETAILS
+        .replace(":tweetId", `${tweet.id}`)
+        .replace(":username", tweet.author.username));
+    }
+  };
+
+  const handleDelete = () => {
+    window.location.reload();
+  };
+
+  return {user, isFollowedByYou, setIsFollowedByYou, handleClick, handleDelete};
 };

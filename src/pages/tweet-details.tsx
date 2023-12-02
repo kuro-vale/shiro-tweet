@@ -14,14 +14,16 @@ import TweetButtons from "../components/tweets/tweet-buttons";
 import {getDateDetails} from "../utils";
 import ComposeTweet from "../components/tweets/compose-tweet";
 import TweetList from "../components/tweets/tweet-list";
-import {NOT_FOUND_ROUTE, TWEET_DETAILS} from "../constants";
-import {useTitle} from "../hooks";
+import {NOT_FOUND_ROUTE, TWEET_DETAILS, USER_ROUTE} from "../constants";
+import {useAuth, useTitle} from "../hooks";
+import TweetOptionsPopover from "../components/tweets/tweet-options-popover";
 
 const {Text} = Typography;
 
 function TweetDetails() {
   const {tweetId, username} = useParams();
-  if (!/^[0-9]+$/.test(tweetId!)) window.location.href = NOT_FOUND_ROUTE;
+  const {user} = useAuth();
+  if (!/^[0-9]+$/.test(tweetId!)) window.location.replace(NOT_FOUND_ROUTE);
   const navigate = useNavigate();
   const {loading, error, data} = useQuery<TweetByIdData>(TWEET_BY_ID_QUERY, {
     variables: {
@@ -49,7 +51,10 @@ function TweetDetails() {
   }, [navigate, tweet, username]);
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet?.author.isFollowedByYou);
   if (error) return (<ErrorResult error={error}/>);
-  if (!loading && !tweet) window.location.href = NOT_FOUND_ROUTE;
+  if (!loading && !tweet) window.location.replace(NOT_FOUND_ROUTE);
+  const onTweetDeleted = () => {
+    navigate(USER_ROUTE.replace(":username", user!.sub));
+  };
 
   return (
     <>
@@ -81,16 +86,25 @@ function TweetDetails() {
                     />
                   </UserPopover>
                   <div className="ml-3 flex-1">
-                    <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou!}
-                                 setIsFollowedByYou={setIsFollowedByYou}>
-                      <div className="flex flex-col">
-                        <Text strong className="h-[18px] hover:underline">{tweet.author.username}</Text>
-                        <Text className="h-[18px] text-secondary"> @{tweet.author.username}</Text>
-                      </div>
-                    </UserPopover>
+                    <div className="flex flex-row justify-between">
+                      <span>
+                        <UserPopover user={tweet.author} isFollowedByYou={isFollowedByYou!}
+                                     setIsFollowedByYou={setIsFollowedByYou}>
+                        <div className="flex flex-col">
+                          <Text strong className="h-[18px] hover:underline">{tweet.author.username}</Text>
+                          <Text className="h-[18px] text-secondary"> @{tweet.author.username}</Text>
+                        </div>
+                      </UserPopover>
+                      </span>
+                      {user?.id === tweet.author.id && <TweetOptionsPopover tweet={tweet} onDelete={onTweetDeleted}/>}
+                    </div>
                   </div>
                 </div>
-                <p className="mt-3"><Text className="whitespace-pre-line">{tweet.body}</Text></p>
+                <p className="mt-3 flex flex-col">
+                  {tweet.parentId && !tweet.parent &&
+                    <Text className="text-secondary">Replying to a tweet</Text>}
+                  <Text className="whitespace-pre-line">{tweet.body}</Text>
+                </p>
                 <p className="my-3"><Text className="text-secondary">{getDateDetails(tweet.createdAt)}</Text></p>
                 <div className="border-y-[1px] border-y-border">
                   <TweetButtons tweet={tweet} xl={true}/>

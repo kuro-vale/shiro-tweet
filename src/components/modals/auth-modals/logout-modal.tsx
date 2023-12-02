@@ -23,10 +23,10 @@ function LogoutModal(props: ModalProps) {
       destroyOnClose={true}
     >
       <Title level={4} className="mt-[10px]">Log out of Kuro-Tweet?</Title>
-      <Text>You can always log back in at any time.</Text>
+      <Text className="text-secondary">You can always log back in at any time.</Text>
       <Button
         shape="round"
-        className="w-[244px] h-[45px] my-[6px] mx-0 hover:bg-hover-white bg-white"
+        className="w-[244px] h-[45px] my-[6px] mx-0 hover:bg-hover-white bg-white mt-6"
         onClick={onLogout}
       >
         <Text strong className="text-black">Log out</Text>

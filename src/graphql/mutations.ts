@@ -30,6 +30,14 @@ export const COMPOSE_MUTATION = gql`
   }
 `;
 
+export const DELETE_MUTATION = gql`
+  mutation DeleteTweet($tweetId: Int!) {
+    TweetOps {
+      deleteTweet(tweetId: $tweetId)
+    }
+  }
+`;
+
 export const COMMENT_MUTATION = gql`
   mutation Comment($body: String!, $tweetId: Int!) {
     TweetOps {
