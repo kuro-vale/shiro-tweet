@@ -48,7 +48,7 @@ function TweetDetails() {
     }
   }, [navigate, tweet, username]);
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet?.author.isFollowedByYou);
-  if (error) return (<ErrorResult message={error.message}/>);
+  if (error) return (<ErrorResult error={error}/>);
   if (!loading && !tweet) window.location.href = NOT_FOUND_ROUTE;
 
   return (

@@ -57,7 +57,7 @@ function UserPage() {
       setProfile(null);
     };
   }, [user]);
-  if (error) return (<ErrorResult message={error.message}/>);
+  if (error) return (<ErrorResult error={error}/>);
   const items: TabsProps["items"] = [{
     key: USER_ROUTE.replace(":username", user?.username || ""),
     label: "Tweets"
@@ -132,7 +132,7 @@ function UserPage() {
             <Outlet/>
           </ProfileProvider>
         </>}
-        {user === null && <ErrorResult message="This account doesn’t exist"/>}
+        {user === null && <ErrorResult error={undefined} message="This account doesn’t exist"/>}
       </TimelineLayout>
       {/* TODO: search user's tweets */}
       <Aside showSearchBar={true}/>

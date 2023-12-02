@@ -78,7 +78,7 @@ function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage}: Twe
   if (loading && tweetCards.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
     <div/>
   </Spin>);
-  if (error) return (<ErrorResult message={error.message}/>);
+  if (error) return (<ErrorResult error={error}/>);
   if (!loading && (tweetList?.length === 0 || cursorTweetList?.length === 0) && tweetCards.length === 0 && emptyMessage)
     return (
       <Result
