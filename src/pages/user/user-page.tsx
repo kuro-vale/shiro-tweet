@@ -34,7 +34,7 @@ function UserPage() {
       <TimelineLayout>
         {!location.pathname.includes("follow") && <UserProfile user={user}/>}
         <ProfileProvider profile={profile}>
-          <Outlet/>
+          {!!profile && !!user && <Outlet/>}
         </ProfileProvider>
       </TimelineLayout>
       {/* TODO: search user's tweets */}

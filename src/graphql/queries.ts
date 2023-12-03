@@ -233,13 +233,27 @@ export const GET_USER_QUERY = gql`
   }
 `;
 
-// Minified version of followers you may know
 export const COMMON_FOLLOWERS = gql`
   query CommonFollowers($userId: Int!, $cursor: Int) {
     UserQueries {
       followersYouMayKnow(userId: $userId, cursor: $cursor) {
         id
         username
+      }
+    }
+  }
+`;
+
+export const COMMON_FOLLOWERS_QUERY = gql`
+  query CommonFollowers($userId: Int!, $cursor: Int) {
+    UserQueries {
+      followersYouMayKnow(userId: $userId, cursor: $cursor) {
+        id
+        username
+        isFollowedByYou
+        isFollowingYou
+        following
+        followers
       }
     }
   }

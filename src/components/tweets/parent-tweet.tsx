@@ -39,7 +39,7 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
         </div>
       </div>
       <div className="ml-3 flex-1">
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between mb-1">
           <span>
           {replying ?
             <>
@@ -69,6 +69,7 @@ function ParentTweet({tweet, replying}: ParentTweetProps) {
               <Text
                 className={`text-secondary ${replying ? "" : "hover:underline"}`}>{getDateMinimal(tweet.createdAt)}</Text>
               : <Link
+                onClick={e => e.stopPropagation()}
                 to={TWEET_DETAILS
                   .replace(":tweetId", `${tweet.id}`)
                   .replace(":username", tweet.author.username)}

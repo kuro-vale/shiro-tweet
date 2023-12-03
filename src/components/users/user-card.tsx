@@ -57,7 +57,7 @@ function UserCard({user}: UserCardProps) {
               </div>
             </UserPopover>
             {user.isFollowingYou &&
-              <Tag className="text-[11px] bg-tag h-3 border-0 self-center text-secondary font-bold px-0.5 pb-0.5"
+              <Tag className="text-[11px] bg-tag h-3 border-0 self-center text-secondary font-bold px-0.5 pb-[17px]"
                    bordered={false}>
                 Follows you
               </Tag>}

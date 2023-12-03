@@ -35,7 +35,7 @@ function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
           />
         </UserPopover>
         <div className="ml-3 flex-1">
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between mb-1">
             <span>
               <UserPopover
                 user={tweet.author}
@@ -53,6 +53,7 @@ function TweetCard({tweet, hideReplyMessage}: TweetCardProps) {
               </UserPopover>
               <Text className="text-secondary"> · </Text>
               <Link
+                onClick={e => e.stopPropagation()}
                 to={TWEET_DETAILS
                   .replace(":tweetId", `${tweet.id}`)
                   .replace(":username", tweet.author.username)}
