@@ -10,6 +10,8 @@ export const REPLIES_ROUTE = "/:username/with_replies";
 export const RETWEETS_ROUTE = "/:username/retweets";
 export const LIKES_ROUTE = "/:username/likes";
 
+export const COMMON_FOLLOWERS_ROUTE = "/:username/follower_you_follow";
+
 export const TWEET_DETAILS = "/:username/:tweetId";
 
 export const NOT_FOUND_ROUTE = "/404";

@@ -1,28 +1,28 @@
 import {useQuery} from "@apollo/client";
 import {COMMON_FOLLOWERS} from "../../graphql/queries";
-import {FollowersYouMayKnowData} from "../../types";
+import {FollowersYouMayKnowData, User} from "../../types";
 import {Link} from "react-router-dom";
 import {Avatar, Typography} from "antd";
+import {COMMON_FOLLOWERS_ROUTE} from "../../constants";
 
 const {Text} = Typography;
 type CommonFollowersProps = {
-  userId: number,
+  user: User,
   showMessage?: boolean
 }
 
-function CommonFollowers({userId, showMessage}: CommonFollowersProps) {
-  const {data} = useQuery<FollowersYouMayKnowData>(COMMON_FOLLOWERS, {variables: {userId}});
+function CommonFollowers({user, showMessage}: CommonFollowersProps) {
+  const {data} = useQuery<FollowersYouMayKnowData>(COMMON_FOLLOWERS, {variables: {userId: user.id}});
 
-  const users = data?.UserQueries.followersYouMayKnow.map(user => user.username) || [];
+  const users = data?.UserQueries.followersYouMayKnow.map(u => u.username) || [];
   const joinedUsernames = users.length > 3 ? users.slice(0, 3).join(", ") + `, and many others you follow` :
     users.length === 2 ? users.join(" and ") : users.join(", ");
 
   return (
-    // TODO: Fix url
     <>
       {users.length > 0 ?
         <Link
-          to={"/followers_you_follow"}
+          to={COMMON_FOLLOWERS_ROUTE.replace(":username", user.username)}
           className="flex flex-row mt-3 text-secondary hover:underline hover:text-secondary"
         >
           <Avatar.Group>

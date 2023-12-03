@@ -64,12 +64,14 @@ function UserCard({user}: UserCardProps) {
           </div>
         </div>
       </div>
-      <FollowButton
-        user={user}
-        confirmUnfollow={true}
-        isFollowedByYou={isFollowedByYou}
-        setIsFollowedByYou={setIsFollowedByYou}
-      />
+      <div onClick={e => e.stopPropagation()}>
+        <FollowButton
+          user={user}
+          confirmUnfollow={true}
+          isFollowedByYou={isFollowedByYou}
+          setIsFollowedByYou={setIsFollowedByYou}
+        />
+      </div>
     </div>
   );
 }

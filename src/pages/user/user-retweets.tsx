@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
-import {useAuth, useProfile, useTitle} from "../hooks";
-import TweetList from "../components/tweets/tweet-list";
-import {USER_RETWEETS} from "../graphql/queries";
+import {useAuth, useProfile, useTitle} from "../../hooks";
+import TweetList from "../../components/tweets/tweet-list";
+import {USER_RETWEETS} from "../../graphql/queries";
 
 function UserRetweets() {
   const {username} = useParams();

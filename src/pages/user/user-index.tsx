@@ -1,7 +1,7 @@
-import {useAuth, useProfile, useTitle} from "../hooks";
+import {useAuth, useProfile, useTitle} from "../../hooks";
 import {useParams} from "react-router-dom";
-import TweetList from "../components/tweets/tweet-list";
-import {USER_INDEX_QUERY} from "../graphql/queries";
+import TweetList from "../../components/tweets/tweet-list";
+import {USER_INDEX_QUERY} from "../../graphql/queries";
 
 function UserIndex() {
   const {username} = useParams();

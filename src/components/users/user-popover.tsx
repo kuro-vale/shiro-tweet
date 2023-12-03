@@ -56,7 +56,7 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
             </div>
             <UserFollowStats user={user}/>
             {currentUser?.id !== user.id &&
-              <CommonFollowers userId={user.id}/>}
+              <CommonFollowers user={user}/>}
           </div>}
         destroyTooltipOnHide={true}
       >

@@ -11,6 +11,7 @@ import NotFound from "./pages/404";
 import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
 import {
+  COMMON_FOLLOWERS_ROUTE,
   HOME_ROUTE,
   LANDING_ROUTE,
   LIKES_ROUTE,
@@ -24,11 +25,12 @@ import {
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
 import TweetDetails from "./pages/tweet-details";
-import UserPage from "./pages/user-page";
-import UserIndex from "./pages/user-index";
-import UserRetweets from "./pages/user-retweets";
-import UserLikes from "./pages/user-likes";
-import UserReplies from "./pages/user-replies";
+import UserPage from "./pages/user/user-page";
+import UserIndex from "./pages/user/user-index";
+import UserRetweets from "./pages/user/user-retweets";
+import UserLikes from "./pages/user/user-likes";
+import UserReplies from "./pages/user/user-replies";
+import UserCommonFollowers from "./pages/user/user-common-followers";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -130,6 +132,7 @@ root.render(
                   <Route path={REPLIES_ROUTE} element={<UserReplies/>}/>
                   <Route path={RETWEETS_ROUTE} element={<UserRetweets/>}/>
                   <Route path={LIKES_ROUTE} element={<UserLikes/>}/>
+                  <Route path={COMMON_FOLLOWERS_ROUTE} element={<UserCommonFollowers/>}/>
                 </Route>
                 <Route path="*" element={<NotFound/>}/>
                 <Route path={NOT_FOUND_ROUTE} element={<NotFound/>}/>
