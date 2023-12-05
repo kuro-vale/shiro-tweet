@@ -25,21 +25,27 @@ function UserFollowTabs() {
 
   return (
     <>
-      <div className="sticky top-0 bg-transparency z-10 backdrop-blur-md h-14 flex items-center pl-3">
-        <button
-          type="button"
-          className="text-center mr-9 hover:bg-hover-menu rounded-full w-9 h-9"
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeftOutlined className="text-lg"/>
-        </button>
-        <Text strong className="text-xl">{profile?.username}</Text>
+      <div className="sticky top-0 bg-transparency z-10 backdrop-blur-md flex items-center pl-3 flex-col">
+        <div className="w-full flex">
+          <button
+            type="button"
+            className="text-center mr-9 hover:bg-hover-menu rounded-full w-9 h-9"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeftOutlined className="text-lg"/>
+          </button>
+          <div className="flex flex-col">
+            <Text strong className="text-xl">{profile?.username}</Text>
+            <Text className="text-secondary text-[13px]">@{profile?.username}</Text>
+          </div>
+        </div>
+        <Tabs
+          items={items}
+          onTabClick={e => navigate(e, {replace: true})}
+          defaultActiveKey={location.pathname}
+          rootClassName="w-full"
+        />
       </div>
-      <Tabs
-        items={items}
-        onTabClick={e => navigate(e, {replace: true})}
-        defaultActiveKey={location.pathname}
-      />
       <Outlet/>
     </>
   );
