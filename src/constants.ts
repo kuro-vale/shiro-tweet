@@ -11,6 +11,8 @@ export const RETWEETS_ROUTE = "/:username/retweets";
 export const LIKES_ROUTE = "/:username/likes";
 
 export const COMMON_FOLLOWERS_ROUTE = "/:username/follower_you_follow";
+export const USER_FOLLOWERS_ROUTE = "/:username/followers";
+export const USER_FOLLOWING_ROUTE = "/:username/following";
 
 export const TWEET_DETAILS = "/:username/:tweetId";
 

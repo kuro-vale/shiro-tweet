@@ -3,7 +3,7 @@ import {User, UserQueryData} from "../../types";
 import ErrorResult from "../error-result";
 import UserCard from "./user-card";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {COMMON_FOLLOWERS_QUERY} from "../../graphql/queries";
+import {COMMON_FOLLOWERS_QUERY, USER_FOLLOWERS_QUERY, USER_FOLLOWING_QUERY} from "../../graphql/queries";
 import {Spin} from "antd";
 import {ReactElement, useEffect, useState} from "react";
 
@@ -26,6 +26,12 @@ function UserList({query, user}: UserListProps) {
   switch (query) {
     case COMMON_FOLLOWERS_QUERY:
       userList = data?.UserQueries.followersYouMayKnow;
+      break;
+    case USER_FOLLOWERS_QUERY:
+      userList = data?.UserQueries.followers;
+      break;
+    case USER_FOLLOWING_QUERY:
+      userList = data?.UserQueries.following;
       break;
   }
   useEffect(() => {

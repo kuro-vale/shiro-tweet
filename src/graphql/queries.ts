@@ -259,6 +259,36 @@ export const COMMON_FOLLOWERS_QUERY = gql`
   }
 `;
 
+export const USER_FOLLOWERS_QUERY = gql`
+  query Followers($userId: Int!, $cursor: Int) {
+    UserQueries {
+      followers(userId: $userId, cursor: $cursor) {
+        id
+        username
+        isFollowedByYou
+        isFollowingYou
+        following
+        followers
+      }
+    }
+  }
+`;
+
+export const USER_FOLLOWING_QUERY = gql`
+  query Following($userId: Int!, $cursor: Int) {
+    UserQueries {
+      following(userId: $userId, cursor: $cursor) {
+        id
+        username
+        isFollowedByYou
+        isFollowingYou
+        following
+        followers
+      }
+    }
+  }
+`;
+
 export const TWEET_BY_ID_QUERY = gql`
   query TweetById($tweetId: Int!) {
     TweetQueries {

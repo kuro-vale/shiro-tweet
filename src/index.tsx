@@ -20,6 +20,8 @@ import {
   RETWEETS_ROUTE,
   TOKEN_KEY,
   TWEET_DETAILS,
+  USER_FOLLOWERS_ROUTE,
+  USER_FOLLOWING_ROUTE,
   USER_ROUTE
 } from "./constants";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
@@ -31,6 +33,9 @@ import UserRetweets from "./pages/user/user-retweets";
 import UserLikes from "./pages/user/user-likes";
 import UserReplies from "./pages/user/user-replies";
 import UserCommonFollowers from "./pages/user/user-common-followers";
+import UserFollowers from "./pages/user/user-followers";
+import UserFollowing from "./pages/user/user-following";
+import UserFollowTabs from "./components/users/user-follow-tabs";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -132,7 +137,11 @@ root.render(
                   <Route path={REPLIES_ROUTE} element={<UserReplies/>}/>
                   <Route path={RETWEETS_ROUTE} element={<UserRetweets/>}/>
                   <Route path={LIKES_ROUTE} element={<UserLikes/>}/>
-                  <Route path={COMMON_FOLLOWERS_ROUTE} element={<UserCommonFollowers/>}/>
+                  <Route element={<UserFollowTabs/>}>
+                    <Route path={COMMON_FOLLOWERS_ROUTE} element={<UserCommonFollowers/>}/>
+                    <Route path={USER_FOLLOWERS_ROUTE} element={<UserFollowers/>}/>
+                    <Route path={USER_FOLLOWING_ROUTE} element={<UserFollowing/>}/>
+                  </Route>
                 </Route>
                 <Route path="*" element={<NotFound/>}/>
                 <Route path={NOT_FOUND_ROUTE} element={<NotFound/>}/>

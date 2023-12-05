@@ -1,22 +1,27 @@
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import {Tabs, TabsProps, Typography} from "antd";
-import {useNavigate} from "react-router-dom";
-import {COMMON_FOLLOWERS_ROUTE} from "../../constants";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {COMMON_FOLLOWERS_ROUTE, USER_FOLLOWERS_ROUTE, USER_FOLLOWING_ROUTE} from "../../constants";
+import {useAuth, useProfile} from "../../hooks";
 
 const {Text} = Typography;
 
-function UserFollowTabs({username}: { username: string }) {
+function UserFollowTabs() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const {profile} = useProfile();
+  const {user: currentUser} = useAuth();
   const items: TabsProps["items"] = [{
-    key: COMMON_FOLLOWERS_ROUTE.replace(":username", username),
+    key: COMMON_FOLLOWERS_ROUTE.replace(":username", profile!.username),
     label: "Followers you know"
   }, {
-    key: "following",
+    key: USER_FOLLOWING_ROUTE.replace(":username", profile!.username),
     label: "Following"
   }, {
-    key: "followers",
+    key: USER_FOLLOWERS_ROUTE.replace(":username", profile!.username),
     label: "Followers"
   }];
+  if (profile?.id === currentUser?.id) items.splice(0, 1);
 
   return (
     <>
@@ -28,11 +33,14 @@ function UserFollowTabs({username}: { username: string }) {
         >
           <ArrowLeftOutlined className="text-lg"/>
         </button>
-        <Text strong className="text-xl">{username}</Text>
+        <Text strong className="text-xl">{profile?.username}</Text>
       </div>
       <Tabs
         items={items}
+        onTabClick={e => navigate(e, {replace: true})}
+        defaultActiveKey={location.pathname}
       />
+      <Outlet/>
     </>
   );
 }

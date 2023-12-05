@@ -66,6 +66,8 @@ export type UserQueryData = {
   UserQueries: {
     searchUsers: User[],
     followersYouMayKnow: User[],
+    followers: User[],
+    following: User[],
   }
 }
 
