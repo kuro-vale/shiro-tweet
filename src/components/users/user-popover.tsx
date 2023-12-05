@@ -26,7 +26,7 @@ function UserPopover({children, user, isFollowedByYou, setIsFollowedByYou}: User
       <Popover
         mouseEnterDelay={.3}
         content={
-          <div className="flex flex-col p-1">
+          <div className="flex flex-col p-1" onClick={e => e.stopPropagation()}>
             <div className="flex w-full justify-between">
               <Link to={profileRoute}>
                 <Avatar src={`https://picsum.photos/seed/${user.username}/400/`} size={60} className="bg-gray"/>

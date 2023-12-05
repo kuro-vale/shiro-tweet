@@ -26,7 +26,7 @@ function UserCard({user}: UserCardProps) {
   };
 
   return (
-    <div
+    <li
       className="flex flex-row px-4 py-3 h-16 w-full justify-between hover:bg-hover-gray cursor-pointer"
       onClick={handleClick}
     >
@@ -72,7 +72,7 @@ function UserCard({user}: UserCardProps) {
           setIsFollowedByYou={setIsFollowedByYou}
         />
       </div>
-    </div>
+    </li>
   );
 }
 

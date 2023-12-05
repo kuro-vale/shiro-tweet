@@ -46,10 +46,8 @@ function UserList({query, user}: UserListProps) {
   if (error) return (<ErrorResult error={error}/>);
 
   const handleNext = () => {
-    if (userList) {
-      const lastUser = userList[userList.length - 1];
-      if (lastUser) setCursor(lastUser.id);
-    }
+    const lastUser = userList?.[userList.length - 1];
+    if (lastUser) setCursor(lastUser.id);
   };
 
   return (
@@ -62,9 +60,10 @@ function UserList({query, user}: UserListProps) {
       dataLength={userCards.length || 0}
       style={{overflow: "hidden"}}
       endMessage={<div className="min-h-[30vh]"/>}
-      className="min-h-screen"
     >
-      {userCards}
+      <ul>
+        {userCards}
+      </ul>
     </InfiniteScroll>
   );
 }

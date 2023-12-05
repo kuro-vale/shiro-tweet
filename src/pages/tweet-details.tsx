@@ -34,7 +34,9 @@ function TweetDetails() {
   const tweetRef = useRef<HTMLElement>(null);
   const tweet = data?.TweetQueries.tweetById;
   useTitle(`${tweet?.author.username}: ${tweet?.body}`);
+  const [isFollowedByYou, setIsFollowedByYou] = useState(tweet?.author.isFollowedByYou);
   useEffect(() => {
+    if (tweet) setIsFollowedByYou(tweet.author.isFollowedByYou);
     window.history.scrollRestoration = "manual";
     tweetRef?.current?.scrollIntoView();
     return () => {
@@ -49,7 +51,6 @@ function TweetDetails() {
         {replace: true});
     }
   }, [navigate, tweet, username]);
-  const [isFollowedByYou, setIsFollowedByYou] = useState(tweet?.author.isFollowedByYou);
   if (error) return (<ErrorResult error={error}/>);
   if (!loading && !tweet) window.location.replace(NOT_FOUND_ROUTE);
   const onTweetDeleted = () => {
