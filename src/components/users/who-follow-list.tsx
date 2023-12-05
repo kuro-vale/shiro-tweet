@@ -5,7 +5,7 @@ import {Card, Spin} from "antd";
 import ErrorResult from "../error-result";
 import UserCard from "./user-card";
 
-function UserCardList() {
+function WhoFollowList() {
   const {loading, error, data} = useQuery<UserQueryData>(WHO_USER_QUERY, {fetchPolicy: "no-cache"});
   if (error) return (<div><ErrorResult error={error}/></div>);
 
@@ -22,4 +22,4 @@ function UserCardList() {
   );
 }
 
-export default UserCardList;
+export default WhoFollowList;

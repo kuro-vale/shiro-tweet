@@ -64,7 +64,8 @@ export type TweetByIdData = {
 
 export type UserQueryData = {
   UserQueries: {
-    searchUsers: User[]
+    searchUsers: User[],
+    followersYouMayKnow: User[],
   }
 }
 

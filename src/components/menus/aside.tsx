@@ -1,5 +1,5 @@
 import {Typography} from "antd";
-import UserCardList from "../users/user-card-list";
+import WhoFollowList from "../users/who-follow-list";
 import SearchBar from "../search-bar";
 import {useMediaQuery} from "react-responsive";
 
@@ -16,7 +16,7 @@ function Aside(props: AsideProps) {
       {!isMobile && !isTablet &&
         <aside className="w-[350px] lg:w-[290px] h-full fixed ml-[630px] lg:ml-[610px]">
           {props.showSearchBar && <SearchBar/>}
-          <UserCardList/>
+          <WhoFollowList/>
           <div className="flex flex-wrap justify-center w-full h-10">
             <Link className="pr-4 text-[13px]" href="https://github.com/kuro-vale/shiro-tweet" target="_blank">
               Repo</Link>
