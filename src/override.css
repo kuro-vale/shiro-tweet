@@ -104,6 +104,10 @@
     margin: 0 !important;
 }
 
+.ant-form-item.w-full .ant-row.ant-form-item-row {
+    width: 100% !important;
+}
+
 @media (max-width: 1200px) {
     .ant-menu-item {
         width: 50px !important;

@@ -25,11 +25,11 @@ function UserFollowTabs() {
 
   return (
     <>
-      <div className="sticky top-0 bg-transparency z-10 backdrop-blur-md flex items-center pl-3 flex-col">
-        <div className="w-full flex">
+      <div className="sticky top-0 bg-transparency z-10 backdrop-blur-md flex items-center flex-col">
+        <div className="w-full flex pl-3">
           <button
             type="button"
-            className="text-center mr-9 hover:bg-hover-menu rounded-full w-9 h-9"
+            className="text-center mr-9 hover:bg-hover-menu rounded-full w-9 h-14"
             onClick={() => navigate(-1)}
           >
             <ArrowLeftOutlined className="text-lg"/>

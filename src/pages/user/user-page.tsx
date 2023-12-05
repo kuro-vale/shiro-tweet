@@ -37,7 +37,6 @@ function UserPage() {
           {!!profile && !!user && <Outlet/>}
         </ProfileProvider>
       </TimelineLayout>
-      {/* TODO: search user's tweets */}
       <Aside showSearchBar={true}/>
     </>
   );

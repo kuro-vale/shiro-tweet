@@ -120,6 +120,7 @@ function ComposeTweet({onComplete, tweet, sm}: ComposeTweetProps) {
               {whitespace: true, message: ""}
             ]}
             className="w-full mt-1 pr-4 mb-0"
+            hasFeedback={false}
           >
             <textarea
               placeholder={`${tweet ?

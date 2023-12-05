@@ -12,6 +12,7 @@ import AuthProvider from "./components/auth-provider";
 import {LoadingOutlined} from "@ant-design/icons";
 import {
   COMMON_FOLLOWERS_ROUTE,
+  EXPLORE_ROUTE,
   HOME_ROUTE,
   LANDING_ROUTE,
   LIKES_ROUTE,
@@ -36,6 +37,7 @@ import UserCommonFollowers from "./pages/user/user-common-followers";
 import UserFollowers from "./pages/user/user-followers";
 import UserFollowing from "./pages/user/user-following";
 import UserFollowTabs from "./components/users/user-follow-tabs";
+import Explore from "./pages/explore";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{fontSize: 40}} spin/>);
 
@@ -143,6 +145,7 @@ root.render(
                     <Route path={USER_FOLLOWING_ROUTE} element={<UserFollowing/>}/>
                   </Route>
                 </Route>
+                <Route path={EXPLORE_ROUTE} element={<Explore/>}/>
                 <Route path="*" element={<NotFound/>}/>
                 <Route path={NOT_FOUND_ROUTE} element={<NotFound/>}/>
               </Route>
