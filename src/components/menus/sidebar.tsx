@@ -76,7 +76,7 @@ function Sidebar() {
       label: "More", key: "7", icon: <EllipsisOutlined/>, disabled: true
     },
   ];
-  // TODO: FIX NAVIGATES MULTIPLE CLICKS
+
   const avatarItem: MenuItem = {
     key: "8",
     icon: <Avatar

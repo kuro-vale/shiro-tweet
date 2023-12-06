@@ -53,6 +53,7 @@ export type TweetData = {
     queryUserTweets: Tweet[],
     getUserHearts: CursorTweet[],
     getUserRetweets: CursorTweet[],
+    searchTweets: Tweet[],
   }
 }
 
@@ -69,6 +70,10 @@ export type UserQueryData = {
     followers: User[],
     following: User[],
   }
+}
+
+export type FilterTweet = {
+  body: string,
 }
 
 export type GetUserData = {

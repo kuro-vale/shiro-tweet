@@ -33,11 +33,9 @@ function SearchBar() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const valid = await form.validateFields().then(() => true).catch(() => false);
-    if (valid) {
-      navigate(`${EXPLORE_ROUTE}?q=${form.getFieldValue("q")}`, {replace: location.pathname === EXPLORE_ROUTE});
-      inputRef?.current?.blur();
-    }
+    const q = form.getFieldValue("q") || "";
+    navigate(`${EXPLORE_ROUTE}${q ? "?q=" + q : ""}`, {replace: location.pathname === EXPLORE_ROUTE});
+    inputRef?.current?.blur();
   };
 
   return (
@@ -51,7 +49,6 @@ function SearchBar() {
       <Form.Item<SearchForm>
         name="q"
         className="w-full mb-0 flex items-center pr-4"
-        rules={[{required: true, message: ""}]}
         hasFeedback={false}
       >
         <Input

@@ -1,5 +1,5 @@
 import {DocumentNode, useQuery} from "@apollo/client";
-import {CursorTweet, Tweet, TweetData} from "../../types";
+import {CursorTweet, FilterTweet, Tweet, TweetData} from "../../types";
 import {Button, Result, Spin, Typography} from "antd";
 import ErrorResult from "../error-result";
 import TweetCard from "./tweet-card";
@@ -9,6 +9,7 @@ import {EXPLORE_ROUTE} from "../../constants";
 import {
   COMMENTS_QUERY,
   INDEX_QUERY,
+  SEARCH_TWEETS_QUERY,
   USER_HEARTS,
   USER_INDEX_QUERY,
   USER_RETWEETS,
@@ -21,21 +22,32 @@ type TweetListProps = {
   tweetId?: number,
   userId?: number,
   emptyMessage?: string,
-  hideReplyMessage?: boolean
+  hideReplyMessage?: boolean,
+  filterProp?: FilterTweet,
 }
 
-function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage}: TweetListProps) {
+function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage, filterProp}: TweetListProps) {
   const [cursor, setCursor] = useState<number | null>(null);
   const [tweetCards, setTweetCards] = useState<ReactElement[]>([]);
+  const [filter, setFilter] = useState<FilterTweet | undefined>(filterProp);
   const {loading, error, data} = useQuery<TweetData>(query, {
     variables: {
       cursor,
       tweetId,
       userId,
+      filter,
     },
     fetchPolicy: "no-cache"
   });
   const [hasMore, setHasMore] = useState(true);
+
+  useEffect(() => {
+    if (filterProp?.body !== filter?.body) {
+      setTweetCards([]);
+      setCursor(null);
+      setFilter(filterProp);
+    }
+  }, [filter, filterProp]);
 
   let tweetList: Tweet[] | undefined;
   let cursorTweetList: CursorTweet[] | undefined;
@@ -57,6 +69,9 @@ function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage}: Twe
       break;
     case USER_RETWEETS:
       cursorTweetList = data?.TweetQueries.getUserRetweets;
+      break;
+    case SEARCH_TWEETS_QUERY:
+      tweetList = data?.TweetQueries.searchTweets;
       break;
   }
   useEffect(() => {

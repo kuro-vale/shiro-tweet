@@ -46,9 +46,9 @@ export const INDEX_QUERY = gql`
 `;
 
 export const USER_INDEX_QUERY = gql`
-  query IndexUserTweets($userId: Int!) {
+  query IndexUserTweets($userId: Int!, $cursor: Int) {
     TweetQueries {
-      indexUserTweets(userId: $userId) {
+      indexUserTweets(userId: $userId, cursor: $cursor) {
         id
         body
         author {
@@ -146,9 +146,9 @@ export const USER_HEARTS = gql`
 `;
 
 export const USER_RETWEETS = gql`
-  query GetUserRetweets($userId: Int!) {
+  query GetUserRetweets($userId: Int!, $cursor: Int) {
     TweetQueries {
-      getUserRetweets(userId: $userId) {
+      getUserRetweets(userId: $userId, cursor: $cursor) {
         tweet {
           id
           body
@@ -178,6 +178,32 @@ export const COMMENTS_QUERY = gql`
   query TweetComments($tweetId: Int!, $cursor: Int) {
     TweetQueries {
       tweetComments(tweetId: $tweetId, cursor: $cursor) {
+        id
+        body
+        author {
+          id
+          username
+          followers
+          following
+          isFollowedByYou
+          isFollowingYou
+        }
+        createdAt
+        comments
+        hearts
+        retweets
+        isHeartedByYou
+        isRetweetedByYou
+        parentId
+      }
+    }
+  }
+`;
+
+export const SEARCH_TWEETS_QUERY = gql`
+  query SearchTweets($filter: FilterTweets!, $cursor: Int) {
+    TweetQueries {
+      searchTweets(filter: $filter, cursor: $cursor) {
         id
         body
         author {
