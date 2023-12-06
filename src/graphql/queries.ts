@@ -226,10 +226,10 @@ export const SEARCH_TWEETS_QUERY = gql`
   }
 `;
 
-export const WHO_USER_QUERY = gql`
-  query WhoToFollow {
+export const SEARCH_USER_QUERY = gql`
+  query SearchUsers($filter: FilterUsers!) {
     UserQueries {
-      searchUsers(filter: {username: ""}) {
+      searchUsers(filter: $filter) {
         id
         username
         isFollowedByYou

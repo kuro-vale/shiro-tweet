@@ -1,14 +1,17 @@
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import SearchBar from "./search-bar";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import {Tabs, TabsProps} from "antd";
 import TweetList from "./tweets/tweet-list";
 import {SEARCH_TWEETS_QUERY} from "../graphql/queries";
+import SearchUserList from "./users/search-user-list";
 
 function ExploreTabs() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [search] = useSearchParams();
   const body = search.get("q") || "";
+  const pathName = location.pathname + (!!search.get("q") ? `?q=${body}&f=:tab` : "?f=:tab");
   const items: TabsProps["items"] = [{
     key: "tweets",
     label: "Latest",
@@ -16,6 +19,7 @@ function ExploreTabs() {
   }, {
     key: "users",
     label: "People",
+    children: <SearchUserList filterProp={{username: body}}/>
   }];
 
   return (
@@ -35,7 +39,8 @@ function ExploreTabs() {
       <Tabs
         items={items}
         rootClassName="w-full"
-        defaultActiveKey="tweets"
+        defaultActiveKey={`${search.get("f") || "tweets"}`}
+        onTabClick={k => navigate(pathName.replace(":tab", k), {replace: true})}
       />
     </div>
   );

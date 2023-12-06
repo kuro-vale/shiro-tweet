@@ -34,7 +34,9 @@ function SearchBar() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const q = form.getFieldValue("q") || "";
-    navigate(`${EXPLORE_ROUTE}${q ? "?q=" + q : ""}`, {replace: location.pathname === EXPLORE_ROUTE});
+    const f = search.get("f");
+    navigate(`${EXPLORE_ROUTE}${q ? "?q=" + q + (!!f ? "&f=" + f : "") : ""}`,
+      {replace: location.pathname === EXPLORE_ROUTE});
     inputRef?.current?.blur();
   };
 

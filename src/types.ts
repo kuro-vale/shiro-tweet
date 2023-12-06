@@ -76,6 +76,10 @@ export type FilterTweet = {
   body: string,
 }
 
+export type FilterUser = {
+  username: string,
+}
+
 export type GetUserData = {
   UserQueries: {
     userByUsername: User | null

@@ -100,7 +100,7 @@ function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage, filt
         title={emptyMessage}
         extra={
           <Button shape="round" size="large" className="bg-primary hover:bg-hover-primary" href={EXPLORE_ROUTE}>
-            <Text strong>Search</Text>
+            <Text strong>Explore</Text>
           </Button>
         }
       />);
