@@ -35,15 +35,17 @@ function Sidebar() {
 
   const items: MenuItem[] = [
     {
-      label: "", key: "0", onClick: () => navigate(HOME_ROUTE),
+      label: "", key: "0", onClick: () => navigate(HOME_ROUTE, {replace: location.pathname === HOME_ROUTE}),
       icon: <img className="w-12 h-10 left-0 absolute" src="/logo.svg" alt="logo"/>,
     },
     {
-      label: "Home", key: HOME_ROUTE, onClick: () => navigate(HOME_ROUTE),
+      label: "Home", key: HOME_ROUTE, onClick: () => navigate(HOME_ROUTE, {replace: location.pathname === HOME_ROUTE}),
       icon: locationPath === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
     },
     {
-      label: "Explore", key: EXPLORE_ROUTE, onClick: () => navigate(EXPLORE_ROUTE),
+      label: "Explore",
+      key: EXPLORE_ROUTE,
+      onClick: () => navigate(EXPLORE_ROUTE, {replace: location.pathname === EXPLORE_ROUTE}),
       icon: <SearchOutlined className={locationPath === EXPLORE_ROUTE ? "broad" : ""}/>,
     },
     {
@@ -65,14 +67,16 @@ function Sidebar() {
       label: "Freemium", key: "6", icon: <ThunderboltOutlined/>, disabled: true
     },
     {
-      label: "Profile", key: profileRoute, onClick: () => navigate(profileRoute),
+      label: "Profile",
+      key: profileRoute,
+      onClick: () => navigate(profileRoute, {replace: locationPath === profileRoute}),
       icon: locationPath === profileRoute ? <UserSolid/> : <UserOutlined/>,
     },
     {
       label: "More", key: "7", icon: <EllipsisOutlined/>, disabled: true
     },
   ];
-
+  // TODO: FIX NAVIGATES MULTIPLE CLICKS
   const avatarItem: MenuItem = {
     key: "8",
     icon: <Avatar

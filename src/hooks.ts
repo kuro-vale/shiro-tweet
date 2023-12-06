@@ -5,7 +5,7 @@ import {HEART_MUTATION, RETWEET_MUTATION, UNHEART_MUTATION, UNRETWEET_MUTATION} 
 import {handleError} from "./utils";
 import {MessageInstance} from "antd/lib/message/interface";
 import {Tweet} from "./types";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {TWEET_DETAILS} from "./constants";
 
 export const useAuth = () => {
@@ -67,12 +67,14 @@ export const useTweetVars = (tweet: Tweet) => {
   const {user} = useAuth();
   const [isFollowedByYou, setIsFollowedByYou] = useState(tweet.author.isFollowedByYou);
   const navigate = useNavigate();
+  const location = useLocation();
   const handleClick = () => {
     let selection = window.getSelection();
     if (!selection?.toString().trim()) {
-      navigate(TWEET_DETAILS
+      const tweetRoute = TWEET_DETAILS
         .replace(":tweetId", `${tweet.id}`)
-        .replace(":username", tweet.author.username));
+        .replace(":username", tweet.author.username);
+      navigate(tweetRoute, {replace: location.pathname === tweetRoute});
     }
   };
 

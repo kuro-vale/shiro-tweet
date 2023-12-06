@@ -25,17 +25,25 @@ function MobileNavbar() {
 
   const items: MenuItem[] = [
     {
-      label: "", key: HOME_ROUTE, icon: location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
-      onClick: () => navigate(HOME_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
+      label: "",
+      key: HOME_ROUTE,
+      icon: location.pathname === HOME_ROUTE ? <HomeFilled/> : <HomeOutlined/>,
+      onClick: () => navigate(HOME_ROUTE, {replace: location.pathname === HOME_ROUTE}),
+      style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
-      label: "", key: EXPLORE_ROUTE,
+      label: "",
+      key: EXPLORE_ROUTE,
       icon: <SearchOutlined className={location.pathname === EXPLORE_ROUTE ? "broad" : ""}/>,
-      onClick: () => navigate(EXPLORE_ROUTE), style: {marginLeft: "15px", marginRight: "15px"}
+      onClick: () => navigate(EXPLORE_ROUTE, {replace: location.pathname === EXPLORE_ROUTE}),
+      style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
-      label: "", key: profileRoute, icon: location.pathname === profileRoute ? <UserSolid/> : <UserOutlined/>,
-      onClick: () => navigate(profileRoute), style: {marginLeft: "15px", marginRight: "15px"}
+      label: "",
+      key: profileRoute,
+      icon: location.pathname === profileRoute ? <UserSolid/> : <UserOutlined/>,
+      onClick: () => navigate(profileRoute, {replace: location.pathname === profileRoute}),
+      style: {marginLeft: "15px", marginRight: "15px"}
     },
     {
       label: "", key: "logout", style: {marginLeft: "15px", marginRight: "15px"},

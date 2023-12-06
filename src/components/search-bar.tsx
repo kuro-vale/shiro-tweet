@@ -1,7 +1,7 @@
 import {Form, Input, InputRef} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
 import {FormEvent, useEffect, useRef, useState} from "react";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import {EXPLORE_ROUTE} from "../constants";
 
 type SearchForm = {
@@ -12,6 +12,7 @@ function SearchBar() {
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<InputRef>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const [search] = useSearchParams();
   const [form] = Form.useForm<SearchForm>();
 
@@ -34,7 +35,7 @@ function SearchBar() {
     e.preventDefault();
     const valid = await form.validateFields().then(() => true).catch(() => false);
     if (valid) {
-      navigate(`${EXPLORE_ROUTE}?q=${form.getFieldValue("q")}`);
+      navigate(`${EXPLORE_ROUTE}?q=${form.getFieldValue("q")}`, {replace: location.pathname === EXPLORE_ROUTE});
       inputRef?.current?.blur();
     }
   };

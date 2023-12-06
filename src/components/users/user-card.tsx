@@ -4,7 +4,7 @@ import {useAuth} from "../../hooks";
 import FollowButton from "./follow-button";
 import UserPopover from "./user-popover";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {USER_ROUTE} from "../../constants";
 
 const {Text} = Typography;
@@ -17,11 +17,13 @@ function UserCard({user}: UserCardProps) {
   const {user: currentUser} = useAuth();
   const [isFollowedByYou, setIsFollowedByYou] = useState(user.isFollowedByYou);
   const navigate = useNavigate();
+  const location = useLocation();
   if (user.id === currentUser?.id) return (<></>);
   const handleClick = () => {
     let selection = window.getSelection();
     if (!selection?.toString().trim()) {
-      navigate(USER_ROUTE.replace(":username", user.username));
+      const userRoute = USER_ROUTE.replace(":username", user.username);
+      navigate(userRoute, {replace: location.pathname === userRoute});
     }
   };
 

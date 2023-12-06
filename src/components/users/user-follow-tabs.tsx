@@ -34,7 +34,7 @@ function UserFollowTabs() {
           >
             <ArrowLeftOutlined className="text-lg"/>
           </button>
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center">
             <Text strong className="text-xl">{profile?.username}</Text>
             <Text className="text-secondary text-[13px]">@{profile?.username}</Text>
           </div>
