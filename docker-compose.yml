@@ -25,7 +25,8 @@ services:
     ports:
       - "4000:4000"
   front:
-    build: ./
+    image: kurovale/shiro-tweet:local
+    #    build: ./
     depends_on: [ back ]
     ports:
       - "3000:80"
