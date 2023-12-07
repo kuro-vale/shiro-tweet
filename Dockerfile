@@ -1,7 +1,7 @@
 FROM node:18-alpine3.18 AS builder
 
 # must be set on build time
-ENV REACT_APP_API="http://localhost:4000"
+ENV REACT_APP_API="http://localhost:4000/"
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
