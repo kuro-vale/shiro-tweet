@@ -90,7 +90,7 @@ function TweetList({query, tweetId, userId, emptyMessage, hideReplyMessage, filt
     }
   }, [cursorTweetList, hideReplyMessage, tweetList]);
 
-  if (loading && tweetCards.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
+  if (loading && tweetCards.length === 0) return (<Spin spinning={loading} className="min-h-[30vh]">
     <div/>
   </Spin>);
   if (error) return (<ErrorResult error={error}/>);

@@ -40,7 +40,7 @@ function UserList({query, user}: UserListProps) {
         ...userList!.map(u => <UserCard user={u} key={u.id}/>)]);
     }
   }, [userList]);
-  if (loading && userCards.length === 0) return (<Spin spinning={loading} className="min-h-[50vh]">
+  if (loading && userCards.length === 0) return (<Spin spinning={loading} className="min-h-[30vh]">
     <div/>
   </Spin>);
   if (error) return (<ErrorResult error={error}/>);
