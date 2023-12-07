@@ -1,32 +1,26 @@
-# Getting Started with Create React appLayout
+# shiro-tweet
 
-This project was bootstrapped with [Create React appLayout](https://github.com/facebook/create-react-app).
+Welcome to my React web app, this is the frontend of my backend app [kuro-tweet](https://github.com/kuro-vale/kuro-tweet),
+I am cloning the Twitter(X) frontend and using it with also a clone of the backend in GraphQL for that I am using Apollo Client.
 
-## Available Scripts
+Most of the features of Twitter(X) are not implemented, I am not that crazy enough, but you can do the basics like
 
-In the project directory, you can run:
+- Create a tweet
+- Like a tweet
+- Retweet
+- Comment a tweet
+- Feed of following users
+- Search Tweets / Users
 
-### `npm start`
+![image](https://github.com/kuro-vale/shiro-tweet/assets/87244716/faa3581b-1d4f-44c8-b10b-d07021159fff)
+![image](https://github.com/kuro-vale/shiro-tweet/assets/87244716/2cb81453-ddb8-4d9d-9377-c8eaf5a9db0e)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Docker
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can deploy this project (Database and backend included) by running ```docker compose up```
 
-### `npm run build`
+### Quick Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in
-the [Create React appLayout documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. create a .env file, use .env.example as reference
+2. run ```npm install```
+3. run ```npm run start```
